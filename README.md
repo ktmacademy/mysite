@@ -28,7 +28,7 @@ KTM Academy is an educational institution in Nepal dedicated to providing high-q
 ## Contact Us
 
 *   Phone: 9868004742
-*   WhatsApp: [WhatsApp](https://wa.me/9868004742)
+*   WhatsApp: [WhatsApp](https://wa.me/9779868004742)
 *   Email: info.ktmacademy@gmail.com
 *   Website: [ktmacademy.com](http://ktmacademy.com)
 
