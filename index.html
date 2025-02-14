@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KTM Academy - CTEVT Education Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1963a7;
+            --primary-light: #93afd3;
+            --text-primary: #000000;
+            --background: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #145086;
+            border-color: #145086;
+            transform: translateY(-1px);
+        }
+
+        .navbar {
+            background-color: var(--background);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            color: var(--primary) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .hero {
+            background: linear-gradient(45deg, var(--primary-light), var(--primary));
+            padding: 8rem 0;
+            color: var(--background);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--background);
+            border-radius: 1rem;
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-section {
+            background-color: #f8f9fa;
+            border-radius: 1rem;
+            padding: 4rem 0;
+        }
+
+        .social-link {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        #adminModal .modal-content {
+            border-radius: 1rem;
+            border: none;
+        }
+
+        .admin-form input {
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">KTM Academy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#adminModal">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container text-center">
+            <h1>Transform Your CTEVT Journey</h1>
+            <p class="lead mb-4">Nepal's premier platform for CTEVT education, offering comprehensive online classes and resources</p>
+            <button class="btn btn-light btn-lg">Explore Courses</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose KTM Academy?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-graduation-cap feature-icon"></i>
+                        <h3 class="h5 mb-3">Expert Faculty</h3>
+                        <p>Learn from experienced CTEVT instructors dedicated to your success</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt feature-icon"></i>
+                        <h3 class="h5 mb-3">CTEVT Plus App</h3>
+                        <p>Access free notes and resources through our mobile application</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fab fa-youtube feature-icon"></i>
+                        <h3 class="h5 mb-3">YouTube Channel</h3>
+                        <p>Additional learning resources through our CTEVT Plus channel</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Courses</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <h3 class="h5 mb-3">1st Semester</h3>
+                        <p>Comprehensive coverage of first semester CTEVT curriculum</p>
+                        <button class="btn btn-primary mt-3">Learn More</button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <h3 class="h5 mb-3">2nd Semester</h3>
+                        <p>In-depth study materials and expert guidance</p>
+                        <button class="btn btn-primary mt-3">Learn More</button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card">
+                        <h3 class="h5 mb-3">3rd Semester</h3>
+                        <p>Advanced concepts with practical applications</p>
+                        <button class="btn btn-primary mt-3">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container text-center">
+            <h2 class="mb-4">Get in Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <p class="mb-3">
+                        <i class="fas fa-phone me-2"></i>
+                        <a href="tel:9868004742" class="text-decoration-none">9868004742</a>
+                    </p>
+                    <p class="mb-3">
+                        <a href="https://wa.me/9779868004742" class="text-decoration-none">
+                            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                        </a>
+                    </p>
+                    <p class="mb-3">
+                        <i class="fas fa-envelope me-2"></i>
+                        <a href="mailto:info.ktmacademy@gmail.com" class="text-decoration-none">info.ktmacademy@gmail.com</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-globe me-2"></i>
+                        <a href="http://ktmacademy.com" target="_blank" class="text-decoration-none">ktmacademy.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Modal -->
+    <div class="modal fade" id="adminModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Admin Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="adminForm" class="admin-form">
+                        <input type="text" class="form-control" id="username" placeholder="Username" required>
+                        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 KTM Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple admin authentication
+        document.getElementById('adminForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Demo credentials (in production, use proper backend authentication)
+            if (username === 'admin' && password === 'password') {
+                alert('Login successful!');
+                // Here you would typically redirect to an admin dashboard
+            } else {
+                alert('Invalid credentials');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (this.getAttribute('href') === '#') return;
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
