@@ -138,8 +138,13 @@
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#adminModal">Admin</a>
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.youtube.com/@CTEVTPlus" target="_blank">Youtube</a>
+                    </li>
+                    
+                    
                 </ul>
             </div>
         </div>
@@ -150,7 +155,7 @@
         <div class="container text-center">
             <h1>Transform Your CTEVT Journey</h1>
             <p class="lead mb-4">Nepal's premier platform for CTEVT education, offering comprehensive online classes and resources</p>
-            <button class="btn btn-light btn-lg">Explore Courses</button>
+            <button class="btn btn-light btn-lg" href="#courses">Explore Courses</button>
         </div>
     </section>
 
@@ -238,29 +243,61 @@
     <section id="testimonials" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">What Our Students Say</h2>
-            <div class="row">
-                <div class="col-12">
-                    <div class="testimonial-carousel">
-                        <div class="testimonial-item">
-                            <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                            <p class="lead">"KTM Academy has transformed my learning experience. The resources are top-notch!"</p>
-                            <h5>Krishna Subedi</h5>
-                        </div>
-                        <div class="testimonial-item">
-                            <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                            <p class="lead">"The instructors are very knowledgeable and always ready to help."</p>
-                            <h5>Sita Thapa</h5>
-                        </div>
-                        <div class="testimonial-item">
-                            <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                            <p class="lead">"I love the flexibility and the comprehensive materials provided."</p>
-                            <h5>Hari Sunar</h5>
-                        </div>
-                        <div class="testimonial-item">
-                            <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                            <p class="lead">"The online classes are very interactive and engaging."</p>
-                            <h5>Gita Khanal</h5>
-                        </div>
+            <div class="row flex-nowrap overflow-auto g-4">
+                <div class="col-md-3">
+                    <div class="feature-card testimonial-card">
+                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+                        <p class="lead">"KTM Academy has transformed my learning experience. The resources are top-notch!"</p>
+                        <h5>Krishna Subedi</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card testimonial-card">
+                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+                        <p class="lead">"The instructors are very knowledgeable and always ready to help."</p>
+                        <h5>Sita Thapa</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card testimonial-card">
+                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+                        <p class="lead">"I love the flexibility and the comprehensive materials provided."</p>
+                        <h5>Hari Sunar</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card testimonial-card">
+                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+                        <p class="lead">"The online classes are very interactive and engaging."</p>
+                        <h5>Gita Khanal</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card testimonial-card">
+                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+                        <p class="lead">"The platform is user-friendly and the support team is very responsive."</p>
+                        <h5>Ramesh Karki</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card testimonial-card">
+                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+                        <p class="lead">"I have improved my grades significantly since joining KTM Academy."</p>
+                        <h5>Sarita Lama</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card testimonial-card">
+                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+                        <p class="lead">"The study materials are very detailed and easy to understand."</p>
+                        <h5>Manoj Shrestha</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card testimonial-card">
+                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+                        <p class="lead">"I highly recommend KTM Academy to anyone looking to excel in their studies."</p>
+                        <h5>Sunita Rai</h5>
                     </div>
                 </div>
             </div>
@@ -268,32 +305,29 @@
     </section>
 
     <style>
-        /* Container for the testimonials carousel */
-        .testimonial-carousel {
-            display: flex;
-            overflow: hidden;
-            animation: scroll 20s linear infinite alternate; /* Animation for scrolling effect */
+        .testimonial-card {
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        /* Individual testimonial item */
-        .testimonial-item {
-            flex: 0 0 25%; /* Each item takes up 25% of the container */
-            max-width: 25%; /* Ensures each item doesn't exceed 25% width */
-            text-align: center;
-            padding: 0 15px;
-            box-sizing: border-box;
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* Keyframes for the scrolling animation */
-        @keyframes scroll {
-            0% {
-            transform: translateX(0); /* Start position at the beginning of the container */
+        .testimonial-card i {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
             }
-            100% {
-            transform: translateX(-100%); /* End position, scrolls to the left by 100% of the container's width */
+            40% {
+                transform: translateY(-10px);
             }
-            
-        
+            60% {
+                transform: translateY(-5px);
+            }
         }
     </style>
 
@@ -364,35 +398,5 @@
             </div>
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Simple admin authentication
-        document.getElementById('adminForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            // Demo credentials (in production, use proper backend authentication)
-            if (username === 'admin' && password === 'password') {
-                alert('Login successful!');
-                // Here you would typically redirect to an admin dashboard
-            } else {
-                alert('Invalid credentials');
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                if (this.getAttribute('href') === '#') return;
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
