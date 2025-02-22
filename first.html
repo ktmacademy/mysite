@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="description" content="Enroll in CTEVT 1st Sem Math I course. Build a strong foundation in Engineering Mathematics.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CTEVT 1st Sem Math I Enrollment</title>
+
+  <style>
+    /* --------------------- GLOBAL STYLES --------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      color: #333;
+      background-color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-bottom: 0.5em;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 1em;
+    }
+
+    /* --------------------- HEADER --------------------- */
+    header {
+      background-color: #0c3c60;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav li:hover {
+      text-decoration: underline;
+    }
+
+    /* --------------------- HERO SECTION --------------------- */
+    #hero {
+      background: url('study.jpg') no-repeat center center/cover;
+      color: #ffff;
+      text-align: center;
+      padding: 5rem 2rem;
+      position: relative;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+      z-index: 1;
+    }
+
+    #hero h1, #hero p, #hero .btn-primary {
+      position: relative;
+      z-index: 2;
+    }
+
+    #hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-primary {
+      background-color: #f9b700;
+      color: #333;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #ffca2c;
+    }
+
+    /* --------------------- MAIN CONTENT --------------------- */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 0.5rem;
+    }
+
+    /* --------------------- SYLLABUS (Accordion/Dropdown) --------------------- */
+    details {
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      background-color: #fafafa;
+    }
+
+    details summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details p, details ul {
+      margin-top: 1rem;
+    }
+
+    /* --------------------- TABLE STYLING --------------------- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    /* --------------------- ENROLL FORM --------------------- */
+    .enroll-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .enroll-form label {
+      font-weight: bold;
+    }
+
+    .enroll-form input, .enroll-form textarea {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    .enroll-form button {
+      align-self: flex-start;
+      background-color: #0c3c60;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .enroll-form button:hover {
+      background-color: #125084;
+    }
+
+    /* --------------------- FOOTER --------------------- */
+    footer {
+      background-color: #0c3c60;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 2rem;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    .floating-container {
+      position: fixed;
+      top: 20%;
+      right: 2%;
+      width: 300px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      z-index: 1000;
+      display: none; /* Initially hidden */
+    }
+
+    .floating-button {
+      position: fixed;
+      top: 20%;
+      right: 2%;
+      background-color: #0c3c60;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="logo">KTM Academy</div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#syllabus">Syllabus</a></li>
+        <li><a href="#enrollment">Enroll</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<!-- ================= HERO SECTION ================= -->
+<section id="hero">
+  <h1>Enroll in CTEVT 1st Sem Math I</h1>
+  <p>Build a strong foundation in Engineering Mathematics for your diploma in engineering fields. Join our comprehensive course and master the fundamentals of Math I.</p>
+  <div style="text-align: center;">
+    <a href="https://forms.gle/T34ioeD4dKSq13rb9" target="_blank">
+      <button class="btn-primary" style="background-color: #0c3c60; color: #fff;">Enroll Now</button>
+    </a>
+  </div>
+</section>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+
+
+    <!-- Floating Container -->
+    <div class="floating-container" id="floatingContainer">
+        <img src="containerimg.png" alt="Special Offer Banner" style="width: 100%; border-radius: 8px 8px 0 0;">
+        <h3 style="color: #0c3c60; margin-top: 1rem;">Rs. 5000</h3>
+        <ul style="list-style: none; padding-left: 0; line-height: 1.6;">
+          <li>✓ Daily Live Class</li>
+          <li>✓ Free Recorded Videos</li>
+          <li>✓ Free Notes</li>
+          <li>✓ Weekly Feedback Session</li>
+          <li>✓ एक पटक भर्ना भएपछि परीक्षा सम्म पढ्न पाइने</li>
+        </ul>
+        <a href="https://forms.gle/LczwPc9rcwe4YXyw6" target="_blank" style="display: block; text-align: center; background-color: #0c3c60; color: #fff; padding: 0.75rem; border-radius: 4px; text-decoration: none; margin-top: 1rem;">Enroll Now</a>
+      </div>
+  
+      <button class="floating-button" id="floatingButton">⋮</button>
+
+    <!-- Tab Menu Bar -->
+    <div class="tab-menu">
+      <button class="tab-link active" onclick="openTab(event, 'course-description')">Course Description</button>
+      <button class="tab-link" onclick="openTab(event, 'course-objectives')">Course Objectives</button>
+      <button class="tab-link" onclick="openTab(event, 'instructor')">Instructor</button>
+    </div>
+
+    <!-- Course Description Section -->
+    <section id="course-description" class="tab-content">
+      <h2>Course Description</h2>
+      <p>
+        This course (Engineering Mathematics I, EG 1103 SH) consists of five units: Set and Function, 
+        Trigonometry, Calculus, Algebra, and Coordinate Geometry. These topics are necessary to develop 
+        mathematical knowledge and skills relevant to various engineering fields.
+      </p>
+    </section>
+
+    <!-- Course Objectives Section -->
+    <section id="course-objectives" class="tab-content" style="display:none;">
+      <h2>Course Objectives</h2>
+      <p>
+        Upon completion of this course, students will be able to:
+      </p>
+      <ul>
+        <li>Understand the real number system and functional relations.</li>
+        <li>Solve trigonometric equations, use inverse circular functions, and analyze properties of triangles.</li>
+        <li>Work with progressions, permutations, combinations, binomial theorem, exponential, and logarithmic series.</li>
+        <li>Analyze and apply concepts of straight lines, pair of lines, circles, limits, continuity, derivatives, and anti-derivatives.</li>
+      </ul>
+    </section>
+
+    <!-- Instructor Section -->
+    <section id="instructor" class="tab-content" style="display:none;">
+      <h2>Instructor</h2>
+      <p>
+        The course is taught by experienced instructors who have a deep understanding of engineering mathematics and a passion for teaching. They are dedicated to helping students succeed and are available for consultation and support throughout the course.
+      </p>
+    </section>
+
+    <style>
+      .tab-menu {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .tab-link {
+        background-color: #0c3c60;
+        color: #fff;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 0.5rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .tab-link:hover, .tab-link.active {
+        background-color: #125084;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+    </style>
+
+    <script>
+      function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tab-link");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+      // Set default tab to be open
+      document.getElementById("course-description").style.display = "block";
+    </script>
+
+    <!-- ================= SYLLABUS (Dropdown/Accordion) ================= -->
+    <section id="syllabus">
+      <h2>Syllabus</h2>
+
+      <details>
+        <summary>Unit 1: Set, Functions and Graphs [7 Hrs.]</summary>
+        <ul>
+          <li>Cardinality of set, Power set, Properties of set algebra, De Morgan’s laws</li>
+          <li>Real number systems, intervals and absolute value</li>
+          <li>Relations and Functions, idea of domain and range</li>
+          <li>Types of functions, exponential and logarithmic functions with their graphs</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Unit 2: Trigonometry [11 Hrs.]</summary>
+        <p><strong>2.1 Revision:</strong> Basic trigonometric formulae, Identities, conditional identities, Height and distance</p>
+        <p><strong>2.2 Trigonometric Equations and Inverse Circular Functions</strong></p>
+        <ul>
+          <li>General solutions of the equations of type Sin x = k, Cos x = k, and Tan x = k</li>
+          <li>Formulae involving inverse circular functions</li>
+          <li>Simple identities and equations involving circular functions</li>
+        </ul>
+        <p><strong>2.3 Properties of Triangles</strong></p>
+        <ul>
+          <li>The Sine, Cosine, and projection laws (with proofs)</li>
+          <li>The half angle formulae, Tangent laws, and area of a triangle (without proofs)</li>
+          <li>Simple cases on solution of triangles</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Unit 3: Calculus [18 Hrs.]</summary>
+        <p><strong>3.1 Limit and Continuity</strong></p>
+        <ul>
+          <li>Limit of functions, Indeterminate forms (only 0/0, ∞/∞, and ∞−∞)</li>
+          <li>Algebraic properties of limits (without proof)</li>
+          <li>Theorems on limits (without proof)</li>
+          <li>Continuity and discontinuity of function, types of discontinuity</li>
+        </ul>
+        <p><strong>3.2 Derivatives</strong></p>
+        <ul>
+          <li>Definition, geometrical and physical meanings of derivative</li>
+          <li>Derivatives from definition of simple functions like x^n, (ax+b)^n, sin(ax + b), e^(ax), a^x, log x</li>
+          <li>Rules of derivatives (sum, difference, product, quotient, and chain rules)</li>
+          <li>Derivatives of trigonometric, parametric, and implicit functions</li>
+          <li>Higher order derivatives</li>
+        </ul>
+        <p><strong>3.3 Integration</strong></p>
+        <ul>
+          <li>Definition and notation, Basic rules of integration</li>
+          <li>Fundamental integrals and Integration by substitution</li>
+          <li>Integration by parts and Definite integrals</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Unit 4: Algebra [12 Hrs.]</summary>
+        <p><strong>4.1 Progressions</strong></p>
+        <ul>
+          <li>Arithmetic, Geometric, and Harmonic Progressions</li>
+          <li>Sum of infinite geometric series, Sum of First natural numbers</li>
+          <li>Sum of squares and cubes of First n natural numbers (without proof)</li>
+        </ul>
+        <p><strong>4.2 Permutations and Combinations</strong></p>
+        <ul>
+          <li>Principle of counting, Types of Permutation</li>
+          <li>Combination and its properties (without proof)</li>
+        </ul>
+        <p><strong>4.3 The Binomial Theorem</strong></p>
+        <ul>
+          <li>Binomial theorem (without proof)</li>
+          <li>Expansion of binomial expressions, general terms, middle terms, and terms free from variables</li>
+          <li>Expansion of binomial expression for any index</li>
+          <li>Expansion of exponential and logarithmic functions (without proof)</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Unit 5: Coordinate Geometry [12 Hrs.]</summary>
+        <p><strong>5.1 Straight Lines</strong></p>
+        <ul>
+          <li>Three standard forms of a line, general form: ax + by + c = 0</li>
+          <li>The line through the intersection of two lines, concurrency of lines, area of triangle</li>
+          <li>Angle between two lines, bisector of angle between two lines, length of perpendicular from a point on a line</li>
+        </ul>
+        <p><strong>5.2 Pair of Lines</strong></p>
+        <ul>
+          <li>Homogeneous equation of second degree</li>
+          <li>General equation of second degree representing two lines</li>
+          <li>Angle between a pair of lines and bisectors of the angles for a line pair (without proof)</li>
+          <li>Condition for general equation of second degree to represent a line pair (without proof)</li>
+          <li>Lines joining the origin to the points of intersection of a curve and a line</li>
+        </ul>
+        <p><strong>5.3 The Circle</strong></p>
+        <ul>
+          <li>Standard and central forms</li>
+          <li>General and Diameter forms (without proof)</li>
+          <li>Tangent and normal to the circle</li>
+          <li>Condition of tangency of a straight line to a circle (without proof)</li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Tutorial Hours [30 Hrs.]</summary>
+        <ul>
+          <li>Set, function and graphs [2 Hrs.]</li>
+          <li>Trigonometry [5 Hrs.]</li>
+          <ul>
+            <li>Trigonometric Equations and Inverse Circular Functions [2 Hrs.]</li>
+            <li>Properties of Triangles [3 Hrs.]</li>
+          </ul>
+          <li>Calculus [10 Hrs.]</li>
+          <ul>
+            <li>Limit and Continuity [2 Hrs.]</li>
+            <li>Derivatives [4 Hrs.]</li>
+            <li>Integration [4 Hrs.]</li>
+          </ul>
+          <li>Algebra [7 Hrs.]</li>
+          <ul>
+            <li>Progressions [2 Hrs.]</li>
+            <li>Permutations and Combinations [2 Hrs.]</li>
+            <li>The Binomial Theorem [3 Hrs.]</li>
+          </ul>
+          <li>Coordinate Geometry [6 Hrs.]</li>
+          <ul>
+            <li>Straight Lines [2 Hrs.]</li>
+            <li>Pair of Lines [2 Hrs.]</li>
+            <li>The Circle [2 Hrs.]</li>
+          </ul>
+        </ul>
+      </details>
+
+      <details>
+        <summary>Evaluation Scheme</summary>
+        <table>
+          <thead>
+            <tr>
+              <th>S.N.</th>
+              <th>Units</th>
+              <th>Short Questions (2 marks)</th>
+              <th>Long Questions (4 marks)</th>
+              <th>Total Marks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Set, function and graphs</td>
+              <td>2 x 2 = 4</td>
+              <td>1 x 4 = 4</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Trigonometry</td>
+              <td>3 x 2 = 6</td>
+              <td>2 x 4 = 8</td>
+              <td>14</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Calculus</td>
+              <td>4 x 2 = 8</td>
+              <td>4 x 4 = 16</td>
+              <td>24</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Algebra</td>
+              <td>3 x 2 = 6</td>
+              <td>3 x 4 = 12</td>
+              <td>18</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Coordinate Geometry</td>
+              <td>2 x 2 = 4</td>
+              <td>3 x 4 = 12</td>
+              <td>16</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2">Total</td>
+              <td>14 x 2 = 28</td>
+              <td>13 x 4 = 52</td>
+              <td>80</td>
+            </tr>
+          </tfoot>
+        </table>
+      </details>
+
+      <details>
+        <summary>Reference Books</summary>
+        <ul>
+          <li>Thapa et al., Engineering Mathematics (Volume I, Three Years Diploma), Sukunda Pustak Bhawan</li>
+          <li>Bajracharya et al., Basic Mathematics (Grade XI/XII), Sukunda Pustak Bhawan</li>
+          <li>Nath et al., Engineering Mathematics I, Vidhyarthi Publisher and distributors</li>
+          <li>Other references selected by the related lecturer(s) that meet the content of this subject.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- ================= ENROLLMENT SECTION ================= -->
+    <section id="enrollment">
+      <div style="text-align: center;">
+        <a href="https://forms.gle/1EwhX5VmScaoQSur5" target="_blank">
+          <button class="btn-primary" style="background-color: #0c3c60; color: #fff;">Enroll Now</button>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 KTM Academy. All rights reserved.</p>
+            <div class="mt-3">
+                <a href="https://www.facebook.com/ctevtplus" target="_blank" class="social-link">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61555613042402" target="_blank" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.youtube.com/@CTEVTPlus" target="_blank" class="social-link">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://wa.me/9779868004742" target="_blank" class="social-link">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+  <script>
+    const floatingButton = document.getElementById('floatingButton');
+    const floatingContainer = document.getElementById('floatingContainer');
+
+    floatingButton.addEventListener('click', () => {
+      if (floatingContainer.style.display === 'none' || floatingContainer.style.display === '') {
+        floatingContainer.style.display = 'block';
+        floatingButton.textContent = '↓';
+      } else {
+        floatingContainer.style.display = 'none';
+        floatingButton.textContent = '↑';
+      }
+    });
+  </script>
+
+</body>
+</html>
