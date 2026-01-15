@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI for Everyone Course - KTM Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <style>
+        :root {
+            --primary: #1963a7;
+            --primary-light: #93afd3;
+            --text-primary: #000000;
+            --background: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #145086;
+            border-color: #145086;
+            transform: translateY(-1px);
+        }
+
+        .navbar {
+            background-color: var(--background);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            color: var(--primary) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .course-header {
+            background: linear-gradient(45deg, var(--primary-light), var(--primary));
+            padding: 4rem 0;
+            color: var(--background);
+        }
+
+        .course-image {
+            width: 100%;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .price-section {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="home_logo.jpg" alt="KTM Academy Logo" style="height: 62px; margin-right: 10px;">
+            KTM Academy
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#features">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#courses">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#testimonials">Testimonials</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#download-app">Download</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/@ktm-academy" target="_blank">Youtube</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Course Header -->
+<section class="course-header">
+    <div class="container text-center">
+        <h1>AI for Everyone Course</h1>
+        <p class="lead">Artificial Intelligence for Working professionals and Students</p>
+    </div>
+</section>
+
+<!-- Course Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Course Images -->
+                <img src="assets/AIforeveryone.png" alt="AI for Everyone Course" class="course-image">
+                <!-- <img src="assets/2.png" alt="AI Course Details" class="course-image">
+                <img src="assets/4.png" alt="AI Course Curriculum" class="course-image">
+                <img src="assets/5.png" alt="AI Course Benefits" class="course-image"> -->
+                
+                <!-- Course Description -->
+                <div class="mt-4">
+                    <h2 class="mb-4">About This Course</h2>
+                    <p>1 week training on AI for everyone in Nepal + Coding basics (Python). This comprehensive course is designed to help you understand and use modern AI tools effectively in your daily work and projects.</p>
+                    
+                    <div class="alert alert-info mb-4">
+                        <h5><i class="fas fa-calendar-alt me-2"></i>Course Schedule</h5>
+                        <ul class="mb-0">
+                            <li><strong>Class Time:</strong> 6 PM to 7 PM</li>
+                            <li><strong>Course Length:</strong> 1 Week</li>
+                            <li><strong>Start Date:</strong> Magh 8th, 2082</li>
+                            <li><strong>Trial Class:</strong> <a href="https://meet.google.com/zvo-ezwq-rto" target="_blank" class="text-decoration-none">Join Here on Magh 8th, 2082</a></li>
+                        </ul>
+                    </div>
+
+                    <h3 class="mt-4 mb-3">What You'll Learn</h3>
+                    <ul>
+                        <li>Learn modern AI tools</li>
+                        <li>Making diagrams and design with AI tools</li>
+                        <li>Using AI in MS-Excel Office tool</li>
+                        <li>Make images using AI</li>
+                        <li>Make videos using AI</li>
+                        <li>ChatGPT, Perplexity, Gemini, Qwen, Grok, Groq, and other tools with free API Access</li>
+                        <li>Website development using AI</li>
+                        <li>App development using AI</li>
+                        <li>Python coding basics</li>
+                    </ul>
+
+                    
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="price-section sticky-top" style="top: 100px;">
+                    <div class="text-center">
+                        <div class="mb-3">
+                            <h2 class="text-primary mb-0">NPR 500/-</h2>
+                            <small class="text-muted">for 1 week course</small>
+                        </div>
+                        <button class="btn btn-primary btn-lg w-100 mb-3" onclick="window.open('https://forms.gle/xKEXHUC2JgsEbjnu7', '_blank')">
+                            <i class="fas fa-user-plus"></i> Enroll Now
+                        </button>
+                        <a href="https://meet.google.com/zvo-ezwq-rto" target="_blank" class="btn btn-outline-success w-100 mb-2">
+                            <i class="fas fa-video"></i> Join Trial Class on Magh 8th, 2082
+                        </a>
+                    </div>
+
+                    <hr>
+
+                    <div class="mt-4">
+                        <h5 class="mb-3">Course Information</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-clock text-primary me-2"></i> Duration: 1 Week</li>
+                            <li class="mb-2"><i class="fas fa-calendar text-primary me-2"></i> Time: 6 PM to 7 PM</li>
+                            <li class="mb-2"><i class="fas fa-calendar-check text-primary me-2"></i> Starts: Jan 11, 2026</li>
+                            <li class="mb-2"><i class="fas fa-signal text-primary me-2"></i> Level: Beginner</li>
+                            <li class="mb-2"><i class="fas fa-language text-primary me-2"></i> Language: English/Nepali</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-light py-4">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2024 KTM Academy. All rights reserved.</p>
+        <div class="mt-3">
+            <a href="https://www.facebook.com/ctevtplus" target="_blank" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61555613042402" target="_blank" class="social-link">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.youtube.com/@ktm-academy" target="_blank" class="social-link">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://wa.me/9779807590455" target="_blank" class="social-link">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

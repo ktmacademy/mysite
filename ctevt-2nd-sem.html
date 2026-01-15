@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2nd Sem CTEVT - KTM Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <style>
+        :root {
+            --primary: #1963a7;
+            --primary-light: #93afd3;
+            --text-primary: #000000;
+            --background: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #145086;
+            border-color: #145086;
+            transform: translateY(-1px);
+        }
+
+        .navbar {
+            background-color: var(--background);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            color: var(--primary) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-primary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .course-header {
+            background: linear-gradient(45deg, var(--primary-light), var(--primary));
+            padding: 4rem 0;
+            color: var(--background);
+        }
+
+        .course-image {
+            width: 100%;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #f8f9fa;
+            padding: 3rem;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .info-section {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+        }
+
+        .alert-info {
+            background-color: #e7f3ff;
+            border-color: #b3d9ff;
+            color: #004085;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="home_logo.jpg" alt="KTM Academy Logo" style="height: 62px; margin-right: 10px;">
+            KTM Academy
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#features">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#courses">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#testimonials">Testimonials</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#download-app">Download</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html#contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/@ktm-academy" target="_blank">Youtube</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Course Header -->
+<section class="course-header">
+    <div class="container text-center">
+        <h1>2nd Semester CTEVT Tuition Classes</h1>
+        <p class="lead">Past Course - Advanced Foundation Program</p>
+    </div>
+</section>
+
+<!-- Course Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="alert alert-info mb-4">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Note:</strong> This is a past course. Check our currently active courses for new enrollment opportunities.
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Placeholder Image -->
+                <div class="course-image">
+                    <i class="fas fa-graduation-cap fa-5x mb-3"></i>
+                    <h3>2nd Semester CTEVT</h3>
+                    <p>Course Material Available</p>
+                </div>
+                
+                <!-- Course Description -->
+                <div class="mt-4">
+                    <h2 class="mb-4">About This Course</h2>
+                    <p>Our 2nd Semester CTEVT Tuition Classes provided in-depth study materials and expert guidance for the second semester, building upon the foundation established in the first semester.</p>
+                    
+                    <h3 class="mt-4 mb-3">What Was Covered</h3>
+                    <ul>
+                        <li>Complete 2nd semester CTEVT syllabus coverage</li>
+                        <li>Advanced topic explanations and practical applications</li>
+                        <li>Comprehensive study materials and notes</li>
+                        <li>Regular assignments and practice problems</li>
+                        <li>Previous year question papers with solutions</li>
+                        <li>Mock tests and performance evaluations</li>
+                        <li>One-on-one doubt clearing sessions</li>
+                    </ul>
+
+                    <h3 class="mt-4 mb-3">Key Subjects</h3>
+                    <ul>
+                        <li>Engineering Mathematics II</li>
+                        <li>Digital Electronics</li>
+                        <li>Object-Oriented Programming</li>
+                        <li>Database Management Systems</li>
+                        <li>Computer Networks Basics</li>
+                    </ul>
+
+                    <h3 class="mt-4 mb-3">Course Highlights</h3>
+                    <ul>
+                        <li>Interactive online classes with experienced instructors</li>
+                        <li>Recorded sessions for flexible learning</li>
+                        <li>Practical demonstrations and lab work guidance</li>
+                        <li>Regular feedback and progress tracking</li>
+                        <li>Peer learning and group discussions</li>
+                    </ul>
+
+                    <h3 class="mt-4 mb-3">Study Materials</h3>
+                    <p>Access comprehensive study materials and notes for 2nd semester through our resources:</p>
+                    <a href="https://docs.google.com/document/d/1UTqLxsHfa1wR8x9Zei9r1-GUXub0-Anr69vwVNmrI9I/edit?usp=sharing" class="btn btn-primary me-2 mb-2" target="_blank">
+                        <i class="fas fa-book me-2"></i>View Study Materials
+                    </a>
+                    <a href="https://www.youtube.com/@ktm-academy" class="btn btn-outline-primary mb-2" target="_blank">
+                        <i class="fab fa-youtube me-2"></i>YouTube Channel
+                    </a>
+
+                    <h3 class="mt-5 mb-3">Available Video Courses & Playlists</h3>
+                    <p>Watch free video lectures and playlists on our YouTube channel:</p>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fab fa-youtube text-danger me-2"></i>CTEVT Applied Mechanics (2nd Sem)</h6>
+                                    <p class="card-text small">32 videos</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fab fa-youtube text-danger me-2"></i>Physics 2nd Semester Online Class</h6>
+                                    <p class="card-text small">30 videos</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fab fa-youtube text-danger me-2"></i>Math II Second Sem Online Class 2081</h6>
+                                    <p class="card-text small">43 lessons - Full course</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fab fa-youtube text-danger me-2"></i>Soil Mechanics: Civil Eng 4th Sem</h6>
+                                    <p class="card-text small">2 videos - Crash course</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fab fa-youtube text-danger me-2"></i>CTEVT Diploma in Agriculture</h6>
+                                    <p class="card-text small">1 video</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fab fa-youtube text-danger me-2"></i>CTEVT Colleges</h6>
+                                    <p class="card-text small">2 videos</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fab fa-youtube text-danger me-2"></i>AI Course</h6>
+                                    <p class="card-text small">1 video</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title"><i class="fab fa-youtube text-danger me-2"></i>IELTS Playlist Nepali</h6>
+                                    <p class="card-text small">2 videos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" class="btn btn-danger btn-lg">
+                            <i class="fab fa-youtube me-2"></i>View All Playlists on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="info-section sticky-top" style="top: 100px;">
+                    <h5 class="mb-3">Course Status</h5>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-clock me-2"></i>
+                        <strong>Past Course</strong><br>
+                        <small>This course has been completed. Study materials are still available.</small>
+                    </div>
+
+                    <hr>
+
+                    <div class="mt-4">
+                        <h5 class="mb-3">Course Information</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-book text-primary me-2"></i> Level: 2nd Semester</li>
+                            <li class="mb-2"><i class="fas fa-graduation-cap text-primary me-2"></i> Program: CTEVT</li>
+                            <li class="mb-2"><i class="fas fa-language text-primary me-2"></i> Language: English/Nepali</li>
+                            <li class="mb-2"><i class="fas fa-file-alt text-primary me-2"></i> Materials: Available</li>
+                        </ul>
+                    </div>
+
+                    <hr>
+
+                    <div class="mt-4">
+                        <h5 class="mb-3">Looking for Current Courses?</h5>
+                        <p class="small">Check out our currently active courses for new learning opportunities.</p>
+                        <a href="index.html#courses" class="btn btn-primary w-100">
+                            <i class="fas fa-arrow-left me-2"></i>View All Courses
+                        </a>
+                    </div>
+
+                    <hr>
+
+                    <div class="mt-4">
+                        <h5 class="mb-3">Need Help?</h5>
+                        <p class="small mb-2">Contact us for more information:</p>
+                        <p class="mb-2">
+                            <i class="fas fa-phone text-primary me-2"></i>
+                            <a href="tel:9868004742" class="text-decoration-none">9868004742</a>
+                        </p>
+                        <p class="mb-2">
+                            <i class="fas fa-envelope text-primary me-2"></i>
+                            <a href="mailto:info.ktmacademy@gmail.com" class="text-decoration-none small">info.ktmacademy@gmail.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-light py-4">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2024 KTM Academy. All rights reserved.</p>
+        <div class="mt-3">
+            <a href="https://www.facebook.com/ctevtplus" target="_blank" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61555613042402" target="_blank" class="social-link">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://www.youtube.com/@ktm-academy" target="_blank" class="social-link">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://wa.me/9779868004742" target="_blank" class="social-link">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
