@@ -1,0 +1,27 @@
+:root {
+    --brand-blue: #0044cc;
+    --brand-green: #00a651;
+}
+
+body { font-family: 'Inter', sans-serif; }
+.nepali-font { font-family: 'Mukta', sans-serif; }
+
+/* MVP App Specific Styles */
+.toggle-checkbox:checked { right: 0; border-color: #00a651; }
+.toggle-checkbox:checked + .toggle-label { background-color: #00a651; }
+.slide-transition { transition: opacity 0.3s ease-in-out; }
+.downloaded { color: #00a651; background-color: #e6fffa; border-color: #00a651; }
+
+/* Landing Page Animations */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+.phone-frame {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: 8px solid #1e293b;
+    overflow: hidden;
+    animation: float 6s ease-in-out infinite;
+}
