@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="../favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notices & Results — Design Variants | KTM Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1963a7;
+            --primary-dark: #145086;
+            --primary-light: #93afd3;
+            --primary-soft: #eaf1f9;
+            --text-primary: #1a1d21;
+            --muted: #6b7280;
+            --background: #ffffff;
+            --surface: #f5f7fa;
+            --border: #e4e8ee;
+            --success: #1a9d64;
+            --danger: #d64545;
+            --warning: #e0a800;
+        }
+
+        * { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background: var(--surface);
+        }
+
+        /* ---------- Showcase chrome ---------- */
+        .showcase-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            padding: 2.5rem 0 1.5rem;
+        }
+        .showcase-header h1 { font-weight: 800; font-size: 2rem; margin-bottom: .35rem; }
+        .showcase-header p { opacity: .85; margin-bottom: 0; }
+
+        .variant-switcher {
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,.04);
+        }
+        .variant-switcher .switch-group-label {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            font-weight: 700;
+            color: var(--muted);
+            margin-right: .5rem;
+        }
+        .variant-btn {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-primary);
+            font-size: .85rem;
+            font-weight: 500;
+            padding: .4rem .9rem;
+            border-radius: 2rem;
+            transition: all .18s;
+            white-space: nowrap;
+        }
+        .variant-btn:hover { border-color: var(--primary-light); color: var(--primary); }
+        .variant-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(25,99,167,.25);
+        }
+
+        .variant-panel { display: none; padding: 2.5rem 0 4rem; }
+        .variant-panel.active { display: block; animation: fadeUp .35s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px);} to { opacity:1; transform:none;} }
+
+        .variant-caption {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            font-size: .8rem;
+            font-weight: 600;
+            padding: .35rem .85rem;
+            border-radius: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ---------- Shared building blocks ---------- */
+        .card-clean {
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,.04);
+        }
+        .badge-soft-primary { background: var(--primary-soft); color: var(--primary-dark); }
+        .badge-soft-success { background: #e4f5ec; color: var(--success); }
+        .badge-soft-danger  { background: #fbe9e9; color: var(--danger); }
+        .badge-soft-warning { background: #fdf4dd; color: #9a7500; }
+        .text-primary-c { color: var(--primary) !important; }
+
+        /* ===== NOTICE V1 — Notice Board (cards) ===== */
+        .notice-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.4rem;
+            height: 100%;
+            transition: all .25s;
+            position: relative;
+            overflow: hidden;
+        }
+        .notice-card::before {
+            content: "";
+            position: absolute; left: 0; top: 0; bottom: 0;
+            width: 4px; background: var(--primary);
+        }
+        .notice-card.is-urgent::before { background: var(--danger); }
+        .notice-card.is-result::before { background: var(--success); }
+        .notice-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,.08); }
+        .notice-date-chip {
+            display: inline-flex; flex-direction: column; align-items: center;
+            justify-content: center;
+            min-width: 56px; padding: .4rem;
+            background: var(--primary-soft); border-radius: .6rem;
+            color: var(--primary-dark); line-height: 1.1;
+        }
+        .notice-date-chip .d { font-size: 1.3rem; font-weight: 700; }
+        .notice-date-chip .m { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em; }
+        .pin-flag { position: absolute; top: 1rem; right: 1rem; color: var(--warning); }
+
+        /* ===== NOTICE V2 — Compact list ===== */
+        .notice-row {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            transition: background .18s;
+            cursor: pointer;
+        }
+        .notice-row:last-child { border-bottom: none; }
+        .notice-row:hover { background: var(--primary-soft); }
+        .notice-icon-box {
+            width: 44px; height: 44px; flex: none;
+            display: grid; place-items: center;
+            border-radius: .7rem; font-size: 1.1rem;
+            background: var(--primary-soft); color: var(--primary);
+        }
+
+        /* ===== NOTICE V3 — Detail view ===== */
+        .notice-detail-head { border-bottom: 2px solid var(--primary-soft); padding-bottom: 1.25rem; }
+        .attachment-item {
+            display: flex; align-items: center; gap: .85rem;
+            padding: .8rem 1rem; border: 1px solid var(--border);
+            border-radius: .7rem; transition: all .18s; text-decoration: none; color: inherit;
+        }
+        .attachment-item:hover { border-color: var(--primary); background: var(--primary-soft); }
+
+        /* ===== NOTICE V4 — Timeline ===== */
+        .timeline { position: relative; padding-left: 2.25rem; }
+        .timeline::before {
+            content: ""; position: absolute; left: .55rem; top: .4rem; bottom: .4rem;
+            width: 2px; background: var(--border);
+        }
+        .timeline-item { position: relative; padding-bottom: 1.75rem; }
+        .timeline-item::before {
+            content: ""; position: absolute; left: -1.98rem; top: .35rem;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: #fff; border: 3px solid var(--primary);
+        }
+        .timeline-item.done::before { background: var(--primary); }
+
+        /* ===== RESULT V1 — Lookup ===== */
+        .result-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 1.5rem; color: #fff; padding: 2.5rem;
+        }
+        .lookup-input {
+            border: none; border-radius: .7rem; padding: .85rem 1rem; font-weight: 500;
+        }
+
+        /* ===== RESULT V2 — Marksheet card ===== */
+        .marksheet {
+            background: #fff; border: 1px solid var(--border); border-radius: 1rem;
+            overflow: hidden;
+        }
+        .marksheet-head {
+            background: var(--primary-soft);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem;
+        }
+        .grade-ring {
+            width: 96px; height: 96px; border-radius: 50%;
+            display: grid; place-items: center; margin: 0 auto;
+            background: conic-gradient(var(--success) 0 78%, var(--border) 78% 100%);
+        }
+        .grade-ring .inner {
+            width: 76px; height: 76px; background: #fff; border-radius: 50%;
+            display: grid; place-items: center; line-height: 1;
+        }
+        .grade-ring .gpa { font-size: 1.4rem; font-weight: 800; color: var(--text-primary); }
+        .marks-table th { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; }
+        .marks-table td { vertical-align: middle; }
+        .grade-pill { font-weight: 700; padding: .15rem .6rem; border-radius: .5rem; font-size: .8rem; }
+
+        /* ===== RESULT V3 — Ledger table ===== */
+        .ledger-table thead th {
+            background: var(--primary); color: #fff; font-weight: 600;
+            font-size: .82rem; border: none; white-space: nowrap;
+        }
+        .ledger-table tbody tr:hover { background: var(--primary-soft); }
+        .rank-badge {
+            width: 30px; height: 30px; display: grid; place-items: center;
+            border-radius: 50%; font-weight: 700; font-size: .8rem;
+            background: var(--surface); color: var(--muted);
+        }
+        .rank-badge.top { background: var(--warning); color: #fff; }
+
+        /* ===== RESULT V4 — Pass/Fail status ===== */
+        .status-stamp {
+            width: 130px; height: 130px; border-radius: 50%;
+            display: grid; place-items: center; text-align: center;
+            border: 4px solid var(--success); color: var(--success);
+            font-weight: 800; text-transform: uppercase; transform: rotate(-12deg);
+        }
+        .status-stamp.fail { border-color: var(--danger); color: var(--danger); }
+
+        .footer-note { color: var(--muted); font-size: .85rem; }
+        @media (max-width: 575px){
+            .variant-switcher .variant-btn { font-size: .78rem; padding: .35rem .7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===================== Header ===================== -->
+<header class="showcase-header">
+    <div class="container">
+        <div class="d-flex align-items-center gap-3 mb-2">
+            <img src="../home_logo.jpg" alt="KTM Academy" style="height:48px;border-radius:.5rem;">
+            <div>
+                <h1>Notices &amp; Results</h1>
+                <p>Pick a layout variant below — each is a ready-to-use design.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ===================== Variant switcher ===================== -->
+<nav class="variant-switcher py-2">
+    <div class="container">
+        <div class="d-flex align-items-center gap-2 flex-nowrap overflow-auto py-1">
+            <span class="switch-group-label d-none d-md-inline"><i class="fas fa-bullhorn me-1"></i>Notices</span>
+            <button class="variant-btn active" data-variant="n1">Notice Board</button>
+            <button class="variant-btn" data-variant="n2">Compact List</button>
+            <button class="variant-btn" data-variant="n3">Detail View</button>
+            <button class="variant-btn" data-variant="n4">Timeline</button>
+            <span class="switch-group-label d-none d-md-inline ms-3"><i class="fas fa-award me-1"></i>Results</span>
+            <button class="variant-btn" data-variant="r1">Result Lookup</button>
+            <button class="variant-btn" data-variant="r2">Marksheet Card</button>
+            <button class="variant-btn" data-variant="r3">Ledger Table</button>
+            <button class="variant-btn" data-variant="r4">Pass / Fail</button>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+
+    <!-- ============ NOTICE V1 — Notice Board ============ -->
+    <section class="variant-panel active" id="n1">
+        <span class="variant-caption"><i class="fas fa-layer-group"></i> Variant N1 · Notice Board (card grid)</span>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <button class="btn btn-sm btn-primary rounded-pill px-3">All</button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">Admissions</button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">Exams</button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">Results</button>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">General</button>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="notice-card is-urgent">
+                    <i class="fas fa-thumbtack pin-flag"></i>
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="notice-date-chip"><span class="d">07</span><span class="m">Jul</span></div>
+                        <div>
+                            <span class="badge badge-soft-danger mb-1">Urgent</span>
+                            <h3 class="h6 mb-0">Entrance Exam Date Announced</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-3">The CTEVT diploma entrance examination will be held on Shrawan 25. Admit cards are now available for download.</p>
+                    <a href="#" class="btn btn-sm btn-primary">Read notice <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="notice-card is-result">
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="notice-date-chip"><span class="d">05</span><span class="m">Jul</span></div>
+                        <div>
+                            <span class="badge badge-soft-success mb-1">Result</span>
+                            <h3 class="h6 mb-0">1st Semester Result Published</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-3">Results for the first semester diploma programs are now live. Check your marks using your symbol number.</p>
+                    <a href="#" class="btn btn-sm btn-primary">View result <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="notice-card">
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="notice-date-chip"><span class="d">01</span><span class="m">Jul</span></div>
+                        <div>
+                            <span class="badge badge-soft-primary mb-1">Admissions</span>
+                            <h3 class="h6 mb-0">Scholarship Applications Open</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-3">Merit and need-based scholarships are open for the upcoming intake. Deadline: Shrawan 15.</p>
+                    <a href="#" class="btn btn-sm btn-primary">Read notice <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="notice-card">
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="notice-date-chip"><span class="d">28</span><span class="m">Jun</span></div>
+                        <div>
+                            <span class="badge badge-soft-warning mb-1">Exams</span>
+                            <h3 class="h6 mb-0">Practical Exam Schedule</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-3">Lab and practical examination routines for all semesters have been published on the notice board.</p>
+                    <a href="#" class="btn btn-sm btn-primary">Read notice <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="notice-card">
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="notice-date-chip"><span class="d">22</span><span class="m">Jun</span></div>
+                        <div>
+                            <span class="badge badge-soft-primary mb-1">General</span>
+                            <h3 class="h6 mb-0">New Bridge Course Batch</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-3">A fresh bridge course batch for Math, Physics and Chemistry begins next week. Limited seats.</p>
+                    <a href="#" class="btn btn-sm btn-primary">Read notice <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="notice-card">
+                    <div class="d-flex gap-3 mb-3">
+                        <div class="notice-date-chip"><span class="d">18</span><span class="m">Jun</span></div>
+                        <div>
+                            <span class="badge badge-soft-primary mb-1">General</span>
+                            <h3 class="h6 mb-0">Holiday Notice</h3>
+                        </div>
+                    </div>
+                    <p class="text-muted small mb-3">The academy will remain closed on public holidays. Online resources stay available 24/7.</p>
+                    <a href="#" class="btn btn-sm btn-primary">Read notice <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ NOTICE V2 — Compact List ============ -->
+    <section class="variant-panel" id="n2">
+        <span class="variant-caption"><i class="fas fa-list"></i> Variant N2 · Compact list</span>
+        <div class="row">
+            <div class="col-lg-9 mx-auto">
+                <div class="input-group mb-4">
+                    <span class="input-group-text bg-white"><i class="fas fa-search text-muted"></i></span>
+                    <input type="text" class="form-control border-start-0" placeholder="Search notices…">
+                    <button class="btn btn-primary px-4">Search</button>
+                </div>
+                <div class="card-clean">
+                    <div class="notice-row">
+                        <div class="notice-icon-box" style="background:#fbe9e9;color:var(--danger)"><i class="fas fa-triangle-exclamation"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <h3 class="h6 mb-0">Entrance Exam Date Announced</h3>
+                                <span class="badge badge-soft-danger">Urgent</span>
+                            </div>
+                            <p class="small text-muted mb-0">Admit cards available for the Shrawan 25 diploma entrance.</p>
+                        </div>
+                        <div class="text-end small text-muted d-none d-sm-block">07 Jul<br><i class="fas fa-paperclip"></i></div>
+                    </div>
+                    <div class="notice-row">
+                        <div class="notice-icon-box" style="background:#e4f5ec;color:var(--success)"><i class="fas fa-award"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <h3 class="h6 mb-0">1st Semester Result Published</h3>
+                                <span class="badge badge-soft-success">Result</span>
+                            </div>
+                            <p class="small text-muted mb-0">Check your marks using your symbol number.</p>
+                        </div>
+                        <div class="text-end small text-muted d-none d-sm-block">05 Jul</div>
+                    </div>
+                    <div class="notice-row">
+                        <div class="notice-icon-box"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <h3 class="h6 mb-0">Scholarship Applications Open</h3>
+                                <span class="badge badge-soft-primary">Admissions</span>
+                            </div>
+                            <p class="small text-muted mb-0">Merit &amp; need-based scholarships — deadline Shrawan 15.</p>
+                        </div>
+                        <div class="text-end small text-muted d-none d-sm-block">01 Jul<br><i class="fas fa-paperclip"></i></div>
+                    </div>
+                    <div class="notice-row">
+                        <div class="notice-icon-box" style="background:#fdf4dd;color:#9a7500"><i class="fas fa-flask"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <h3 class="h6 mb-0">Practical Exam Schedule</h3>
+                                <span class="badge badge-soft-warning">Exams</span>
+                            </div>
+                            <p class="small text-muted mb-0">Lab routines for all semesters published.</p>
+                        </div>
+                        <div class="text-end small text-muted d-none d-sm-block">28 Jun</div>
+                    </div>
+                    <div class="notice-row">
+                        <div class="notice-icon-box"><i class="fas fa-bookmark"></i></div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <h3 class="h6 mb-0">New Bridge Course Batch</h3>
+                                <span class="badge badge-soft-primary">General</span>
+                            </div>
+                            <p class="small text-muted mb-0">Math, Physics &amp; Chemistry — limited seats.</p>
+                        </div>
+                        <div class="text-end small text-muted d-none d-sm-block">22 Jun</div>
+                    </div>
+                </div>
+                <nav class="mt-4 d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ NOTICE V3 — Detail View ============ -->
+    <section class="variant-panel" id="n3">
+        <span class="variant-caption"><i class="fas fa-file-lines"></i> Variant N3 · Notice detail view</span>
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <article class="card-clean p-4 p-md-5">
+                    <a href="#" class="small text-decoration-none text-muted mb-3 d-inline-block"><i class="fas fa-arrow-left me-1"></i>Back to all notices</a>
+                    <div class="notice-detail-head mb-4">
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="badge badge-soft-danger">Urgent</span>
+                            <span class="badge badge-soft-primary">Exams</span>
+                        </div>
+                        <h1 class="h3 fw-bold mb-3">Entrance Examination Date Announced for Diploma Programs</h1>
+                        <div class="d-flex flex-wrap gap-4 small text-muted">
+                            <span><i class="far fa-calendar me-1"></i>Published: Shrawan 7, 2082</span>
+                            <span><i class="far fa-eye me-1"></i>1,248 views</span>
+                            <span><i class="fas fa-user me-1"></i>Examination Office</span>
+                        </div>
+                    </div>
+                    <div class="notice-body">
+                        <p>The Council for Technical Education and Vocational Training (CTEVT) hereby announces that the entrance examination for all diploma-level programs will be conducted on <strong>Shrawan 25, 2082</strong>.</p>
+                        <p>All applicants are required to download their admit cards from the student portal and bring a printed copy along with a valid photo ID to the examination center.</p>
+                        <ul>
+                            <li>Reporting time: 9:00 AM</li>
+                            <li>Examination duration: 2 hours</li>
+                            <li>Total marks: 100 (Physics, Chemistry, Mathematics, English)</li>
+                        </ul>
+                        <p class="mb-0">For further queries, contact the examination office during working hours.</p>
+                    </div>
+                    <hr class="my-4">
+                    <h2 class="h6 fw-bold mb-3"><i class="fas fa-paperclip me-2 text-primary-c"></i>Attachments</h2>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <a href="#" class="attachment-item">
+                                <i class="fas fa-file-pdf fa-2x text-danger"></i>
+                                <div><div class="fw-semibold small">Exam-Routine.pdf</div><div class="text-muted small">248 KB</div></div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="#" class="attachment-item">
+                                <i class="fas fa-file-image fa-2x text-primary-c"></i>
+                                <div><div class="fw-semibold small">Center-Map.jpg</div><div class="text-muted small">512 KB</div></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                        <button class="btn btn-primary"><i class="fas fa-download me-1"></i>Download all</button>
+                        <button class="btn btn-outline-secondary"><i class="fas fa-share-nodes me-1"></i>Share</button>
+                        <button class="btn btn-outline-secondary"><i class="fas fa-print me-1"></i>Print</button>
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-4">
+                <div class="card-clean p-4 mb-4">
+                    <h2 class="h6 fw-bold mb-3">Related notices</h2>
+                    <a href="#" class="d-block text-decoration-none text-reset py-2 border-bottom">
+                        <div class="small fw-semibold">1st Semester Result Published</div>
+                        <div class="text-muted small">05 Jul</div>
+                    </a>
+                    <a href="#" class="d-block text-decoration-none text-reset py-2 border-bottom">
+                        <div class="small fw-semibold">Practical Exam Schedule</div>
+                        <div class="text-muted small">28 Jun</div>
+                    </a>
+                    <a href="#" class="d-block text-decoration-none text-reset py-2">
+                        <div class="small fw-semibold">Scholarship Applications Open</div>
+                        <div class="text-muted small">01 Jul</div>
+                    </a>
+                </div>
+                <div class="card-clean p-4" style="background:var(--primary-soft);border:none;">
+                    <h2 class="h6 fw-bold mb-2"><i class="fas fa-bell me-1 text-primary-c"></i>Get notified</h2>
+                    <p class="small text-muted mb-3">Never miss a notice. Enable alerts on the KTM Academy app.</p>
+                    <button class="btn btn-primary btn-sm w-100">Enable notifications</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ NOTICE V4 — Timeline ============ -->
+    <section class="variant-panel" id="n4">
+        <span class="variant-caption"><i class="fas fa-stream"></i> Variant N4 · Timeline / feed</span>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card-clean p-4 p-md-5">
+                    <div class="timeline">
+                        <div class="timeline-item done">
+                            <span class="badge badge-soft-danger mb-1">07 Jul · Urgent</span>
+                            <h3 class="h6 mb-1">Entrance Exam Date Announced</h3>
+                            <p class="small text-muted mb-0">Admit cards are available for the Shrawan 25 diploma entrance examination.</p>
+                        </div>
+                        <div class="timeline-item done">
+                            <span class="badge badge-soft-success mb-1">05 Jul · Result</span>
+                            <h3 class="h6 mb-1">1st Semester Result Published</h3>
+                            <p class="small text-muted mb-0">First semester diploma results are now live — check with your symbol number.</p>
+                        </div>
+                        <div class="timeline-item done">
+                            <span class="badge badge-soft-primary mb-1">01 Jul · Admissions</span>
+                            <h3 class="h6 mb-1">Scholarship Applications Open</h3>
+                            <p class="small text-muted mb-0">Merit and need-based scholarships open — deadline Shrawan 15.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="badge badge-soft-warning mb-1">28 Jun · Exams</span>
+                            <h3 class="h6 mb-1">Practical Exam Schedule</h3>
+                            <p class="small text-muted mb-0">Lab and practical routines for all semesters published.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="badge badge-soft-primary mb-1">22 Jun · General</span>
+                            <h3 class="h6 mb-1">New Bridge Course Batch</h3>
+                            <p class="small text-muted mb-0">Fresh batch for Math, Physics and Chemistry begins next week.</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-outline-primary btn-sm rounded-pill px-4">Load older notices</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ RESULT V1 — Lookup ============ -->
+    <section class="variant-panel" id="r1">
+        <span class="variant-caption"><i class="fas fa-magnifying-glass"></i> Variant R1 · Result lookup</span>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="result-hero text-center mb-4">
+                    <i class="fas fa-award fa-2x mb-3 opacity-75"></i>
+                    <h2 class="fw-bold mb-2">Check Your Result</h2>
+                    <p class="opacity-75 mb-4">Enter your details to view and download your marksheet.</p>
+                    <div class="row g-3 text-start">
+                        <div class="col-md-6">
+                            <label class="form-label small text-white">Program</label>
+                            <select class="form-select lookup-input">
+                                <option>Diploma in Civil Engineering</option>
+                                <option>Diploma in Computer Engineering</option>
+                                <option>Diploma in Electrical Engineering</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-white">Semester</label>
+                            <select class="form-select lookup-input">
+                                <option>First Semester</option>
+                                <option>Second Semester</option>
+                                <option>Third Semester</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small text-white">Symbol Number</label>
+                            <input type="text" class="form-control lookup-input" placeholder="e.g. 78010045">
+                        </div>
+                        <div class="col-12 d-grid">
+                            <button class="btn btn-light btn-lg fw-semibold"><i class="fas fa-search me-2"></i>View Result</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 text-center">
+                    <div class="col-4">
+                        <div class="card-clean p-3">
+                            <div class="h4 fw-bold text-primary-c mb-0">2,340</div>
+                            <div class="small text-muted">Students</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card-clean p-3">
+                            <div class="h4 fw-bold text-primary-c mb-0">86%</div>
+                            <div class="small text-muted">Pass rate</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card-clean p-3">
+                            <div class="h4 fw-bold text-primary-c mb-0">3.72</div>
+                            <div class="small text-muted">Avg GPA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ RESULT V2 — Marksheet Card ============ -->
+    <section class="variant-panel" id="r2">
+        <span class="variant-caption"><i class="fas fa-id-card"></i> Variant R2 · Marksheet card</span>
+        <div class="row">
+            <div class="col-lg-9 mx-auto">
+                <div class="marksheet">
+                    <div class="marksheet-head">
+                        <div class="row align-items-center g-3">
+                            <div class="col-md-8">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <img src="../home_logo.jpg" alt="" style="height:36px;border-radius:.4rem;">
+                                    <span class="fw-bold text-primary-c">KTM Academy · CTEVT</span>
+                                </div>
+                                <h2 class="h4 fw-bold mb-1">Sabina Gurung</h2>
+                                <div class="small text-muted">
+                                    Symbol No: <strong>78010045</strong> &nbsp;·&nbsp;
+                                    Diploma in Computer Engineering &nbsp;·&nbsp; First Semester
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="grade-ring">
+                                    <div class="inner">
+                                        <div>
+                                            <div class="gpa">3.90</div>
+                                            <div class="small text-muted" style="margin-top:-4px;">GPA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="badge badge-soft-success mt-2">Distinction</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3 p-md-4">
+                        <div class="table-responsive">
+                            <table class="table marks-table align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th class="text-center">Credit</th>
+                                        <th class="text-center">Theory</th>
+                                        <th class="text-center">Practical</th>
+                                        <th class="text-center">Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-semibold">Engineering Mathematics I</td>
+                                        <td class="text-center">4</td><td class="text-center">88</td><td class="text-center">—</td>
+                                        <td class="text-center"><span class="grade-pill badge-soft-success">A</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Engineering Physics</td>
+                                        <td class="text-center">4</td><td class="text-center">79</td><td class="text-center">23</td>
+                                        <td class="text-center"><span class="grade-pill badge-soft-success">A-</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Programming Fundamentals</td>
+                                        <td class="text-center">3</td><td class="text-center">92</td><td class="text-center">24</td>
+                                        <td class="text-center"><span class="grade-pill badge-soft-success">A+</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Digital Logic</td>
+                                        <td class="text-center">3</td><td class="text-center">74</td><td class="text-center">22</td>
+                                        <td class="text-center"><span class="grade-pill badge-soft-primary">B+</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-semibold">Communication English</td>
+                                        <td class="text-center">2</td><td class="text-center">81</td><td class="text-center">—</td>
+                                        <td class="text-center"><span class="grade-pill badge-soft-success">A</span></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="border-top">
+                                        <td class="fw-bold">Total</td>
+                                        <td class="text-center fw-bold">16</td>
+                                        <td colspan="2" class="text-center text-muted small">Percentage 84.6%</td>
+                                        <td class="text-center"><span class="grade-pill badge-soft-success">A</span></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center mt-3">
+                            <div class="small text-muted"><i class="fas fa-circle-check text-success me-1"></i>Result: <strong class="text-success">PASSED</strong></div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-secondary btn-sm"><i class="fas fa-print me-1"></i>Print</button>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-download me-1"></i>Download PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ RESULT V3 — Ledger Table ============ -->
+    <section class="variant-panel" id="r3">
+        <span class="variant-caption"><i class="fas fa-table-list"></i> Variant R3 · Results ledger</span>
+        <div class="card-clean p-3 p-md-4">
+            <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center mb-3">
+                <div>
+                    <h2 class="h5 fw-bold mb-0">First Semester — Computer Engineering</h2>
+                    <div class="small text-muted">Published Shrawan 5, 2082 · 42 students</div>
+                </div>
+                <div class="d-flex gap-2">
+                    <input type="text" class="form-control form-control-sm" placeholder="Search symbol / name" style="max-width:200px;">
+                    <button class="btn btn-primary btn-sm"><i class="fas fa-file-excel me-1"></i>Export</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table ledger-table align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Rank</th><th>Symbol</th><th>Student Name</th>
+                            <th class="text-center">Credits</th><th class="text-center">GPA</th>
+                            <th class="text-center">Result</th><th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="rank-badge top">1</span></td>
+                            <td>78010012</td><td class="fw-semibold">Prakash Adhikari</td>
+                            <td class="text-center">16</td><td class="text-center fw-bold">3.96</td>
+                            <td class="text-center"><span class="badge badge-soft-success">Passed</span></td>
+                            <td class="text-end"><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge top">2</span></td>
+                            <td>78010045</td><td class="fw-semibold">Sabina Gurung</td>
+                            <td class="text-center">16</td><td class="text-center fw-bold">3.90</td>
+                            <td class="text-center"><span class="badge badge-soft-success">Passed</span></td>
+                            <td class="text-end"><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge top">3</span></td>
+                            <td>78010007</td><td class="fw-semibold">Rojina Maharjan</td>
+                            <td class="text-center">16</td><td class="text-center fw-bold">3.85</td>
+                            <td class="text-center"><span class="badge badge-soft-success">Passed</span></td>
+                            <td class="text-end"><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">4</span></td>
+                            <td>78010023</td><td class="fw-semibold">Bibek Thapa</td>
+                            <td class="text-center">16</td><td class="text-center fw-bold">3.61</td>
+                            <td class="text-center"><span class="badge badge-soft-success">Passed</span></td>
+                            <td class="text-end"><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">5</span></td>
+                            <td>78010031</td><td class="fw-semibold">Anjali Shrestha</td>
+                            <td class="text-center">13</td><td class="text-center fw-bold">2.10</td>
+                            <td class="text-center"><span class="badge badge-soft-danger">Backlog</span></td>
+                            <td class="text-end"><a href="#" class="btn btn-sm btn-outline-primary">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <nav class="mt-3 d-flex justify-content-between align-items-center">
+                <span class="small text-muted">Showing 1–5 of 42</span>
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- ============ RESULT V4 — Pass / Fail Status ============ -->
+    <section class="variant-panel" id="r4">
+        <span class="variant-caption"><i class="fas fa-stamp"></i> Variant R4 · Pass / Fail status card</span>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card-clean p-4 text-center h-100">
+                    <div class="status-stamp mx-auto mb-4">Passed</div>
+                    <h2 class="h4 fw-bold mb-1">Sabina Gurung</h2>
+                    <div class="small text-muted mb-3">Symbol 78010045 · First Semester</div>
+                    <div class="row text-center g-2 mb-3">
+                        <div class="col-4"><div class="card-clean py-2"><div class="fw-bold text-primary-c">3.90</div><div class="small text-muted">GPA</div></div></div>
+                        <div class="col-4"><div class="card-clean py-2"><div class="fw-bold text-primary-c">84.6%</div><div class="small text-muted">Percent</div></div></div>
+                        <div class="col-4"><div class="card-clean py-2"><div class="fw-bold text-primary-c">A</div><div class="small text-muted">Grade</div></div></div>
+                    </div>
+                    <button class="btn btn-primary w-100"><i class="fas fa-download me-1"></i>Download Marksheet</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-clean p-4 text-center h-100">
+                    <div class="status-stamp fail mx-auto mb-4">Backlog</div>
+                    <h2 class="h4 fw-bold mb-1">Anjali Shrestha</h2>
+                    <div class="small text-muted mb-3">Symbol 78010031 · First Semester</div>
+                    <div class="alert alert-warning small text-start mb-3">
+                        <i class="fas fa-circle-exclamation me-1"></i>Reappear required in the following subject(s):
+                        <ul class="mb-0 mt-1"><li>Engineering Physics</li></ul>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-secondary w-100 btn-sm"><i class="fas fa-download me-1"></i>Marksheet</button>
+                        <button class="btn btn-primary w-100 btn-sm"><i class="fas fa-rotate me-1"></i>Reappear form</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-dark text-light py-4 mt-5">
+    <div class="container text-center">
+        <p class="footer-note text-light-emphasis mb-1">Notices &amp; Results — design variants · KTM Academy / CTEVT+</p>
+        <p class="footer-note mb-0" style="opacity:.6">Use the switcher above to preview each layout. All variants share the same design tokens.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const buttons = document.querySelectorAll('.variant-btn');
+    const panels = document.querySelectorAll('.variant-panel');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.variant;
+            buttons.forEach(b => b.classList.toggle('active', b === btn));
+            panels.forEach(p => p.classList.toggle('active', p.id === target));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+</script>
+</body>
+</html>
