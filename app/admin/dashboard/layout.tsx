@@ -18,6 +18,7 @@ import {
   Mic,
   Settings,
   LayoutGrid,
+  DoorOpen,
   LogOut,
   Menu,
   X,
@@ -45,6 +46,7 @@ const NAV: NavGroup[] = [
       { href: "/admin/dashboard/carousel", label: "Carousel", icon: GalleryHorizontalEnd },
       { href: "/admin/dashboard/notifications", label: "Notifications", icon: Bell },
       { href: "/admin/dashboard/loksewa", label: "Loksewa URLs", icon: Briefcase },
+      { href: "/admin/dashboard/onboarding", label: "Onboarding", icon: DoorOpen },
     ],
   },
   {
