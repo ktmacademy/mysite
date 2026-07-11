@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { Search, Settings as SettingsIcon, LayoutGrid, RotateCcw } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
+import { adminAdsWrite } from "@/lib/admin-ads";
 import PageHeader from "@/components/page-header";
 
 interface PlacementRow {
@@ -77,15 +78,12 @@ export default function AdsControlPage() {
     if (!email.trim()) return;
     setLoading(true);
     setMessage("");
-    const { error } = await getSupabase().from("ads_control").upsert(
-      {
-        email: normalizedEmail(),
-        ads_enabled: newValue,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: "email" }
-    );
-    if (error) setMessage(`Failed to update status: ${error.message}`);
+    const error = await adminAdsWrite({
+      action: "set_user_global",
+      email: normalizedEmail(),
+      enabled: newValue,
+    });
+    if (error) setMessage(`Failed to update status: ${error}`);
     else {
       setAdsEnabled(newValue);
       setMessage(`Ad setting updated for ${email}`);
@@ -100,16 +98,13 @@ export default function AdsControlPage() {
   const setPlacementOverride = async (p: PlacementRow, value: boolean) => {
     setMessage("");
     setOverrides((prev) => ({ ...prev, [p.placement_key]: value }));
-    const { error } = await getSupabase().from("user_ads_placements").upsert(
-      {
-        email: normalizedEmail(),
-        placement_key: p.placement_key,
-        enabled: value,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: "email,placement_key" }
-    );
-    if (error) setMessage(`Failed to override ${p.placement_key}: ${error.message}`);
+    const error = await adminAdsWrite({
+      action: "set_user_placement",
+      email: normalizedEmail(),
+      placement_key: p.placement_key,
+      enabled: value,
+    });
+    if (error) setMessage(`Failed to override ${p.placement_key}: ${error}`);
   };
 
   const clearOverride = async (p: PlacementRow) => {
@@ -119,12 +114,12 @@ export default function AdsControlPage() {
       delete next[p.placement_key];
       return next;
     });
-    const { error } = await getSupabase()
-      .from("user_ads_placements")
-      .delete()
-      .eq("email", normalizedEmail())
-      .eq("placement_key", p.placement_key);
-    if (error) setMessage(`Failed to reset ${p.placement_key}: ${error.message}`);
+    const error = await adminAdsWrite({
+      action: "clear_user_placement",
+      email: normalizedEmail(),
+      placement_key: p.placement_key,
+    });
+    if (error) setMessage(`Failed to reset ${p.placement_key}: ${error}`);
   };
 
   return (

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { LayoutGrid, RefreshCw, Power, AlertTriangle } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
+import { adminAdsWrite } from "@/lib/admin-ads";
 import PageHeader from "@/components/page-header";
 
 interface Placement {
@@ -54,12 +55,9 @@ export default function AdPlacementsPage() {
   const setMasterEnabled = async (value: boolean) => {
     setMessage("");
     setMaster(value); // optimistic
-    const { error } = await getSupabase().from("ads_settings").upsert(
-      { id: 1, ads_enabled: value, updated_at: new Date().toISOString() },
-      { onConflict: "id" }
-    );
+    const error = await adminAdsWrite({ action: "set_master", enabled: value });
     if (error) {
-      setMessage(`Failed to update master switch: ${error.message}`);
+      setMessage(`Failed to update master switch: ${error}`);
       load();
     } else {
       setMessage(
@@ -80,12 +78,13 @@ export default function AdPlacementsPage() {
     setRows((prev) =>
       prev.map((r) => (r.placement_key === key ? { ...r, ...patch } : r))
     );
-    const { error } = await getSupabase()
-      .from("ads_placements")
-      .update({ ...patch, updated_at: new Date().toISOString() })
-      .eq("placement_key", key);
+    const error = await adminAdsWrite({
+      action: "set_placement",
+      placement_key: key,
+      patch,
+    });
     if (error) {
-      setMessage(`Failed to save ${key}: ${error.message}`);
+      setMessage(`Failed to save ${key}: ${error}`);
       load(); // roll back to server truth
     } else {
       setMessage(`Saved ${key}`);
