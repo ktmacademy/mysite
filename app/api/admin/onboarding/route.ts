@@ -20,8 +20,8 @@ const DEFAULTS = {
   id: ROW_ID,
   skip_enabled: true,
   skip_button_label: "Skip for now",
-  welcome_title: "Welcome to CTEVT+",
-  welcome_subtitle: "Your companion for CTEVT preparation",
+  welcome_title: "Welcome to CTEVT Plus (KTM Academy)",
+  welcome_subtitle: "Your companion for preparation",
   slides: [] as unknown[],
 };
 
@@ -35,15 +35,23 @@ const FIELDS: Record<string, Coercer> = {
   slides: (v) => normalizeSlides(v),
 };
 
-/** Coerce arbitrary input into a clean [{title, subtitle, image_url}] array. */
-function normalizeSlides(value: unknown): Array<Record<string, string>> {
+/**
+ * Coerce arbitrary input into a clean array of onboarding pages
+ * [{title, subtitle, image_url, enabled}]. `enabled` lets the admin toggle an
+ * individual page on/off without deleting it; missing => enabled (back-compat
+ * with rows saved before the flag existed). Capped at 5 pages.
+ */
+function normalizeSlides(
+  value: unknown,
+): Array<{ title: string; subtitle: string; image_url: string; enabled: boolean }> {
   if (!Array.isArray(value)) return [];
-  return value.slice(0, 10).map((raw) => {
+  return value.slice(0, 5).map((raw) => {
     const s = (raw ?? {}) as Record<string, unknown>;
     return {
       title: String(s.title ?? "").trim().slice(0, 120),
       subtitle: String(s.subtitle ?? "").trim().slice(0, 240),
       image_url: String(s.image_url ?? "").trim().slice(0, 500),
+      enabled: s.enabled === undefined ? true : Boolean(s.enabled),
     };
   });
 }

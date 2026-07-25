@@ -1,7 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { DoorOpen, Save, Plus, Trash2, RefreshCw, AlertTriangle } from "lucide-react";
+import {
+  DoorOpen,
+  Save,
+  RefreshCw,
+  AlertTriangle,
+  Pencil,
+  X,
+  ImageIcon,
+} from "lucide-react";
 import { adminGet, adminFetch } from "@/lib/admin-api";
 import PageHeader from "@/components/page-header";
 
@@ -9,6 +17,7 @@ interface Slide {
   title: string;
   subtitle: string;
   image_url: string;
+  enabled: boolean;
 }
 
 interface OnboardingSettings {
@@ -19,6 +28,17 @@ interface OnboardingSettings {
   slides: Slide[];
 }
 
+// The onboarding flow is a fixed set of pages 1..5. The table always shows all
+// five so page numbers stay stable; empty pages default to disabled.
+const PAGE_COUNT = 5;
+
+const EMPTY_SLIDE: Slide = {
+  title: "",
+  subtitle: "",
+  image_url: "",
+  enabled: false,
+};
+
 const EMPTY: OnboardingSettings = {
   skip_enabled: true,
   skip_button_label: "Skip for now",
@@ -27,12 +47,30 @@ const EMPTY: OnboardingSettings = {
   slides: [],
 };
 
+/** Pad/trim an incoming slides array to exactly PAGE_COUNT rows. */
+function toFivePages(raw: unknown): Slide[] {
+  const arr = Array.isArray(raw) ? raw : [];
+  return Array.from({ length: PAGE_COUNT }, (_, i) => {
+    const s = (arr[i] ?? {}) as Partial<Slide>;
+    return {
+      title: s.title ?? "",
+      subtitle: s.subtitle ?? "",
+      image_url: s.image_url ?? "",
+      // Missing flag on an existing page => enabled (back-compat); brand-new
+      // empty page => disabled so it doesn't show a blank slide in the app.
+      enabled:
+        s.enabled === undefined ? Boolean(s.title || s.subtitle) : Boolean(s.enabled),
+    };
+  });
+}
+
 export default function OnboardingPage() {
   const [form, setForm] = useState<OnboardingSettings>(EMPTY);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [editing, setEditing] = useState<number | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -46,7 +84,7 @@ export default function OnboardingPage() {
         skip_button_label: settings.skip_button_label ?? "",
         welcome_title: settings.welcome_title ?? "",
         welcome_subtitle: settings.welcome_subtitle ?? "",
-        slides: Array.isArray(settings.slides) ? settings.slides : [],
+        slides: toFivePages(settings.slides),
       });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to load settings");
@@ -66,23 +104,20 @@ export default function OnboardingPage() {
     setForm((f) => ({ ...f, [key]: value }));
   }
 
-  function updateSlide(index: number, key: keyof Slide, value: string) {
+  function updateSlide(index: number, patch: Partial<Slide>) {
     setForm((f) => {
       const slides = [...f.slides];
-      slides[index] = { ...slides[index], [key]: value };
+      slides[index] = { ...slides[index], ...patch };
       return { ...f, slides };
     });
   }
 
-  function addSlide() {
-    setForm((f) => ({
-      ...f,
-      slides: [...f.slides, { title: "", subtitle: "", image_url: "" }],
-    }));
-  }
-
-  function removeSlide(index: number) {
-    setForm((f) => ({ ...f, slides: f.slides.filter((_, i) => i !== index) }));
+  function toggleSlide(index: number) {
+    setForm((f) => {
+      const slides = [...f.slides];
+      slides[index] = { ...slides[index], enabled: !slides[index].enabled };
+      return { ...f, slides };
+    });
   }
 
   async function save() {
@@ -99,11 +134,13 @@ export default function OnboardingPage() {
     }
   }
 
+  const editingSlide = editing !== null ? form.slides[editing] : null;
+
   return (
     <div>
       <PageHeader
         title="Onboarding"
-        subtitle="Control the login-screen Skip button and the welcome content shown to new users"
+        subtitle="Control the login-screen Skip button, the welcome content, and the 5 onboarding pages shown to new users"
         actions={
           <button
             onClick={load}
@@ -190,7 +227,7 @@ export default function OnboardingPage() {
                   value={form.welcome_title}
                   maxLength={120}
                   onChange={(e) => patchField("welcome_title", e.target.value)}
-                  placeholder="Welcome to CTEVT+"
+                  placeholder="CTEVT Plus (KTM Academy)"
                   className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
@@ -210,76 +247,96 @@ export default function OnboardingPage() {
             </div>
           </div>
 
-          {/* Intro slides (optional) */}
-          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-md">
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <h2 className="text-lg font-semibold text-gray-900">
-                  Intro slides{" "}
-                  <span className="text-sm font-normal text-gray-500">(optional)</span>
-                </h2>
-                <p className="text-sm text-gray-600">
-                  Ordered welcome slides. Leave empty to just use the title &amp;
-                  subtitle above.
-                </p>
-              </div>
-              <button
-                onClick={addSlide}
-                disabled={form.slides.length >= 10}
-                className="flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-300"
-              >
-                <Plus className="h-4 w-4" /> Add slide
-              </button>
+          {/* Onboarding pages (1..5) */}
+          <div className="rounded-xl border border-gray-200 bg-white shadow-md">
+            <div className="border-b border-gray-200 p-5">
+              <h2 className="text-lg font-semibold text-gray-900">
+                Onboarding pages
+              </h2>
+              <p className="text-sm text-gray-600">
+                The five intro pages shown to new users. Toggle a page on or off,
+                or edit its title and content.
+              </p>
             </div>
 
-            {form.slides.length === 0 ? (
-              <p className="text-sm text-gray-400">No slides yet.</p>
-            ) : (
-              <div className="space-y-4">
-                {form.slides.map((slide, i) => (
-                  <div key={i} className="rounded-lg border border-gray-200 p-4">
-                    <div className="mb-2 flex items-center justify-between">
-                      <span className="text-sm font-semibold text-gray-500">
-                        Slide {i + 1}
-                      </span>
-                      <button
-                        onClick={() => removeSlide(i)}
-                        className="text-red-500 hover:text-red-700"
-                        aria-label={`Remove slide ${i + 1}`}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                    <div className="space-y-2">
-                      <input
-                        type="text"
-                        value={slide.title}
-                        maxLength={120}
-                        onChange={(e) => updateSlide(i, "title", e.target.value)}
-                        placeholder="Slide title"
-                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                      />
-                      <input
-                        type="text"
-                        value={slide.subtitle}
-                        maxLength={240}
-                        onChange={(e) => updateSlide(i, "subtitle", e.target.value)}
-                        placeholder="Slide subtitle"
-                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                      />
-                      <input
-                        type="text"
-                        value={slide.image_url}
-                        maxLength={500}
-                        onChange={(e) => updateSlide(i, "image_url", e.target.value)}
-                        placeholder="Image URL (optional)"
-                        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+                  <tr>
+                    <th className="px-5 py-3 font-semibold">Page</th>
+                    <th className="px-5 py-3 font-semibold">Title &amp; content</th>
+                    <th className="px-5 py-3 text-center font-semibold">Status</th>
+                    <th className="px-5 py-3 text-right font-semibold">Edit</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {form.slides.map((slide, i) => {
+                    const isSet = Boolean(slide.title || slide.subtitle);
+                    return (
+                      <tr key={i} className="align-middle hover:bg-gray-50">
+                        <td className="px-5 py-4 font-semibold text-gray-500">
+                          {i + 1}
+                        </td>
+                        <td className="px-5 py-4">
+                          <div className="flex items-center gap-3">
+                            {slide.image_url ? (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img
+                                src={slide.image_url}
+                                alt=""
+                                className="h-10 w-10 shrink-0 rounded-lg object-cover ring-1 ring-gray-200"
+                              />
+                            ) : (
+                              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-300">
+                                <ImageIcon className="h-5 w-5" />
+                              </div>
+                            )}
+                            <div className="min-w-0">
+                              <div
+                                className={`truncate font-medium ${
+                                  isSet ? "text-gray-900" : "italic text-gray-400"
+                                }`}
+                              >
+                                {slide.title || "Not set"}
+                              </div>
+                              {slide.subtitle && (
+                                <div className="truncate text-xs text-gray-500">
+                                  {slide.subtitle}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-5 py-4">
+                          <div className="flex justify-center">
+                            <label
+                              className="relative inline-flex cursor-pointer items-center"
+                              title={slide.enabled ? "Enabled" : "Disabled"}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={slide.enabled}
+                                onChange={() => toggleSlide(i)}
+                                className="peer sr-only"
+                              />
+                              <div className="h-6 w-11 rounded-full bg-gray-300 after:absolute after:left-[3px] after:top-[3px] after:h-[18px] after:w-[18px] after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-green-300" />
+                            </label>
+                          </div>
+                        </td>
+                        <td className="px-5 py-4 text-right">
+                          <button
+                            onClick={() => setEditing(i)}
+                            className="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                          >
+                            <Pencil className="h-3.5 w-3.5" /> Edit
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           <div className="flex justify-end">
@@ -290,6 +347,103 @@ export default function OnboardingPage() {
             >
               <Save className="h-4 w-4" /> {saving ? "Saving…" : "Save changes"}
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Edit page modal */}
+      {editing !== null && editingSlide && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+          onClick={() => setEditing(null)}
+        >
+          <div
+            className="w-full max-w-lg rounded-xl bg-white shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-gray-200 p-5">
+              <h3 className="text-lg font-semibold text-gray-900">
+                Edit page {editing + 1}
+              </h3>
+              <button
+                onClick={() => setEditing(null)}
+                className="text-gray-400 hover:text-gray-600"
+                aria-label="Close"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="space-y-4 p-5">
+              <div className="flex items-center justify-between rounded-lg bg-gray-50 px-4 py-3">
+                <span className="text-sm font-medium text-gray-700">
+                  Show this page
+                </span>
+                <label className="relative inline-flex cursor-pointer items-center">
+                  <input
+                    type="checkbox"
+                    checked={editingSlide.enabled}
+                    onChange={() => toggleSlide(editing)}
+                    className="peer sr-only"
+                  />
+                  <div className="h-6 w-11 rounded-full bg-gray-300 after:absolute after:left-[3px] after:top-[3px] after:h-[18px] after:w-[18px] after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-green-300" />
+                </label>
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  value={editingSlide.title}
+                  maxLength={120}
+                  onChange={(e) => updateSlide(editing, { title: e.target.value })}
+                  placeholder="Page title"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  Subtitle
+                </label>
+                <textarea
+                  value={editingSlide.subtitle}
+                  maxLength={240}
+                  rows={3}
+                  onChange={(e) =>
+                    updateSlide(editing, { subtitle: e.target.value })
+                  }
+                  placeholder="Page subtitle / description"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  Image URL{" "}
+                  <span className="font-normal text-gray-400">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  value={editingSlide.image_url}
+                  maxLength={500}
+                  onChange={(e) =>
+                    updateSlide(editing, { image_url: e.target.value })
+                  }
+                  placeholder="https://…"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3 border-t border-gray-200 p-5">
+              <button
+                onClick={() => setEditing(null)}
+                className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100"
+              >
+                Done
+              </button>
+            </div>
           </div>
         </div>
       )}
