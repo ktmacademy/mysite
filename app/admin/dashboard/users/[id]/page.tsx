@@ -16,6 +16,10 @@ import {
   Inbox,
 } from "lucide-react";
 import { adminFetch } from "@/lib/admin-api";
+import {
+  AiConversationModal,
+  type AiConversation,
+} from "@/components/ai-conversation-view";
 
 interface Detail {
   user: {
@@ -95,6 +99,8 @@ export default function UserDetailPage() {
   const [data, setData] = useState<Detail | null>(null);
   const [error, setError] = useState("");
   const [avatarBroken, setAvatarBroken] = useState(false);
+  // The AI conversation whose transcript is open in the viewer, if any.
+  const [openChat, setOpenChat] = useState<AiConversation | null>(null);
 
   useEffect(() => {
     adminFetch<Detail>("/api/admin/user-detail", { userId: id })
@@ -250,13 +256,24 @@ export default function UserDetailPage() {
               ) : (
                 <>
                   <p className="mb-2 text-xs text-gray-500">
-                    {data.ai.messageCount} messages across {data.ai.conversations.length} chats
+                    {data.ai.messageCount} messages across {data.ai.conversations.length} chats ·
+                    click one to read it
                   </p>
                   <ul className="max-h-56 space-y-1 overflow-y-auto text-sm">
                     {data.ai.conversations.map((c: any) => (
-                      <li key={c.id} className="flex justify-between gap-2">
-                        <span className="truncate text-gray-800">{c.title}</span>
-                        <span className="shrink-0 text-xs text-gray-400">{d(c.updated_at)}</span>
+                      <li key={c.id}>
+                        <button
+                          onClick={() => setOpenChat(c as AiConversation)}
+                          className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-left hover:bg-gray-50"
+                        >
+                          <span className="flex min-w-0 items-center gap-2">
+                            <MessagesSquare className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+                            <span className="truncate text-gray-800 group-hover:text-blue-700">
+                              {c.title || "Untitled chat"}
+                            </span>
+                          </span>
+                          <span className="shrink-0 text-xs text-gray-400">{d(c.updated_at)}</span>
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -392,6 +409,14 @@ export default function UserDetailPage() {
               )}
             </Section>
           </div>
+
+          {openChat && (
+            <AiConversationModal
+              userId={id}
+              conversation={openChat}
+              onClose={() => setOpenChat(null)}
+            />
+          )}
         </>
       )}
     </div>
