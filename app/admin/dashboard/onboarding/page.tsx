@@ -20,13 +20,75 @@ interface Slide {
   enabled: boolean;
 }
 
+/** One admin-managed fill-out step of the in-app onboarding form. */
+interface FormStep {
+  key: string;
+  enabled: boolean;
+  skip_enabled: boolean;
+  title: string;
+  subtitle: string;
+}
+
 interface OnboardingSettings {
   skip_enabled: boolean;
   skip_button_label: string;
   welcome_title: string;
   welcome_subtitle: string;
   slides: Slide[];
+  form_steps: FormStep[];
 }
+
+/**
+ * The fill-out steps the app actually shows after sign-in, in order. `key` is a
+ * contract with the Flutter app — never rename or reorder. `defaultTitle` /
+ * `defaultSubtitle` mirror the app's built-in copy so the admin sees what the
+ * user sees; leaving the inputs blank keeps those built-in strings.
+ */
+const FORM_STEPS: Array<{
+  key: string;
+  name: string;
+  collects: string;
+  defaultTitle: string;
+  defaultSubtitle: string;
+}> = [
+  {
+    key: "welcome",
+    name: "Welcome & goal",
+    collects: "Full name, what they're here for",
+    defaultTitle: "Welcome to KTM Academy",
+    defaultSubtitle:
+      "A few quick questions so we can tailor your notes and alerts.",
+  },
+  {
+    key: "study",
+    name: "Study details",
+    collects: "Program, faculty, year / semester",
+    defaultTitle: "What are you studying?",
+    defaultSubtitle: "Pick your program so we show the right notes first.",
+  },
+  {
+    key: "location",
+    name: "Location",
+    collects: "District (auto-detect or pick from list)",
+    defaultTitle: "Where are you studying from?",
+    defaultSubtitle: "Helps us understand where our students are. Optional.",
+  },
+  {
+    key: "referral",
+    name: "Referral source",
+    collects: "Facebook, YouTube, a friend, Play search, other",
+    defaultTitle: "How did you hear about us?",
+    defaultSubtitle: "This helps us reach more students like you.",
+  },
+  {
+    key: "whatsapp",
+    name: "WhatsApp updates",
+    collects: "WhatsApp number, updates opt-in",
+    defaultTitle: "Never miss new notes",
+    defaultSubtitle:
+      "Get new notes and result alerts on WhatsApp. Free, and you can stop anytime.",
+  },
+];
 
 // The onboarding flow is a fixed set of pages 1..5. The table always shows all
 // five so page numbers stay stable; empty pages default to disabled.
@@ -45,7 +107,27 @@ const EMPTY: OnboardingSettings = {
   welcome_title: "",
   welcome_subtitle: "",
   slides: [],
+  form_steps: [],
 };
+
+/**
+ * Reconcile whatever is stored into exactly one row per known step, in
+ * FORM_STEPS order. Missing rows (nothing saved yet, or a step added after the
+ * last save) come back fully enabled.
+ */
+function toFormSteps(raw: unknown): FormStep[] {
+  const arr = Array.isArray(raw) ? (raw as Partial<FormStep>[]) : [];
+  return FORM_STEPS.map((meta) => {
+    const s = arr.find((x) => x?.key === meta.key) ?? {};
+    return {
+      key: meta.key,
+      enabled: s.enabled === undefined ? true : Boolean(s.enabled),
+      skip_enabled: s.skip_enabled === undefined ? true : Boolean(s.skip_enabled),
+      title: s.title ?? "",
+      subtitle: s.subtitle ?? "",
+    };
+  });
+}
 
 /** Pad/trim an incoming slides array to exactly PAGE_COUNT rows. */
 function toFivePages(raw: unknown): Slide[] {
@@ -62,6 +144,39 @@ function toFivePages(raw: unknown): Slide[] {
         s.enabled === undefined ? Boolean(s.title || s.subtitle) : Boolean(s.enabled),
     };
   });
+}
+
+/** Labelled on/off switch, styled like the other switches on this page. */
+function Toggle({
+  label,
+  checked,
+  onChange,
+  disabled = false,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: (value: boolean) => void;
+  disabled?: boolean;
+}) {
+  return (
+    <label
+      className={`flex items-center gap-2 ${
+        disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
+      }`}
+    >
+      <span className="text-xs font-medium text-gray-700">{label}</span>
+      <span className="relative inline-flex items-center">
+        <input
+          type="checkbox"
+          checked={checked}
+          disabled={disabled}
+          onChange={(e) => onChange(e.target.checked)}
+          className="peer sr-only"
+        />
+        <span className="block h-6 w-11 rounded-full bg-gray-300 after:absolute after:left-[3px] after:top-[3px] after:h-[18px] after:w-[18px] after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-green-300" />
+      </span>
+    </label>
+  );
 }
 
 export default function OnboardingPage() {
@@ -85,6 +200,7 @@ export default function OnboardingPage() {
         welcome_title: settings.welcome_title ?? "",
         welcome_subtitle: settings.welcome_subtitle ?? "",
         slides: toFivePages(settings.slides),
+        form_steps: toFormSteps(settings.form_steps),
       });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to load settings");
@@ -120,6 +236,15 @@ export default function OnboardingPage() {
     });
   }
 
+  function updateFormStep(key: string, patch: Partial<FormStep>) {
+    setForm((f) => ({
+      ...f,
+      form_steps: f.form_steps.map((s) =>
+        s.key === key ? { ...s, ...patch } : s
+      ),
+    }));
+  }
+
   async function save() {
     setSaving(true);
     setMessage("");
@@ -140,7 +265,7 @@ export default function OnboardingPage() {
     <div>
       <PageHeader
         title="Onboarding"
-        subtitle="Control the login-screen Skip button, the welcome content, and the 5 onboarding pages shown to new users"
+        subtitle="Control the login-screen Skip button, the welcome content, the in-app form steps (and their Skip buttons), and the 5 intro pages shown to new users"
         actions={
           <button
             onClick={load}
@@ -244,6 +369,113 @@ export default function OnboardingPage() {
                   className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
+            </div>
+          </div>
+
+          {/* In-app form steps */}
+          <div className="rounded-xl border border-gray-200 bg-white shadow-md">
+            <div className="border-b border-gray-200 p-5">
+              <h2 className="text-lg font-semibold text-gray-900">
+                Form steps (after sign-in)
+              </h2>
+              <p className="text-sm text-gray-600">
+                The questions the app asks a new user, in order. Turn a step off
+                to drop it from the flow, and decide per step whether the user
+                gets a &ldquo;Skip&rdquo; button. Leave title and subtitle blank
+                to keep the app&rsquo;s built-in wording.
+              </p>
+            </div>
+
+            <div className="divide-y divide-gray-100">
+              {FORM_STEPS.map((meta, i) => {
+                const step =
+                  form.form_steps.find((s) => s.key === meta.key) ??
+                  ({
+                    key: meta.key,
+                    enabled: true,
+                    skip_enabled: true,
+                    title: "",
+                    subtitle: "",
+                  } as FormStep);
+                return (
+                  <div key={meta.key} className="p-5">
+                    <div className="flex flex-wrap items-start justify-between gap-4">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500">
+                            {i + 1}
+                          </span>
+                          <h3
+                            className={`font-semibold ${
+                              step.enabled ? "text-gray-900" : "text-gray-400"
+                            }`}
+                          >
+                            {meta.name}
+                          </h3>
+                        </div>
+                        <p className="mt-1 text-xs text-gray-500">
+                          Collects: {meta.collects}
+                        </p>
+                      </div>
+
+                      <div className="flex shrink-0 items-center gap-6">
+                        <Toggle
+                          label="Show step"
+                          checked={step.enabled}
+                          onChange={(v) =>
+                            updateFormStep(meta.key, { enabled: v })
+                          }
+                        />
+                        <Toggle
+                          label="Skip button"
+                          checked={step.skip_enabled}
+                          disabled={!step.enabled}
+                          onChange={(v) =>
+                            updateFormStep(meta.key, { skip_enabled: v })
+                          }
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mt-4 grid gap-3 md:grid-cols-2">
+                      <div>
+                        <label className="mb-1 block text-xs font-medium text-gray-700">
+                          Title
+                        </label>
+                        <input
+                          type="text"
+                          value={step.title}
+                          maxLength={120}
+                          disabled={!step.enabled}
+                          onChange={(e) =>
+                            updateFormStep(meta.key, { title: e.target.value })
+                          }
+                          placeholder={meta.defaultTitle}
+                          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-400"
+                        />
+                      </div>
+                      <div>
+                        <label className="mb-1 block text-xs font-medium text-gray-700">
+                          Subtitle
+                        </label>
+                        <input
+                          type="text"
+                          value={step.subtitle}
+                          maxLength={240}
+                          disabled={!step.enabled}
+                          onChange={(e) =>
+                            updateFormStep(meta.key, {
+                              subtitle: e.target.value,
+                            })
+                          }
+                          placeholder={meta.defaultSubtitle}
+                          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-400"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 

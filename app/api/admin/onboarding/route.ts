@@ -23,7 +23,21 @@ const DEFAULTS = {
   welcome_title: "Welcome to CTEVT Plus (KTM Academy)",
   welcome_subtitle: "Your companion for preparation",
   slides: [] as unknown[],
+  form_steps: [] as unknown[],
 };
+
+/**
+ * The app's onboarding fill-out steps, in order. These keys are a contract with
+ * the Flutter app (OnboardingFormStep) — never rename or reorder them; the app
+ * matches on `key` and supplies its own default copy per key.
+ */
+const FORM_STEP_KEYS = [
+  "welcome",
+  "study",
+  "location",
+  "referral",
+  "whatsapp",
+] as const;
 
 // Fields a caller may patch, with their coercion.
 type Coercer = (v: unknown) => unknown;
@@ -33,7 +47,43 @@ const FIELDS: Record<string, Coercer> = {
   welcome_title: (v) => String(v ?? "").trim().slice(0, 120),
   welcome_subtitle: (v) => String(v ?? "").trim().slice(0, 240),
   slides: (v) => normalizeSlides(v),
+  form_steps: (v) => normalizeFormSteps(v),
 };
+
+/**
+ * Coerce arbitrary input into one clean row per known fill-out step, in
+ * FORM_STEP_KEYS order. Unknown keys are dropped and missing ones are filled in
+ * as fully enabled, so the stored array is always the complete, ordered set —
+ * the app can then trust it without reconciling.
+ */
+function normalizeFormSteps(value: unknown): Array<{
+  key: string;
+  enabled: boolean;
+  skip_enabled: boolean;
+  title: string;
+  subtitle: string;
+}> {
+  const incoming = new Map<string, Record<string, unknown>>();
+  if (Array.isArray(value)) {
+    for (const raw of value) {
+      const s = (raw ?? {}) as Record<string, unknown>;
+      const key = String(s.key ?? "");
+      if ((FORM_STEP_KEYS as readonly string[]).includes(key)) {
+        incoming.set(key, s);
+      }
+    }
+  }
+  return FORM_STEP_KEYS.map((key) => {
+    const s = incoming.get(key) ?? {};
+    return {
+      key,
+      enabled: s.enabled === undefined ? true : Boolean(s.enabled),
+      skip_enabled: s.skip_enabled === undefined ? true : Boolean(s.skip_enabled),
+      title: String(s.title ?? "").trim().slice(0, 120),
+      subtitle: String(s.subtitle ?? "").trim().slice(0, 240),
+    };
+  });
+}
 
 /**
  * Coerce arbitrary input into a clean array of onboarding pages
@@ -97,9 +147,12 @@ export async function POST(request: Request) {
     .upsert(patch, { onConflict: "id" });
 
   if (error) {
-    const msg = tableMissing(error)
-      ? "onboarding_settings table is missing — run the migration first."
-      : error.message;
+    const msg = /form_steps/i.test(error.message || "")
+      ? "onboarding_settings.form_steps column is missing — apply the " +
+        "20260725020000_onboarding_form_steps migration first."
+      : tableMissing(error)
+        ? "onboarding_settings table is missing — run the migration first."
+        : error.message;
     return NextResponse.json({ error: msg }, { status: 500 });
   }
   return NextResponse.json({ ok: true });
