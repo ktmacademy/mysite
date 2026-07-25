@@ -16,6 +16,7 @@ import {
   Inbox,
 } from "lucide-react";
 import { adminFetch } from "@/lib/admin-api";
+import { describeEvent, eventLabel } from "@/lib/analytics-events";
 import {
   AiConversationModal,
   type AiConversation,
@@ -193,7 +194,7 @@ export default function UserDetailPage() {
                         key={s.label}
                         className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700"
                       >
-                        {s.label} · {s.value}
+                        {eventLabel(s.label)} · {s.value}
                       </span>
                     ))}
                   </div>
@@ -201,8 +202,7 @@ export default function UserDetailPage() {
                     {data.activity.recent.map((e, i) => (
                       <div key={i} className="flex justify-between gap-2">
                         <span className="truncate">
-                          {e.event_name}
-                          {e.properties?.title ? ` · ${e.properties.title}` : ""}
+                          {describeEvent(e.event_name, e.properties)}
                         </span>
                         <span className="shrink-0 text-gray-400">{dt(e.created_at)}</span>
                       </div>
