@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   Activity,
+  ChevronRight,
   MessageSquare,
   Bot,
   Bookmark,
@@ -66,11 +67,14 @@ function Section({
   title,
   icon: Icon,
   count,
+  action,
   children,
 }: {
   title: string;
   icon: any;
   count?: number;
+  /** Optional control shown at the right of the header, e.g. "View details". */
+  action?: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -78,11 +82,14 @@ function Section({
       <div className="flex items-center gap-2 border-b border-gray-100 px-5 py-3">
         <Icon className="h-4 w-4 text-gray-500" />
         <span className="font-semibold text-gray-900">{title}</span>
-        {count !== undefined && (
-          <span className="ml-auto rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
-            {count}
-          </span>
-        )}
+        <div className="ml-auto flex items-center gap-2">
+          {count !== undefined && (
+            <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">
+              {count}
+            </span>
+          )}
+          {action}
+        </div>
       </div>
       <div className="p-5">{children}</div>
     </div>
@@ -183,7 +190,23 @@ export default function UserDetailPage() {
             </Section>
 
             {/* Activity */}
-            <Section title="Activity" icon={Activity} count={data.activity.totalEvents}>
+            <Section
+              title="Activity"
+              icon={Activity}
+              count={data.activity.totalEvents}
+              action={
+                data.activity.totalEvents > 0 ? (
+                  <button
+                    onClick={() =>
+                      router.push(`/admin/dashboard/users/${data.user.id}/activity`)
+                    }
+                    className="flex items-center gap-1 rounded-lg border border-gray-300 px-2.5 py-1 text-xs font-medium text-gray-700 transition hover:bg-gray-50"
+                  >
+                    View details <ChevronRight className="h-3.5 w-3.5" />
+                  </button>
+                ) : undefined
+              }
+            >
               {data.activity.totalEvents === 0 ? (
                 <Empty text="No tracked activity." />
               ) : (
