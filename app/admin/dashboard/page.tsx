@@ -141,7 +141,12 @@ export default function OverviewPage() {
             <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
               <div className="mb-4 font-semibold text-gray-900">Signups · 7 days</div>
               <BarChart
-                bars={days.map(([day, v]) => ({ label: day.slice(8), value: v }))}
+                bars={days.map(([day, v]) => ({
+                  label: day,
+                  tick: day.slice(8),
+                  value: v,
+                }))}
+                valueLabel="signups"
               />
               <div className="mt-3 text-xs text-gray-400">
                 {data.counts.signupsThisWeek} new users this week

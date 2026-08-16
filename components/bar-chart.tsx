@@ -1,64 +1,125 @@
 "use client";
 
+import {
+  Bar,
+  BarChart as RechartsBarChart,
+  CartesianGrid,
+  Label,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import {
+  ChartContainer,
+  ChartTooltipContent,
+  GRID_COLOR,
+  AXIS_TEXT,
+  HOVER_CURSOR,
+  SERIES_COLOR,
+} from "@/components/ui/chart";
+
 /**
- * Vertical bar chart for small daily series.
- *
- * The bars are absolutely positioned inside a relative track on purpose. A
- * percentage `height` only resolves against a parent with a definite height —
- * inside a shrink-to-fit flex column it resolves to `auto`, which collapses
- * every bar to its `min-height` and makes the chart look empty regardless of
- * the data. Positioning against the track sidesteps that.
+ * `label` is the full name, used in the tooltip. `tick` is the short form for
+ * the axis (a day-of-month, say) — the axis has to stay terse, the tooltip
+ * doesn't.
  */
+export type Bar = { label: string; value: number; tick?: string };
 
-export type Bar = { label: string; value: number };
-
+/**
+ * Vertical bar chart for a single daily series (signups per day).
+ *
+ * One series, so there is no legend — the panel title names it — and no number
+ * printed on every bar; hover reads the exact value instead.
+ */
 export default function BarChart({
   bars,
-  height = "h-32",
-  gap = "gap-2",
+  height = 128,
   showLabels = true,
+  valueLabel,
+  xLabel,
+  yLabel,
 }: {
   bars: Bar[];
-  /** Tailwind height class for the plot area. */
-  height?: string;
-  gap?: string;
+  height?: number;
+  /** Show the category tick under each bar. Off when the axis is too crowded. */
   showLabels?: boolean;
+  /** Noun after the number in the tooltip, e.g. "signups". */
+  valueLabel?: string;
+  /** Axis titles. Name what each axis measures rather than leaving it implied. */
+  xLabel?: string;
+  yLabel?: string;
 }) {
-  const max = Math.max(1, ...bars.map((b) => b.value));
-  const allZero = bars.every((b) => b.value === 0);
+  if (bars.length === 0) {
+    return (
+      <p className="py-6 text-center text-sm text-gray-400">No data yet.</p>
+    );
+  }
 
   return (
-    <div>
-      <div className={`flex ${height} ${gap}`}>
-        {bars.map((b, i) => (
-          <div
-            key={`${b.label}-${i}`}
-            className="flex flex-1 flex-col"
-            title={`${b.label}: ${b.value}`}
-          >
-            <div className="relative min-h-0 flex-1">
-              {b.value > 0 && (
-                <div
-                  className="absolute inset-x-0 bottom-0 rounded-t bg-gradient-to-t from-blue-700 to-blue-400"
-                  style={{ height: `${(b.value / max) * 100}%`, minHeight: 4 }}
-                />
-              )}
-              {/* Baseline tick, so an empty day still reads as a day. */}
-              <div className="absolute inset-x-0 bottom-0 h-px bg-gray-200" />
-            </div>
-            {showLabels && (
-              <span className="mt-1 text-center text-[10px] text-gray-400">
-                {b.label}
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
-      {allZero && (
-        <p className="mt-2 text-center text-xs text-gray-400">
-          No activity in this period.
-        </p>
-      )}
-    </div>
+    <ChartContainer height={height}>
+      <RechartsBarChart
+        data={bars}
+        margin={{
+          top: 4,
+          right: 4,
+          bottom: xLabel ? 18 : 0,
+          left: yLabel ? 8 : 0,
+        }}
+        // A 2px surface gap between adjacent fills keeps the bars readable as
+        // separate marks rather than one block.
+        barCategoryGap={2}
+      >
+        <CartesianGrid
+          vertical={false}
+          stroke={GRID_COLOR}
+          strokeDasharray="3 3"
+        />
+        <XAxis
+          dataKey="tick"
+          tickLine={false}
+          axisLine={false}
+          hide={!showLabels}
+          interval="preserveStartEnd"
+          tick={{ fontSize: 10, fill: AXIS_TEXT }}
+        >
+          {xLabel && (
+            <Label
+              value={xLabel}
+              position="insideBottom"
+              offset={-12}
+              style={{ fontSize: 11, fill: AXIS_TEXT }}
+            />
+          )}
+        </XAxis>
+        {/* A visible value axis: bar height is only readable against a scale. */}
+        <YAxis
+          width={32}
+          tickLine={false}
+          axisLine={false}
+          allowDecimals={false}
+          tick={{ fontSize: 10, fill: AXIS_TEXT }}
+        >
+          {yLabel && (
+            <Label
+              value={yLabel}
+              angle={-90}
+              position="insideLeft"
+              style={{ fontSize: 11, fill: AXIS_TEXT, textAnchor: "middle" }}
+            />
+          )}
+        </YAxis>
+        <Tooltip
+          cursor={HOVER_CURSOR}
+          content={<ChartTooltipContent valueLabel={valueLabel} />}
+        />
+        <Bar
+          dataKey="value"
+          fill={SERIES_COLOR}
+          // Rounded data-end, square where it meets the baseline.
+          radius={[4, 4, 0, 0]}
+          minPointSize={2}
+        />
+      </RechartsBarChart>
+    </ChartContainer>
   );
 }
