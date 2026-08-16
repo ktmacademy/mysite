@@ -8,6 +8,7 @@ const DELETABLE_TABLES = new Set([
   "feedbacks",
   "broadcasts",
   "carousel_images",
+  "youtube_courses",
 ]);
 
 const DOCUMENT_BUCKETS = new Set(["notes", "pyqs", "solutions"]);
