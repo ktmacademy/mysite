@@ -72,21 +72,24 @@ export default function ContentManagerPage({
     const [hour, minute] = selectedTime.split(":").map(Number);
     const createdOn = new Date(year, month - 1, day, hour, minute);
 
-    const { error } = await getSupabase().from(table).insert({
-      title: title.trim(),
-      description: description.trim(),
-      link: link.trim(),
-      created_on: createdOn.toISOString(),
-    });
-
-    if (error) {
-      setMessage(`Failed to add ${itemNoun}: ${error.message}`);
-    } else {
+    // Written through the service role: the panel's cookie session is not a
+    // Supabase session, so the anon client has no auth.uid() and RLS blocks it.
+    try {
+      await adminFetch("/api/admin/content", {
+        table,
+        title: title.trim(),
+        description: description.trim(),
+        link: link.trim(),
+        created_on: createdOn.toISOString(),
+      });
       setMessage(`${heading} added successfully!`);
       setTitle("");
       setDescription("");
       setLink("");
       await loadItems();
+    } catch (e) {
+      const detail = e instanceof Error ? e.message : String(e);
+      setMessage(`Failed to add ${itemNoun}: ${detail}`);
     }
     setLoading(false);
   };
