@@ -22,10 +22,15 @@ import {
   DoorOpen,
   LogOut,
   Menu,
-  X,
   LucideIcon,
 } from "lucide-react";
 import { adminGet, adminLogout } from "@/lib/admin-api";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface NavItem {
   href: string;
@@ -83,9 +88,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     let cancelled = false;
     (async () => {
       try {
-        const { username } = await adminGet<{ username: string }>(
-          "/api/admin/me"
-        );
+        const { username } = await adminGet<{ username: string }>("/api/admin/me");
         if (cancelled) return;
         setUsername(username || "");
         setReady(true);
@@ -115,79 +118,84 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     item.exact ? pathname === item.href : pathname.startsWith(item.href);
 
   const sidebar = (
-    <div className="flex h-full flex-col">
-      <div className="flex items-center gap-2 px-5 py-4 text-white">
-        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold">
+    <div className="flex h-full flex-col bg-sidebar text-sidebar-foreground">
+      <div className="flex items-center gap-2 px-5 py-4">
+        <span className="flex size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sm font-bold text-sidebar-primary-foreground">
           C+
         </span>
         <span className="font-bold">CTEVT+ Admin</span>
       </div>
-      <nav className="flex-1 overflow-y-auto px-3 pb-4">
-        {NAV.map((group) => (
-          <div key={group.label} className="mb-4">
-            <div className="px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
-              {group.label}
-            </div>
-            {group.items.map((item) => {
-              const active = isActive(item);
-              return (
+
+      <ScrollArea className="flex-1 px-3 pb-4">
+        <nav>
+          {NAV.map((group) => (
+            <div key={group.label} className="mb-4">
+              <div className="px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/50">
+                {group.label}
+              </div>
+              {group.items.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`mb-0.5 flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                    active
-                      ? "bg-slate-700 font-semibold text-white"
-                      : "text-slate-300 hover:bg-slate-800 hover:text-white"
-                  }`}
+                  className={cn(
+                    "mb-0.5 flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition",
+                    isActive(item)
+                      ? "bg-sidebar-accent font-semibold text-sidebar-accent-foreground"
+                      : "text-sidebar-foreground/70 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
+                  )}
                 >
-                  <item.icon className="h-[18px] w-[18px]" />
+                  <item.icon className="size-[18px]" />
                   {item.label}
                 </Link>
-              );
-            })}
-          </div>
-        ))}
-      </nav>
-      <div className="border-t border-slate-700 p-3">
-        <button
+              ))}
+            </div>
+          ))}
+        </nav>
+      </ScrollArea>
+
+      <Separator className="bg-sidebar-border" />
+      <div className="p-3">
+        <Button
+          variant="ghost"
+          size="lg"
           onClick={handleLogout}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-red-300 transition hover:bg-slate-800"
+          className="w-full justify-start gap-3 text-destructive hover:bg-sidebar-accent hover:text-destructive"
         >
-          <LogOut className="h-[18px] w-[18px]" />
+          <LogOut className="size-[18px]" />
           Sign out
-        </button>
+        </Button>
       </div>
     </div>
   );
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-background">
       {/* Desktop sidebar */}
-      <aside className="hidden w-60 shrink-0 bg-slate-900 md:block">{sidebar}</aside>
-
-      {/* Mobile drawer */}
-      {open && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setOpen(false)} />
-          <aside className="absolute left-0 top-0 h-full w-64 bg-slate-900">{sidebar}</aside>
-        </div>
-      )}
+      <aside className="hidden w-60 shrink-0 md:block">{sidebar}</aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Top bar */}
-        <header className="flex items-center justify-between border-b border-gray-200 bg-white px-4 py-3">
-          <button
-            onClick={() => setOpen(true)}
-            className="rounded-lg p-1.5 text-gray-600 hover:bg-gray-100 md:hidden"
-            aria-label="Open menu"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-          <div className="ml-auto flex items-center gap-2 text-sm text-gray-600">
+        <header className="flex items-center justify-between border-b bg-card px-4 py-3">
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger
+              render={
+                <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu">
+                  <Menu />
+                </Button>
+              }
+            />
+            <SheetContent side="left" className="w-64 p-0">
+              <SheetTitle className="sr-only">Navigation</SheetTitle>
+              {sidebar}
+            </SheetContent>
+          </Sheet>
+
+          <div className="ml-auto flex items-center gap-2 text-sm text-muted-foreground">
             <span className="hidden sm:inline">{username}</span>
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
-              {(username[0] || "A").toUpperCase()}
-            </span>
+            <Avatar className="size-7">
+              <AvatarFallback className="bg-primary text-xs font-bold text-primary-foreground">
+                {(username[0] || "A").toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
           </div>
         </header>
 

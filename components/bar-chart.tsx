@@ -16,7 +16,7 @@ import {
   AXIS_TEXT,
   HOVER_CURSOR,
   SERIES_COLOR,
-} from "@/components/ui/chart";
+} from "@/components/charts/chart-tokens";
 
 /**
  * `label` is the full name, used in the tooltip. `tick` is the short form for
@@ -51,7 +51,7 @@ export default function BarChart({
 }) {
   if (bars.length === 0) {
     return (
-      <p className="py-6 text-center text-sm text-gray-400">No data yet.</p>
+      <p className="py-6 text-center text-sm text-muted-foreground">No data yet.</p>
     );
   }
 

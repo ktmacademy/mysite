@@ -15,7 +15,7 @@ import {
   GRID_COLOR,
   AXIS_TEXT,
   SERIES_COLORS,
-} from "@/components/ui/chart";
+} from "@/components/charts/chart-tokens";
 
 export interface StackSeries {
   key: string;
@@ -35,8 +35,8 @@ function StackTooltip({
   if (!active || !payload?.length) return null;
   const total = payload.reduce((sum, p) => sum + (p.value || 0), 0);
   return (
-    <div className="rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-lg">
-      <div className="mb-1 text-xs font-medium text-gray-500">{label}</div>
+    <div className="rounded-lg border bg-popover px-3 py-2 text-popover-foreground shadow-lg">
+      <div className="mb-1 text-xs font-medium text-muted-foreground">{label}</div>
       <div className="space-y-0.5">
         {payload.map((p) => (
           <div key={p.dataKey} className="flex items-center gap-2 text-sm">
@@ -44,16 +44,16 @@ function StackTooltip({
               className="h-2.5 w-2.5 shrink-0 rounded-sm"
               style={{ backgroundColor: p.color }}
             />
-            <span className="text-gray-600">{p.name}</span>
-            <span className="ml-auto font-semibold text-gray-900">
+            <span className="text-muted-foreground">{p.name}</span>
+            <span className="ml-auto font-semibold">
               {p.value.toLocaleString()}
             </span>
           </div>
         ))}
       </div>
-      <div className="mt-1 flex gap-2 border-t border-gray-100 pt-1 text-sm">
-        <span className="text-gray-500">Total</span>
-        <span className="ml-auto font-semibold text-gray-900">
+      <div className="mt-1 flex gap-2 border-t pt-1 text-sm">
+        <span className="text-muted-foreground">Total</span>
+        <span className="ml-auto font-semibold">
           {total.toLocaleString()}
         </span>
       </div>
@@ -80,7 +80,7 @@ export default function StackedBarChart({
   yLabel?: string;
 }) {
   if (data.length === 0 || series.length === 0) {
-    return <p className="py-6 text-center text-sm text-gray-400">No data yet.</p>;
+    return <p className="py-6 text-center text-sm text-muted-foreground">No data yet.</p>;
   }
 
   return (
@@ -128,7 +128,7 @@ export default function StackedBarChart({
           align="left"
           height={28}
           iconType="square"
-          wrapperStyle={{ fontSize: 12, color: "#4b5563" }}
+          wrapperStyle={{ fontSize: 12, color: "var(--muted-foreground)" }}
         />
         {series.map((s, i) => (
           <Bar
@@ -138,7 +138,7 @@ export default function StackedBarChart({
             stackId="a"
             fill={SERIES_COLORS[i % SERIES_COLORS.length]}
             // 2px of surface between segments keeps the stack readable.
-            stroke="#ffffff"
+            stroke="var(--card)"
             strokeWidth={2}
             // Only the topmost segment gets the rounded data-end.
             radius={i === series.length - 1 ? [4, 4, 0, 0] : undefined}

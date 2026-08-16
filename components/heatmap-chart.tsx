@@ -43,7 +43,7 @@ export default function HeatmapChart({
   const max = Math.max(1, ...data.values.flat());
   const total = data.values.flat().reduce((a, b) => a + b, 0);
   if (total === 0) {
-    return <p className="py-6 text-center text-sm text-gray-400">No data yet.</p>;
+    return <p className="py-6 text-center text-sm text-muted-foreground">No data yet.</p>;
   }
 
   /** Bucket a value onto the ramp. Zero always takes the empty step. */
@@ -55,7 +55,7 @@ export default function HeatmapChart({
   return (
     <div className="p-5">
       {/* Axis titles sit outside the grid so the cells stay square-ish. */}
-      <div className="mb-1 text-[11px] font-medium uppercase tracking-wide text-gray-400">
+      <div className="mb-1 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
         {columnLabel}
       </div>
 
@@ -66,7 +66,7 @@ export default function HeatmapChart({
             {data.columns.map((c, i) => (
               <div
                 key={c}
-                className="flex-1 text-center text-[9px] leading-none text-gray-400"
+                className="flex-1 text-center text-[9px] leading-none text-muted-foreground"
               >
                 {i % 3 === 0 ? c : ""}
               </div>
@@ -75,7 +75,7 @@ export default function HeatmapChart({
 
           {data.rows.map((row, r) => (
             <div key={row} className="mb-[2px] flex items-center gap-[2px]">
-              <div className="w-10 shrink-0 pr-1 text-right text-[10px] text-gray-500">
+              <div className="w-10 shrink-0 pr-1 text-right text-[10px] text-muted-foreground">
                 {row}
               </div>
               {data.columns.map((col, c) => {
@@ -92,7 +92,9 @@ export default function HeatmapChart({
                       backgroundColor: RAMP[step(value)],
                       // A 2px surface gap plus a ring on the hovered cell, so
                       // the highlight reads without moving anything.
-                      boxShadow: isHover ? "0 0 0 2px #ffffff, 0 0 0 3px #1d4ed8" : undefined,
+                      boxShadow: isHover
+                        ? "0 0 0 2px var(--card), 0 0 0 3px var(--ring)"
+                        : undefined,
                     }}
                   />
                 );
@@ -100,7 +102,7 @@ export default function HeatmapChart({
             </div>
           ))}
 
-          <div className="mt-1 pl-10 text-[11px] font-medium uppercase tracking-wide text-gray-400">
+          <div className="mt-1 pl-10 text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
             {rowLabel}
           </div>
         </div>
@@ -108,22 +110,20 @@ export default function HeatmapChart({
 
       {/* Readout + ramp legend. */}
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-        <div className="text-sm text-gray-600">
+        <div className="text-sm text-muted-foreground">
           {hover ? (
             <>
-              <span className="font-medium text-gray-900">
+              <span className="font-medium text-foreground">
                 {data.rows[hover.r]} · {data.columns[hover.c]}:00
               </span>{" "}
               — {active!.toLocaleString()} {valueLabel}
             </>
           ) : (
-            <span className="text-gray-400">
-              Hover a cell for its exact count
-            </span>
+            <span>Hover a cell for its exact count</span>
           )}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-[10px] text-gray-400">0</span>
+          <span className="text-[10px] text-muted-foreground">0</span>
           {RAMP.map((color) => (
             <span
               key={color}
@@ -131,7 +131,7 @@ export default function HeatmapChart({
               style={{ backgroundColor: color }}
             />
           ))}
-          <span className="text-[10px] text-gray-400">{max}</span>
+          <span className="text-[10px] text-muted-foreground">{max}</span>
         </div>
       </div>
     </div>

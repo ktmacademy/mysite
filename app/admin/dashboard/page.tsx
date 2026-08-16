@@ -15,6 +15,15 @@ import {
 import { adminFetch } from "@/lib/admin-api";
 import PageHeader from "@/components/page-header";
 import BarChart from "@/components/bar-chart";
+import { cn } from "@/lib/utils";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Overview {
   counts: {
@@ -36,19 +45,34 @@ const num = (n: number | null | undefined) =>
   n === null || n === undefined ? "—" : n.toLocaleString();
 
 const TILES = [
-  { key: "users", label: "Total users", icon: Users, accent: "bg-pink-500", delta: (o: Overview) => `+${o.counts.signupsThisWeek} this week` },
-  { key: "whatsappOptIns", label: "WhatsApp opt-ins", icon: MessageCircle, accent: "bg-green-500", delta: () => "consent-based" },
-  { key: "activeToday", label: "Active today", icon: Flame, accent: "bg-sky-500", delta: () => "signed in today" },
-  { key: "documents", label: "Documents", icon: FileText, accent: "bg-emerald-500", delta: () => "notes · pyqs · solutions" },
-  { key: "notifications", label: "Notifications", icon: Bell, accent: "bg-green-500", delta: () => "sent" },
-  { key: "adsDisabled", label: "Ads disabled", icon: Settings, accent: "bg-blue-500", delta: () => "users" },
+  {
+    key: "users",
+    label: "Total users",
+    icon: Users,
+    delta: (o: Overview) => `+${o.counts.signupsThisWeek} this week`,
+  },
+  {
+    key: "whatsappOptIns",
+    label: "WhatsApp opt-ins",
+    icon: MessageCircle,
+    delta: () => "consent-based",
+  },
+  { key: "activeToday", label: "Active today", icon: Flame, delta: () => "signed in today" },
+  {
+    key: "documents",
+    label: "Documents",
+    icon: FileText,
+    delta: () => "notes · pyqs · solutions",
+  },
+  { key: "notifications", label: "Notifications", icon: Bell, delta: () => "sent" },
+  { key: "adsDisabled", label: "Ads disabled", icon: Settings, delta: () => "users" },
 ] as const;
 
-const ACTIVITY_ICON: Record<string, { icon: typeof DocIcon; color: string }> = {
-  document: { icon: DocIcon, color: "bg-emerald-500" },
-  notification: { icon: Bell, color: "bg-green-500" },
-  feedback: { icon: MessageSquare, color: "bg-purple-500" },
-  user: { icon: UserPlus, color: "bg-pink-500" },
+const ACTIVITY_ICON: Record<string, typeof DocIcon> = {
+  document: DocIcon,
+  notification: Bell,
+  feedback: MessageSquare,
+  user: UserPlus,
 };
 
 function timeAgo(iso: string): string {
@@ -79,79 +103,98 @@ export default function OverviewPage() {
       <PageHeader title="Overview" subtitle="State of the app at a glance" />
 
       {error && (
-        <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-red-800">{error}</div>
+        <Alert variant="destructive" className="mb-6">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
 
-      {!data && !error && <div className="text-gray-500">Loading…</div>}
+      {!data && !error && (
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} className="h-24 rounded-xl" />
+          ))}
+        </div>
+      )}
 
       {data && (
         <>
-          {/* Stat tiles */}
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
             {TILES.map((t) => {
               const value = (data.counts as any)[t.key] as number | null;
               return (
-                <div
-                  key={t.key}
-                  className="relative overflow-hidden rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
-                >
-                  <span className={`absolute inset-y-0 left-0 w-1 ${t.accent}`} />
-                  <div className="mb-2 flex items-center gap-2 text-sm text-gray-500">
-                    <t.icon className="h-4 w-4" />
-                    {t.label}
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900">{num(value)}</div>
-                  <div className="mt-1 text-xs text-gray-400">
-                    {value === null ? "run migration to enable" : t.delta(data)}
-                  </div>
-                </div>
+                <Card key={t.key}>
+                  <CardContent className="p-4">
+                    <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
+                      <t.icon className="size-4" />
+                      {t.label}
+                    </div>
+                    <div className="text-2xl font-bold">{num(value)}</div>
+                    <div className="mt-1 text-xs text-muted-foreground">
+                      {value === null ? "run migration to enable" : t.delta(data)}
+                    </div>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-3">
-            {/* Recent activity */}
-            <div className="rounded-xl border border-gray-200 bg-white shadow-sm lg:col-span-2">
-              <div className="border-b border-gray-100 px-5 py-3 font-semibold text-gray-900">
-                Recent activity
-              </div>
-              <div>
+            <Card className="lg:col-span-2">
+              <CardHeader className="border-b">
+                <CardTitle>Recent activity</CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
                 {data.activity.length === 0 && (
-                  <div className="px-5 py-8 text-center text-sm text-gray-400">Nothing yet.</div>
+                  <div className="px-5 py-8 text-center text-sm text-muted-foreground">
+                    Nothing yet.
+                  </div>
                 )}
                 {data.activity.map((a, i) => {
-                  const meta = ACTIVITY_ICON[a.type] || ACTIVITY_ICON.document;
+                  const Icon = ACTIVITY_ICON[a.type] || DocIcon;
                   return (
-                    <div key={i} className="flex items-center gap-3 border-b border-gray-50 px-5 py-3 last:border-0">
-                      <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-white ${meta.color}`}>
-                        <meta.icon className="h-4 w-4" />
+                    <div
+                      key={i}
+                      className={cn(
+                        "flex items-center gap-3 px-5 py-3",
+                        i < data.activity.length - 1 && "border-b"
+                      )}
+                    >
+                      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground">
+                        <Icon className="size-4" />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <p className="truncate text-sm font-medium text-gray-900">{a.title}</p>
-                        <p className="truncate text-xs text-gray-500">{a.subtitle}</p>
+                        <p className="truncate text-sm font-medium">{a.title}</p>
+                        <p className="truncate text-xs text-muted-foreground">
+                          {a.subtitle}
+                        </p>
                       </div>
-                      <span className="shrink-0 text-xs text-gray-400">{timeAgo(a.at)}</span>
+                      <span className="shrink-0 text-xs text-muted-foreground">
+                        {timeAgo(a.at)}
+                      </span>
                     </div>
                   );
                 })}
-              </div>
-            </div>
+              </CardContent>
+            </Card>
 
-            {/* Signups sparkline */}
-            <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-              <div className="mb-4 font-semibold text-gray-900">Signups · 7 days</div>
-              <BarChart
-                bars={days.map(([day, v]) => ({
-                  label: day,
-                  tick: day.slice(8),
-                  value: v,
-                }))}
-                valueLabel="signups"
-              />
-              <div className="mt-3 text-xs text-gray-400">
-                {data.counts.signupsThisWeek} new users this week
-              </div>
-            </div>
+            <Card>
+              <CardHeader>
+                <CardTitle>Signups · 7 days</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <BarChart
+                  bars={days.map(([day, v]) => ({
+                    label: day,
+                    tick: day.slice(8),
+                    value: v,
+                  }))}
+                  valueLabel="signups"
+                />
+                <div className="mt-3 text-xs text-muted-foreground">
+                  {data.counts.signupsThisWeek} new users this week
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </>
       )}

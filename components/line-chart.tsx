@@ -16,7 +16,7 @@ import {
   GRID_COLOR,
   AXIS_TEXT,
   SERIES_COLORS,
-} from "@/components/ui/chart";
+} from "@/components/charts/chart-tokens";
 
 export interface SeriesDef {
   /** Key into each row of `data`. */
@@ -40,8 +40,8 @@ function TimeTooltip({
   if (!active || !payload?.length) return null;
   const rows = [...payload].sort((a, b) => b.value - a.value);
   return (
-    <div className="rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-lg">
-      <div className="mb-1 text-xs font-medium text-gray-500">{label}</div>
+    <div className="rounded-lg border bg-popover px-3 py-2 text-popover-foreground shadow-lg">
+      <div className="mb-1 text-xs font-medium text-muted-foreground">{label}</div>
       <div className="space-y-0.5">
         {rows.map((row) => (
           <div key={row.dataKey} className="flex items-center gap-2 text-sm">
@@ -49,10 +49,10 @@ function TimeTooltip({
               className="h-2.5 w-2.5 shrink-0 rounded-sm"
               style={{ backgroundColor: row.color }}
             />
-            <span className="text-gray-600">
+            <span className="text-muted-foreground">
               {series.find((s) => s.key === row.dataKey)?.name ?? row.dataKey}
             </span>
-            <span className="ml-auto font-semibold text-gray-900">
+            <span className="ml-auto font-semibold">
               {row.value.toLocaleString()}
             </span>
           </div>
@@ -82,7 +82,7 @@ export default function TimeSeriesChart({
   xKey?: string;
 }) {
   if (data.length === 0) {
-    return <p className="py-6 text-center text-sm text-gray-400">No data yet.</p>;
+    return <p className="py-6 text-center text-sm text-muted-foreground">No data yet.</p>;
   }
 
   const shortDay = (value: string) =>
@@ -130,7 +130,7 @@ export default function TimeSeriesChart({
             strokeWidth={2}
             fill={`url(#fill-${only.key})`}
             dot={false}
-            activeDot={{ r: 4, strokeWidth: 2, stroke: "#ffffff" }}
+            activeDot={{ r: 4, strokeWidth: 2, stroke: "var(--card)" }}
           />
         </AreaChart>
       </ChartContainer>
@@ -146,7 +146,7 @@ export default function TimeSeriesChart({
           align="left"
           height={28}
           iconType="plainline"
-          wrapperStyle={{ fontSize: 12, color: "#4b5563" }}
+          wrapperStyle={{ fontSize: 12, color: "var(--muted-foreground)" }}
         />
         {series.map((s, i) => (
           <Line
@@ -159,7 +159,7 @@ export default function TimeSeriesChart({
             stroke={SERIES_COLORS[i % SERIES_COLORS.length]}
             strokeWidth={2}
             dot={false}
-            activeDot={{ r: 4, strokeWidth: 2, stroke: "#ffffff" }}
+            activeDot={{ r: 4, strokeWidth: 2, stroke: "var(--card)" }}
           />
         ))}
       </RechartsLineChart>

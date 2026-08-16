@@ -2,6 +2,25 @@
 
 import { ReactNode, useState } from "react";
 import { BarChart3, Download, Table2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 /**
  * The frame every chart on the dashboard sits in.
@@ -47,82 +66,81 @@ export default function ChartPanel({
   };
 
   return (
-    <div
-      className={`rounded-xl border border-gray-200 bg-white shadow-sm ${
-        wide ? "lg:col-span-2" : ""
-      }`}
-    >
-      <div className="flex items-start justify-between gap-3 border-b border-gray-100 px-5 py-3">
-        <div className="min-w-0">
-          <div className="font-semibold text-gray-900">{title}</div>
-          {subtitle && (
-            <div className="mt-0.5 text-xs text-gray-500">{subtitle}</div>
-          )}
-        </div>
+    <Card className={cn("gap-0 py-0", wide && "lg:col-span-2")}>
+      <CardHeader className="border-b py-3">
+        <CardTitle className="text-base">{title}</CardTitle>
+        {subtitle && <CardDescription>{subtitle}</CardDescription>}
         {hasRows && (
-          <div className="flex shrink-0 items-center gap-1">
-            <button
-              onClick={() => setShowTable((v) => !v)}
-              title={showTable ? "Show chart" : "Show table"}
-              aria-label={showTable ? "Show chart" : "Show table"}
-              className="rounded-lg p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
-            >
-              {showTable ? (
-                <BarChart3 className="h-4 w-4" />
-              ) : (
-                <Table2 className="h-4 w-4" />
-              )}
-            </button>
-            <button
-              onClick={downloadCsv}
-              title="Download CSV"
-              aria-label="Download CSV"
-              className="rounded-lg p-1.5 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
-            >
-              <Download className="h-4 w-4" />
-            </button>
-          </div>
+          <CardAction className="flex items-center gap-1">
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    onClick={() => setShowTable((v) => !v)}
+                    aria-label={showTable ? "Show chart" : "Show table"}
+                  >
+                    {showTable ? <BarChart3 /> : <Table2 />}
+                  </Button>
+                }
+              />
+              <TooltipContent>
+                {showTable ? "Show chart" : "Show table"}
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    onClick={downloadCsv}
+                    aria-label="Download CSV"
+                  >
+                    <Download />
+                  </Button>
+                }
+              />
+              <TooltipContent>Download CSV</TooltipContent>
+            </Tooltip>
+          </CardAction>
         )}
-      </div>
+      </CardHeader>
 
       {showTable && hasRows ? (
-        <div className="max-h-72 overflow-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="sticky top-0 bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
-              <tr>
+        <CardContent className="max-h-72 overflow-auto px-0 pb-0">
+          <Table>
+            <TableHeader className="sticky top-0 bg-muted">
+              <TableRow>
                 {columns.map((c, i) => (
-                  <th
-                    key={c}
-                    className={`px-5 py-2 font-semibold ${i > 0 ? "text-right" : ""}`}
-                  >
+                  <TableHead key={c} className={cn(i > 0 && "text-right")}>
                     {c}
-                  </th>
+                  </TableHead>
                 ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {rows!.map((row, i) => (
-                <tr key={i}>
+                <TableRow key={i}>
                   {row.map((cell, j) => (
-                    <td
+                    <TableCell
                       key={j}
-                      className={`px-5 py-2 ${
-                        j > 0
-                          ? "text-right font-medium text-gray-900"
-                          : "text-gray-600"
-                      }`}
+                      className={cn(
+                        j > 0 ? "text-right font-medium" : "text-muted-foreground"
+                      )}
                     >
                       {typeof cell === "number" ? cell.toLocaleString() : cell}
-                    </td>
+                    </TableCell>
                   ))}
-                </tr>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </TableBody>
+          </Table>
+        </CardContent>
       ) : (
-        children
+        <CardContent className="px-0 pb-0">{children}</CardContent>
       )}
-    </div>
+    </Card>
   );
 }

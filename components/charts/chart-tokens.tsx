@@ -27,9 +27,9 @@ export const SERIES_COLORS = ["#2563eb", "#eb6834", "#1baf7a"] as const;
 /** De-emphasis ink for "one series is the point, the rest are context". */
 export const MUTED_COLOR = "#cbd5e1";
 
-/** Recessive grid / axis ink. */
-export const GRID_COLOR = "#e5e7eb";
-export const AXIS_TEXT = "#9ca3af";
+/** Recessive grid / axis ink, matching the shadcn border/muted tokens. */
+export const GRID_COLOR = "var(--border)";
+export const AXIS_TEXT = "var(--muted-foreground)";
 
 /** Fixed-height responsive wrapper. Recharts needs a definite parent height. */
 export function ChartContainer({
@@ -70,18 +70,18 @@ export function ChartTooltipContent({
   if (!active || !payload?.length) return null;
   const datum = payload[0].payload;
   return (
-    <div className="rounded-lg border border-gray-200 bg-white px-3 py-2 shadow-lg">
-      <div className="text-xs font-medium text-gray-500">{datum.label}</div>
+    <div className="rounded-lg border bg-popover px-3 py-2 text-popover-foreground shadow-lg">
+      <div className="text-xs font-medium text-muted-foreground">{datum.label}</div>
       <div className="mt-0.5 flex items-center gap-1.5">
         <span
           className="h-2.5 w-2.5 shrink-0 rounded-sm"
           style={{ backgroundColor: SERIES_COLOR }}
         />
-        <span className="text-sm font-semibold text-gray-900">
+        <span className="text-sm font-semibold">
           {datum.value.toLocaleString()}
         </span>
         {valueLabel && (
-          <span className="text-xs text-gray-500">{valueLabel}</span>
+          <span className="text-xs text-muted-foreground">{valueLabel}</span>
         )}
       </div>
     </div>

@@ -18,7 +18,7 @@ import {
   AXIS_TEXT,
   HOVER_CURSOR,
   SERIES_COLOR,
-} from "@/components/ui/chart";
+} from "@/components/charts/chart-tokens";
 
 export type Segment = { label: string; value: number };
 
@@ -51,7 +51,7 @@ export default function HBarChart({
 }) {
   if (data.length === 0) {
     return (
-      <p className="px-4 py-6 text-center text-sm text-gray-400">No data yet.</p>
+      <p className="px-4 py-6 text-center text-sm text-muted-foreground">No data yet.</p>
     );
   }
 
@@ -124,7 +124,7 @@ export default function HBarChart({
             <LabelList
               dataKey="value"
               position="right"
-              className="fill-gray-700"
+              className="fill-foreground"
               fontSize={12}
               fontWeight={500}
               formatter={(v: unknown) => Number(v).toLocaleString()}

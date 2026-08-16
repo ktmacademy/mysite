@@ -12,6 +12,10 @@ import StatTile, { Meter } from "@/components/stat-tile";
 import HeatmapChart from "@/components/heatmap-chart";
 import StackedBarChart from "@/components/stacked-bar-chart";
 import { eventLabel } from "@/lib/analytics-events";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface Seg {
   label: string;
@@ -111,55 +115,58 @@ export default function AnalyticsPage() {
         title="Analytics & insights"
         subtitle="Who your users are, when they study, and what they actually open"
         actions={
-          <button
-            onClick={() => load(days)}
-            className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700"
-          >
-            <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+          <Button variant="outline" size="sm" onClick={() => load(days)}>
+            <RefreshCw className={loading ? "animate-spin" : undefined} />
             Refresh
-          </button>
+          </Button>
         }
       />
 
       {/* Filters — one row, above every chart they govern. */}
-      <div className="mb-6 flex flex-wrap items-center gap-2">
-        <span className="text-sm text-gray-500">Range</span>
-        <div className="inline-flex overflow-hidden rounded-lg border border-gray-300">
+      <div className="mb-6 flex flex-wrap items-center gap-3">
+        <span className="text-sm text-muted-foreground">Range</span>
+        <ToggleGroup
+          value={[String(days)]}
+          onValueChange={(value) => {
+            const next = Number(value[0]);
+            if (next) setDays(next);
+          }}
+        >
           {RANGES.map((r) => (
-            <button
-              key={r}
-              onClick={() => setDays(r)}
-              className={`px-3 py-1.5 text-sm font-medium transition ${
-                days === r
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-600 hover:bg-gray-50"
-              }`}
-            >
+            <ToggleGroupItem key={r} value={String(r)} size="sm">
               {r}d
-            </button>
+            </ToggleGroupItem>
           ))}
-        </div>
-        <span className="text-xs text-gray-400">
+        </ToggleGroup>
+        <span className="text-xs text-muted-foreground">
           Applies to trends, activity and event panels. Segments and the
           catalogue describe all records.
         </span>
       </div>
 
       {error && (
-        <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-red-800">
-          {error}
+        <Alert variant="destructive" className="mb-6">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+      {!data && !error && (
+        <div className="grid gap-4 lg:grid-cols-2">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} className="h-56 rounded-xl" />
+          ))}
         </div>
       )}
-      {!data && !error && <div className="text-gray-500">Loading…</div>}
 
       {data && (
         <>
           {(!data.profiles.enabled || !data.events.enabled) && (
-            <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
+            <Alert className="mb-6">
+              <AlertDescription>
               Some panels are waiting for data. Segment charts need the{" "}
               <code>profiles</code> table; activity panels need{" "}
               <code>analytics_events</code> to receive events.
-            </div>
+              </AlertDescription>
+            </Alert>
           )}
 
           {/* KPI row */}

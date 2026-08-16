@@ -5,6 +5,12 @@ import { useParams, useRouter } from "next/navigation";
 import { Activity, ArrowLeft } from "lucide-react";
 import { adminFetch } from "@/lib/admin-api";
 import { describeEvent, eventLabel } from "@/lib/analytics-events";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ActivityEvent {
   event_name: string;
@@ -110,49 +116,52 @@ export default function UserActivityPage() {
 
   return (
     <div className="mx-auto max-w-3xl p-6 md:p-8">
-      <button
+      <Button
+        variant="ghost"
+        size="sm"
+        className="mb-4"
         onClick={() => router.push(`/admin/dashboard/users/${userId}`)}
-        className="mb-4 flex items-center gap-1.5 text-sm text-gray-600 hover:text-gray-900"
       >
-        <ArrowLeft className="h-4 w-4" /> Back to user
-      </button>
+        <ArrowLeft /> Back to user
+      </Button>
 
-      <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h1 className="flex items-center gap-2 text-2xl font-bold text-gray-900">
-            <Activity className="h-6 w-6 text-gray-400" />
-            Activity
-          </h1>
-          <p className="mt-1 text-sm text-gray-600">
-            {data?.user.full_name || data?.user.email || "Loading…"}
-            {data ? ` · ${data.total} events` : ""}
-          </p>
-        </div>
+      <div className="mb-6">
+        <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight">
+          <Activity className="size-6 text-muted-foreground" />
+          Activity
+        </h1>
+        <p className="mt-1 text-sm text-muted-foreground">
+          {data?.user.full_name || data?.user.email || "Loading…"}
+          {data ? ` · ${data.total} events` : ""}
+        </p>
       </div>
 
       {error && (
-        <p className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
-          {error}
-        </p>
+        <Alert variant="destructive" className="mb-4">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
 
       {loading ? (
-        <p className="text-sm text-gray-500">Loading…</p>
+        <div className="space-y-2">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} className="h-12 rounded-lg" />
+          ))}
+        </div>
       ) : !data || data.total === 0 ? (
-        <p className="rounded-xl border border-gray-200 bg-white p-8 text-center text-sm text-gray-400 shadow-sm">
-          No tracked activity.
-        </p>
+        <Card>
+          <CardContent className="p-8 text-center text-sm text-muted-foreground">
+            No tracked activity.
+          </CardContent>
+        </Card>
       ) : (
         <>
           {data.summary && data.summary.length > 0 && (
             <div className="mb-6 flex flex-wrap gap-2">
               {data.summary.map((s) => (
-                <span
-                  key={s.label}
-                  className="rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700"
-                >
+                <Badge key={s.label} variant="secondary">
                   {eventLabel(s.label)} · {s.value}
-                </span>
+                </Badge>
               ))}
             </div>
           )}
@@ -160,38 +169,45 @@ export default function UserActivityPage() {
           <div className="space-y-6">
             {groupByDay(events).map(([day, dayEvents]) => (
               <div key={day}>
-                <h2 className="mb-2 text-xs font-bold uppercase tracking-wider text-gray-400">
+                <h2 className="mb-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
                   {day}
                 </h2>
-                <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                  {dayEvents.map((event, i) => (
-                    <div
-                      key={`${event.created_at}-${i}`}
-                      className="flex items-start justify-between gap-4 border-b border-gray-100 px-5 py-3 last:border-b-0"
-                    >
-                      <span className="min-w-0 text-sm text-gray-800">
-                        {describeEvent(event.event_name, event.properties)}
-                      </span>
-                      <span className="shrink-0 text-xs text-gray-400">
-                        {time(event.created_at)}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                <Card className="py-0">
+                  <CardContent className="px-0">
+                    {dayEvents.map((event, i) => (
+                      <div
+                        key={`${event.created_at}-${i}`}
+                        className={cn(
+                          "flex items-start justify-between gap-4 px-5 py-3",
+                          i < dayEvents.length - 1 && "border-b"
+                        )}
+                      >
+                        <span className="min-w-0 text-sm">
+                          {describeEvent(event.event_name, event.properties)}
+                        </span>
+                        <span className="shrink-0 text-xs text-muted-foreground">
+                          {time(event.created_at)}
+                        </span>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
 
           {data.hasMore && (
-            <button
+            <Button
+              variant="outline"
+              size="lg"
               onClick={loadMore}
               disabled={loadingMore}
-              className="mt-6 w-full rounded-lg border border-gray-300 px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:opacity-50"
+              className="mt-6 w-full"
             >
               {loadingMore
                 ? "Loading…"
                 : `Load older (${events.length} of ${data.total})`}
-            </button>
+            </Button>
           )}
         </>
       )}
