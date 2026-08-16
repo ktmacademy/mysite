@@ -5,6 +5,23 @@ import { FileUp, UploadCloud } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { adminFetch } from "@/lib/admin-api";
 import PageHeader from "@/components/page-header";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // doc_type doubles as the storage bucket name (notes / pyqs / solutions).
 const DOC_TYPES = [
@@ -177,268 +194,240 @@ export default function DocumentsPage() {
     }
   };
 
-  const inputClass =
-    "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none";
-
   return (
     <div className="mx-auto max-w-4xl p-6 md:p-8">
       <PageHeader title="Upload Document" subtitle="Add notes, PYQs and solutions" />
 
-      <div>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <div className="flex items-center gap-3 mb-6">
-              <FileUp className="w-6 h-6 text-blue-600" />
-              <h2 className="text-xl font-semibold text-gray-900">
-                Document Details
-              </h2>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-lg">
+              <FileUp className="size-5 text-primary" />
+              Document details
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <TaxonPicker
+                label="Program*"
+                options={programs}
+                value={programSel}
+                onValueChange={setProgramSel}
+                newValue={newProgram}
+                onNewValueChange={setNewProgram}
+                placeholder="Select a program…"
+                newPlaceholder="e.g. Diploma in Engineering"
+                addLabel="Add new program…"
+              />
+              <TaxonPicker
+                label="Faculty*"
+                options={faculties}
+                value={facultySel}
+                onValueChange={setFacultySel}
+                newValue={newFaculty}
+                onNewValueChange={setNewFaculty}
+                placeholder={programSel ? "Select a faculty…" : "Pick a program first"}
+                newPlaceholder="e.g. Civil Engineering"
+                addLabel="Add new faculty…"
+                disabled={!programSel}
+                // A brand-new program has no saved faculties to list yet.
+                canReturnToList={programSel !== NEW}
+              />
+              <TaxonPicker
+                label="Course*"
+                options={courses}
+                value={courseSel}
+                onValueChange={setCourseSel}
+                newValue={newCourse}
+                onNewValueChange={setNewCourse}
+                placeholder={facultySel ? "Select a course…" : "Pick a faculty first"}
+                newPlaceholder="e.g. Engineering Mathematics I"
+                addLabel="Add new course…"
+                disabled={!facultySel}
+                canReturnToList={facultySel !== NEW}
+              />
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Program*
-                  </label>
-                  {programSel === NEW ? (
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={newProgram}
-                        onChange={(e) => setNewProgram(e.target.value)}
-                        className={inputClass}
-                        placeholder="e.g. Diploma in Engineering"
-                        required
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setProgramSel("");
-                          setNewProgram("");
-                        }}
-                        className="shrink-0 rounded-lg border border-gray-300 px-3 text-sm text-gray-600 hover:bg-gray-50"
-                      >
-                        List
-                      </button>
-                    </div>
-                  ) : (
-                    <select
-                      value={programSel}
-                      onChange={(e) => setProgramSel(e.target.value)}
-                      className={inputClass}
-                      required
-                    >
-                      <option value="">Select a program…</option>
-                      {programs.map((p) => (
-                        <option key={p.id} value={p.id}>
-                          {p.name}
-                        </option>
-                      ))}
-                      <option value={NEW}>➕ Add new program…</option>
-                    </select>
-                  )}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Faculty*
-                  </label>
-                  {facultySel === NEW ? (
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={newFaculty}
-                        onChange={(e) => setNewFaculty(e.target.value)}
-                        className={inputClass}
-                        placeholder="e.g. Civil"
-                        required
-                      />
-                      {programSel !== NEW && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setFacultySel("");
-                            setNewFaculty("");
-                          }}
-                          className="shrink-0 rounded-lg border border-gray-300 px-3 text-sm text-gray-600 hover:bg-gray-50"
-                        >
-                          List
-                        </button>
-                      )}
-                    </div>
-                  ) : (
-                    <select
-                      value={facultySel}
-                      onChange={(e) => setFacultySel(e.target.value)}
-                      className={`${inputClass} disabled:bg-gray-100`}
-                      required
-                      disabled={!programSel}
-                    >
-                      <option value="">
-                        {programSel ? "Select a faculty…" : "Pick a program first"}
-                      </option>
-                      {faculties.map((f) => (
-                        <option key={f.id} value={f.id}>
-                          {f.name}
-                        </option>
-                      ))}
-                      <option value={NEW}>➕ Add new faculty…</option>
-                    </select>
-                  )}
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Course*
-                  </label>
-                  {courseSel === NEW ? (
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={newCourse}
-                        onChange={(e) => setNewCourse(e.target.value)}
-                        className={inputClass}
-                        placeholder="e.g. Engineering Mathematics I"
-                        required
-                      />
-                      {facultySel !== NEW && (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setCourseSel("");
-                            setNewCourse("");
-                          }}
-                          className="shrink-0 rounded-lg border border-gray-300 px-3 text-sm text-gray-600 hover:bg-gray-50"
-                        >
-                          List
-                        </button>
-                      )}
-                    </div>
-                  ) : (
-                    <select
-                      value={courseSel}
-                      onChange={(e) => setCourseSel(e.target.value)}
-                      className={`${inputClass} disabled:bg-gray-100`}
-                      required
-                      disabled={!facultySel}
-                    >
-                      <option value="">
-                        {facultySel ? "Select a course…" : "Pick a faculty first"}
-                      </option>
-                      {courses.map((c) => (
-                        <option key={c.id} value={c.id}>
-                          {c.name}
-                        </option>
-                      ))}
-                      <option value={NEW}>➕ Add new course…</option>
-                    </select>
-                  )}
-                </div>
+            <div className="space-y-2">
+              <Label htmlFor="doc-title">Title*</Label>
+              <Input
+                id="doc-title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Document title"
+                required
+              />
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div className="space-y-2">
+                <Label>Type*</Label>
+                <Select value={docType} onValueChange={(v) => setDocType(String(v))}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {DOC_TYPES.map((t) => (
+                      <SelectItem key={t.value} value={t.value}>
+                        {t.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Title*
-                </label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className={inputClass}
-                  placeholder="Document title"
-                  required
+              <div className="space-y-2">
+                <Label>Period unit</Label>
+                <Select
+                  value={periodUnit}
+                  onValueChange={(v) => setPeriodUnit(String(v))}
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {PERIOD_UNITS.map((u) => (
+                      <SelectItem key={u.value} value={u.value}>
+                        {u.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="period">Period no.</Label>
+                <Input
+                  id="period"
+                  type="number"
+                  min={1}
+                  max={12}
+                  value={period}
+                  onChange={(e) => setPeriod(Number(e.target.value))}
+                  disabled={periodUnit === "none"}
                 />
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Type*
-                  </label>
-                  <select
-                    value={docType}
-                    onChange={(e) => setDocType(e.target.value)}
-                    className={inputClass}
-                  >
-                    {DOC_TYPES.map((t) => (
-                      <option key={t.value} value={t.value}>
-                        {t.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Period Unit
-                  </label>
-                  <select
-                    value={periodUnit}
-                    onChange={(e) => setPeriodUnit(e.target.value)}
-                    className={inputClass}
-                  >
-                    {PERIOD_UNITS.map((u) => (
-                      <option key={u.value} value={u.value}>
-                        {u.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Period No.
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    max={12}
-                    value={period}
-                    onChange={(e) => setPeriod(Number(e.target.value))}
-                    disabled={periodUnit === "none"}
-                    className={`${inputClass} disabled:bg-gray-100`}
-                  />
-                </div>
-              </div>
             </div>
-          </div>
+          </CardContent>
+        </Card>
 
-          <div className="bg-white rounded-xl shadow-md p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <UploadCloud className="w-6 h-6 text-blue-600" />
-              <h2 className="text-xl font-semibold text-gray-900">PDF File</h2>
-            </div>
-            <input
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-lg">
+              <UploadCloud className="size-5 text-primary" />
+              PDF file
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Input
               id="pdf-input"
               type="file"
               accept="application/pdf"
               onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-              className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700"
+              className="cursor-pointer"
             />
             {file && (
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="mt-2 text-sm text-muted-foreground">
                 {file.name} · {(file.size / 1024 / 1024).toFixed(2)} MB
               </p>
             )}
-          </div>
+          </CardContent>
+        </Card>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
-          >
-            {loading ? progress || "Uploading..." : "Upload Document"}
-          </button>
-        </form>
+        <Button type="submit" size="lg" disabled={loading} className="w-full">
+          {loading ? progress || "Uploading…" : "Upload document"}
+        </Button>
+      </form>
 
-        {message && (
-          <div
-            className={`mt-6 rounded-lg p-4 ${
-              ok
-                ? "bg-green-50 border border-green-200 text-green-800"
-                : "bg-red-50 border border-red-200 text-red-800"
-            }`}
-          >
-            {message}
-          </div>
-        )}
-      </div>
+      {message && (
+        <Alert variant={ok ? "default" : "destructive"} className="mt-6">
+          <AlertDescription>{message}</AlertDescription>
+        </Alert>
+      )}
+    </div>
+  );
+}
+
+/**
+ * One level of the program -> faculty -> course taxonomy.
+ *
+ * Each level is either a picker over what already exists or, via the NEW
+ * sentinel, a free-text field so an admin can onboard a value that doesn't
+ * exist yet. The three levels were duplicated markup before.
+ */
+function TaxonPicker({
+  label,
+  options,
+  value,
+  onValueChange,
+  newValue,
+  onNewValueChange,
+  placeholder,
+  newPlaceholder,
+  addLabel,
+  disabled = false,
+  canReturnToList = true,
+}: {
+  label: string;
+  options: Taxon[];
+  value: string;
+  onValueChange: (v: string) => void;
+  newValue: string;
+  onNewValueChange: (v: string) => void;
+  placeholder: string;
+  newPlaceholder: string;
+  addLabel: string;
+  disabled?: boolean;
+  /** False when the parent level is itself new, so there is no list to go back to. */
+  canReturnToList?: boolean;
+}) {
+  const isNew = value === NEW;
+  return (
+    <div className="space-y-2">
+      <Label>{label}</Label>
+      {isNew ? (
+        <div className="flex gap-2">
+          <Input
+            value={newValue}
+            onChange={(e) => onNewValueChange(e.target.value)}
+            placeholder={newPlaceholder}
+            required
+          />
+          {canReturnToList && (
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              className="shrink-0"
+              onClick={() => {
+                onValueChange("");
+                onNewValueChange("");
+              }}
+            >
+              List
+            </Button>
+          )}
+        </div>
+      ) : (
+        <Select
+          value={value}
+          onValueChange={(v) => onValueChange(String(v))}
+          disabled={disabled}
+        >
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder={placeholder} />
+          </SelectTrigger>
+          <SelectContent>
+            {options.map((o) => (
+              <SelectItem key={o.id} value={o.id}>
+                {o.name}
+              </SelectItem>
+            ))}
+            <SelectItem value={NEW}>➕ {addLabel}</SelectItem>
+          </SelectContent>
+        </Select>
+      )}
     </div>
   );
 }

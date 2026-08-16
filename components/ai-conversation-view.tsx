@@ -2,6 +2,15 @@
 
 import { useEffect, useState, Fragment } from "react";
 import { Sparkles, X, Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { adminFetch } from "@/lib/admin-api";
 
 /**
@@ -265,7 +274,7 @@ function Bubble({ message }: { message: AiMessage }) {
         className={`max-w-[80%] rounded-2xl border px-3.5 py-2.5 ${
           isUser
             ? "border-white/25 text-white"
-            : "border-gray-200 bg-gray-50 text-gray-900"
+            : "bg-muted text-foreground"
         }`}
         style={isUser ? { background: GRADIENT } : undefined}
       >
@@ -282,7 +291,7 @@ function Bubble({ message }: { message: AiMessage }) {
             {sources.map((s: any, i: number) => (
               <span
                 key={i}
-                className="rounded-full bg-white px-2 py-0.5 text-[10px] font-medium text-gray-600 ring-1 ring-gray-200"
+                className="rounded-full bg-card px-2 py-0.5 text-[10px] font-medium text-muted-foreground ring-1 ring-border"
                 title={s?.snippet || undefined}
               >
                 {s?.doc_title || s?.docTitle
@@ -293,7 +302,12 @@ function Bubble({ message }: { message: AiMessage }) {
           </div>
         )}
 
-        <div className={`mt-1 text-[10px] ${isUser ? "text-white/80" : "text-gray-400"}`}>
+        <div
+          className={cn(
+            "mt-1 text-[10px]",
+            isUser ? "text-white/80" : "text-muted-foreground"
+          )}
+        >
           {clock(message.created_at)}
         </div>
       </div>
@@ -340,47 +354,34 @@ export function AiConversationModal({
   let lastBucket = "";
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-      onClick={onClose}
-    >
-      <div
-        className="flex max-h-[85vh] w-full max-w-2xl flex-col rounded-xl bg-white shadow-xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center gap-3 border-b border-gray-200 px-5 py-4">
+    <Dialog open onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="flex max-h-[85vh] w-full max-w-2xl flex-col gap-0 p-0">
+        <DialogHeader className="flex-row items-center gap-3 space-y-0 border-b px-5 py-4">
           <AiAvatar size={36} />
           <div className="min-w-0">
-            <h3 className="truncate font-semibold text-gray-900">
+            <DialogTitle className="truncate">
               {conversation.title || "Untitled chat"}
-            </h3>
-            <p className="text-xs text-gray-500">
+            </DialogTitle>
+            <DialogDescription className="text-xs">
               {messages ? `${messages.length} messages · ` : ""}
               last active {new Date(conversation.updated_at).toLocaleString()}
-            </p>
+            </DialogDescription>
           </div>
-          <button
-            onClick={onClose}
-            aria-label="Close"
-            className="ml-auto rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
-          >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
+        </DialogHeader>
 
-        <div className="flex-1 overflow-y-auto bg-white px-4 py-3">
+        <div className="flex-1 overflow-y-auto px-4 py-3">
           {error && (
-            <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800">
-              {error}
-            </div>
+            <Alert variant="destructive">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
           )}
           {!messages && !error && (
-            <div className="flex items-center justify-center gap-2 py-10 text-sm text-gray-500">
-              <Loader2 className="h-4 w-4 animate-spin" /> Loading conversation…
+            <div className="flex items-center justify-center gap-2 py-10 text-sm text-muted-foreground">
+              <Loader2 className="size-4 animate-spin" /> Loading conversation…
             </div>
           )}
           {messages?.length === 0 && (
-            <p className="py-10 text-center text-sm text-gray-400">
+            <p className="py-10 text-center text-sm text-muted-foreground">
               This conversation has no messages.
             </p>
           )}
@@ -391,7 +392,7 @@ export function AiConversationModal({
             return (
               <Fragment key={m.id}>
                 {showHeader && (
-                  <div className="px-1 pb-1.5 pt-4 text-[11px] font-bold uppercase tracking-wide text-gray-400">
+                  <div className="px-1 pb-1.5 pt-4 text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
                     {bucket}
                   </div>
                 )}
@@ -400,7 +401,7 @@ export function AiConversationModal({
             );
           })}
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

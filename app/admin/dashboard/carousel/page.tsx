@@ -17,6 +17,25 @@ import {
 import { getSupabase } from "@/lib/supabase";
 import { adminFetch, adminGet } from "@/lib/admin-api";
 import PageHeader from "@/components/page-header";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type SlideType = "image" | "course_playlist" | "course_video";
 
@@ -282,8 +301,6 @@ export default function CarouselPage() {
     setBusy(false);
   };
 
-  const inputClass =
-    "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none";
   const isImageType = type === "image";
   const needsCourse = type === "course_playlist" || type === "course_video";
 
@@ -295,74 +312,73 @@ export default function CarouselPage() {
       />
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <div className="mb-6 flex items-center gap-3">
-            <GalleryHorizontalEnd className="h-6 w-6 text-blue-600" />
-            <h2 className="text-lg font-semibold text-gray-900">New slide</h2>
-          </div>
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-lg">
+              <GalleryHorizontalEnd className="size-5 text-primary" />
+              New slide
+            </CardTitle>
+          </CardHeader>
 
-          {/* Slide type */}
-          <div className="mb-6 grid grid-cols-3 gap-2">
-            {(Object.keys(TYPE_META) as SlideType[]).map((t) => {
-              const Meta = TYPE_META[t];
-              const active = type === t;
-              return (
-                <button
-                  key={t}
-                  type="button"
-                  onClick={() => setType(t)}
-                  className={`flex flex-col items-center gap-1.5 rounded-lg border px-3 py-3 text-xs font-medium transition ${
-                    active
-                      ? "border-blue-600 bg-blue-50 text-blue-700"
-                      : "border-gray-200 text-gray-600 hover:bg-gray-50"
-                  }`}
-                >
-                  <Meta.icon className="h-5 w-5" />
-                  {Meta.label}
-                </button>
-              );
-            })}
-          </div>
+          <CardContent className="space-y-4">
+            {/* Slide type */}
+            <div className="grid grid-cols-3 gap-2">
+              {(Object.keys(TYPE_META) as SlideType[]).map((t) => {
+                const Meta = TYPE_META[t];
+                const active = type === t;
+                return (
+                  <Button
+                    key={t}
+                    type="button"
+                    variant={active ? "default" : "outline"}
+                    onClick={() => setType(t)}
+                    className="h-auto flex-col gap-1.5 py-3 text-xs"
+                  >
+                    <Meta.icon className="size-5" />
+                    {Meta.label}
+                  </Button>
+                );
+              })}
+            </div>
 
-          <div className="space-y-4">
             {needsCourse && (
-              <div>
-                <label className="mb-2 block text-sm font-medium text-gray-700">Course*</label>
-                <select
+              <div className="space-y-2">
+                <Label>Course*</Label>
+                <Select
                   value={courseId}
-                  onChange={(e) => setCourseId(e.target.value)}
-                  className={inputClass}
-                  required
+                  onValueChange={(v) => setCourseId(String(v))}
                 >
-                  <option value="">Select a course…</option>
-                  {courses.map((c) => (
-                    <option key={c.id} value={c.id}>
-                      {c.title}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a course…" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {courses.map((c) => (
+                      <SelectItem key={c.id} value={c.id}>
+                        {c.title}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 {courses.length === 0 && (
-                  <p className="mt-1 text-xs text-amber-600">
-                    No courses found. Add courses to the youtube_courses table first.
+                  <p className="text-xs text-muted-foreground">
+                    No courses yet — add one on the Courses page first.
                   </p>
                 )}
               </div>
             )}
 
             {type === "course_video" && (
-              <div>
-                <label className="mb-2 block text-sm font-medium text-gray-700">
-                  Video URL*
-                </label>
-                <input
+              <div className="space-y-2">
+                <Label htmlFor="video-url">Video URL*</Label>
+                <Input
+                  id="video-url"
                   type="url"
                   value={videoUrl}
                   onChange={(e) => setVideoUrl(e.target.value)}
-                  className={inputClass}
                   placeholder="https://www.youtube.com/watch?v=…"
                   required
                 />
-                <p className="mt-1 text-xs text-gray-400">
+                <p className="text-xs text-muted-foreground">
                   Auto-filled from the selected course — edit if you want a
                   different video. The thumbnail is taken from this URL
                   automatically.
@@ -370,15 +386,14 @@ export default function CarouselPage() {
               </div>
             )}
 
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
+            <div className="space-y-2">
+              <Label htmlFor="slide-title">
                 {isImageType ? "Caption (optional)" : "Overlay title (optional)"}
-              </label>
-              <input
-                type="text"
+              </Label>
+              <Input
+                id="slide-title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className={inputClass}
                 placeholder={
                   needsCourse ? "Defaults to the course title" : "Shown over the image"
                 }
@@ -386,18 +401,16 @@ export default function CarouselPage() {
             </div>
 
             {isImageType && (
-              <div>
-                <label className="mb-2 block text-sm font-medium text-gray-700">
-                  Link (optional)
-                </label>
-                <input
+              <div className="space-y-2">
+                <Label htmlFor="slide-link">Link (optional)</Label>
+                <Input
+                  id="slide-link"
                   type="url"
                   value={linkUrl}
                   onChange={(e) => setLinkUrl(e.target.value)}
-                  className={inputClass}
                   placeholder="https://example.com"
                 />
-                <p className="mt-1 text-xs text-gray-400">
+                <p className="text-xs text-muted-foreground">
                   Tapping this slide in the app opens this link outside the app.
                   Leave blank for a non-clickable banner.
                 </p>
@@ -405,13 +418,20 @@ export default function CarouselPage() {
             )}
 
             {/* Image upload / URL */}
-            <div>
-              <label className="mb-2 block text-sm font-medium text-gray-700">
+            <div className="space-y-2">
+              <Label>
                 {isImageType ? "Image*" : "Thumbnail override (optional)"}
-              </label>
+              </Label>
               <div className="flex flex-wrap items-center gap-3">
-                <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                  <Upload className="h-4 w-4" />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="lg"
+                  disabled={uploading}
+                  render={<label />}
+                  className="cursor-pointer"
+                >
+                  <Upload />
                   {uploading ? "Uploading…" : "Upload to R2"}
                   <input
                     type="file"
@@ -424,44 +444,48 @@ export default function CarouselPage() {
                       e.target.value = "";
                     }}
                   />
-                </label>
-                <button
+                </Button>
+                <Button
                   type="button"
+                  variant="outline"
+                  size="lg"
                   onClick={toggleLibrary}
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
-                  <Images className="h-4 w-4" />
+                  <Images />
                   {libraryOpen ? "Hide R2 images" : "Choose from R2"}
-                </button>
-                <span className="text-xs text-gray-400">or paste a URL</span>
+                </Button>
+                <span className="text-xs text-muted-foreground">
+                  or paste a URL
+                </span>
               </div>
 
               {/* Existing images already in the R2 carousel/ folder. */}
               {libraryOpen && (
-                <div className="mt-3 rounded-lg border border-gray-200 bg-gray-50 p-3">
+                <div className="rounded-lg border bg-muted/50 p-3">
                   <div className="mb-2 flex items-center justify-between">
-                    <p className="text-xs font-medium text-gray-600">
+                    <p className="text-xs font-medium text-muted-foreground">
                       Images in R2 (carousel/)
                     </p>
-                    <button
+                    <Button
                       type="button"
+                      variant="ghost"
+                      size="xs"
                       onClick={loadLibrary}
                       disabled={libraryLoading}
-                      className="text-xs font-medium text-blue-600 hover:underline disabled:opacity-50"
                     >
                       Refresh
-                    </button>
+                    </Button>
                   </div>
                   {libraryLoading ? (
-                    <p className="py-6 text-center text-sm text-gray-400">
+                    <p className="py-6 text-center text-sm text-muted-foreground">
                       Loading images…
                     </p>
                   ) : libraryError ? (
-                    <p className="py-4 text-center text-sm text-red-600">
+                    <p className="py-4 text-center text-sm text-destructive">
                       {libraryError}
                     </p>
                   ) : library.length === 0 ? (
-                    <p className="py-6 text-center text-sm text-gray-400">
+                    <p className="py-6 text-center text-sm text-muted-foreground">
                       No images found in the carousel/ folder yet.
                     </p>
                   ) : (
@@ -474,21 +498,22 @@ export default function CarouselPage() {
                             type="button"
                             onClick={() => setImageUrl(img.url)}
                             title={img.key.replace("carousel/", "")}
-                            className={`relative aspect-video overflow-hidden rounded-md border-2 transition ${
+                            className={cn(
+                              "relative aspect-video overflow-hidden rounded-md border-2 transition",
                               selected
-                                ? "border-blue-600 ring-2 ring-blue-200"
-                                : "border-transparent hover:border-gray-300"
-                            }`}
+                                ? "border-primary ring-2 ring-ring/40"
+                                : "border-transparent hover:border-border"
+                            )}
                           >
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                               src={img.url}
                               alt=""
-                              className="h-full w-full object-cover"
+                              className="size-full object-cover"
                             />
                             {selected && (
-                              <span className="absolute right-1 top-1 rounded-full bg-blue-600 p-0.5 text-white">
-                                <Check className="h-3 w-3" />
+                              <span className="absolute right-1 top-1 rounded-full bg-primary p-0.5 text-primary-foreground">
+                                <Check className="size-3" />
                               </span>
                             )}
                           </button>
@@ -499,11 +524,10 @@ export default function CarouselPage() {
                 </div>
               )}
 
-              <input
+              <Input
                 type="url"
                 value={imageUrl}
                 onChange={(e) => setImageUrl(e.target.value)}
-                className={`${inputClass} mt-3`}
                 placeholder="https://pub-….r2.dev/carousel/banner.jpg"
               />
               {imageUrl && (
@@ -511,37 +535,35 @@ export default function CarouselPage() {
                 <img
                   src={imageUrl}
                   alt="preview"
-                  className="mt-3 h-32 w-full max-w-xs rounded-lg object-cover"
+                  className="h-32 w-full max-w-xs rounded-lg object-cover"
                 />
               )}
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
-        <button
+        <Button
           type="submit"
+          size="lg"
           disabled={busy || uploading}
-          className="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
+          className="w-full"
         >
           {busy ? "Working…" : "Add slide"}
-        </button>
+        </Button>
       </form>
 
       {message && (
-        <div
-          className={`mt-6 rounded-lg p-4 ${
-            /added|uploaded|success/i.test(message)
-              ? "border border-green-200 bg-green-50 text-green-800"
-              : "border border-red-200 bg-red-50 text-red-800"
-          }`}
+        <Alert
+          variant={/added|uploaded|success/i.test(message) ? "default" : "destructive"}
+          className="mt-6"
         >
-          {message}
-        </div>
+          <AlertDescription>{message}</AlertDescription>
+        </Alert>
       )}
 
       {/* Existing slides */}
       <div className="mt-12">
-        <h2 className="mb-4 text-lg font-semibold text-gray-900">
+        <h2 className="mb-4 text-lg font-semibold">
           Slides ({slides.length}) — shown in this order
         </h2>
         <div className="space-y-3">
@@ -549,89 +571,93 @@ export default function CarouselPage() {
             const Meta = TYPE_META[slide.slide_type];
             const thumb = thumbFor(slide);
             const label =
-              slide.title || slide.youtube_courses?.title || TYPE_META[slide.slide_type].label;
+              slide.title ||
+              slide.youtube_courses?.title ||
+              TYPE_META[slide.slide_type].label;
             return (
-              <div
-                key={slide.id}
-                className={`flex items-center gap-4 rounded-lg border bg-white p-3 shadow-sm ${
-                  slide.is_active ? "border-gray-200" : "border-gray-200 opacity-60"
-                }`}
-              >
-                <div className="flex flex-col gap-1">
-                  <button
-                    type="button"
-                    onClick={() => move(i, -1)}
-                    disabled={busy || i === 0}
-                    className="rounded p-1 text-gray-400 hover:bg-gray-100 disabled:opacity-30"
-                    title="Move up"
-                  >
-                    <ArrowUp className="h-4 w-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => move(i, 1)}
-                    disabled={busy || i === slides.length - 1}
-                    className="rounded p-1 text-gray-400 hover:bg-gray-100 disabled:opacity-30"
-                    title="Move down"
-                  >
-                    <ArrowDown className="h-4 w-4" />
-                  </button>
-                </div>
-
-                <div className="h-16 w-28 shrink-0 overflow-hidden rounded-md bg-gray-100">
-                  {thumb ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={thumb} alt="" className="h-full w-full object-cover" />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center text-gray-300">
-                      <ImageIcon className="h-6 w-6" />
-                    </div>
-                  )}
-                </div>
-
-                <div className="min-w-0 flex-1">
-                  <p className="truncate font-medium text-gray-900">{label}</p>
-                  <p className="mt-0.5 inline-flex items-center gap-1 text-xs text-gray-500">
-                    <Meta.icon className="h-3.5 w-3.5" />
-                    {Meta.label}
-                  </p>
-                  {slide.slide_type === "image" && slide.link && (
-                    <a
-                      href={slide.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-0.5 flex items-center gap-1 truncate text-xs text-blue-600 hover:underline"
-                      title={slide.link}
+              <Card key={slide.id} className={cn(!slide.is_active && "opacity-60")}>
+                <CardContent className="flex items-center gap-4 p-3">
+                  <div className="flex flex-col gap-1">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-xs"
+                      onClick={() => move(i, -1)}
+                      disabled={busy || i === 0}
+                      aria-label="Move up"
                     >
-                      <ExternalLink className="h-3 w-3 shrink-0" />
-                      <span className="truncate">{slide.link}</span>
-                    </a>
-                  )}
-                </div>
+                      <ArrowUp />
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon-xs"
+                      onClick={() => move(i, 1)}
+                      disabled={busy || i === slides.length - 1}
+                      aria-label="Move down"
+                    >
+                      <ArrowDown />
+                    </Button>
+                  </div>
 
-                <label className="flex cursor-pointer items-center gap-2 text-xs text-gray-600">
-                  <input
-                    type="checkbox"
-                    checked={slide.is_active}
+                  <div className="h-16 w-28 shrink-0 overflow-hidden rounded-md bg-muted">
+                    {thumb ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={thumb} alt="" className="size-full object-cover" />
+                    ) : (
+                      <div className="flex size-full items-center justify-center text-muted-foreground">
+                        <ImageIcon className="size-6" />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate font-medium">{label}</p>
+                    <p className="mt-0.5 inline-flex items-center gap-1 text-xs text-muted-foreground">
+                      <Meta.icon className="size-3.5" />
+                      {Meta.label}
+                    </p>
+                    {slide.slide_type === "image" && slide.link && (
+                      <a
+                        href={slide.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-0.5 flex items-center gap-1 truncate text-xs text-primary hover:underline"
+                        title={slide.link}
+                      >
+                        <ExternalLink className="size-3 shrink-0" />
+                        <span className="truncate">{slide.link}</span>
+                      </a>
+                    )}
+                  </div>
+
+                  <Label className="flex items-center gap-2 text-xs">
+                    Active
+                    <Switch
+                      checked={slide.is_active}
+                      disabled={busy}
+                      onCheckedChange={() => toggleActive(slide)}
+                      aria-label="Active"
+                    />
+                  </Label>
+
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="icon-sm"
+                    onClick={() => remove(slide)}
                     disabled={busy}
-                    onChange={() => toggleActive(slide)}
-                  />
-                  Active
-                </label>
-
-                <button
-                  type="button"
-                  onClick={() => remove(slide)}
-                  disabled={busy}
-                  className="shrink-0 rounded-lg p-2 text-red-500 transition hover:bg-red-50 disabled:opacity-50"
-                  title="Delete"
-                >
-                  <Trash2 className="h-5 w-5" />
-                </button>
-              </div>
+                    aria-label="Delete"
+                  >
+                    <Trash2 />
+                  </Button>
+                </CardContent>
+              </Card>
             );
           })}
-          {slides.length === 0 && <p className="text-gray-500">No slides yet.</p>}
+          {slides.length === 0 && (
+            <p className="text-muted-foreground">No slides yet.</p>
+          )}
         </div>
       </div>
     </div>

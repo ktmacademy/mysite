@@ -3,6 +3,13 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { ArrowLeft, Inbox, RefreshCw, Send } from "lucide-react";
 import { adminFetch } from "@/lib/admin-api";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface Thread {
   userId: string;
@@ -100,14 +107,15 @@ export default function MessagesPage() {
   if (!enabled) {
     return (
       <div className="mx-auto max-w-2xl p-6 md:p-8">
-        <h1 className="mb-4 text-2xl font-bold text-gray-900">Messages</h1>
-        <div className="rounded-xl border border-amber-200 bg-amber-50 p-10 text-center">
-          <Inbox className="mx-auto mb-3 h-8 w-8 text-amber-400" />
-          <p className="font-medium text-amber-900">Messaging isn&apos;t enabled yet</p>
-          <p className="mx-auto mt-2 max-w-md text-sm text-amber-800">
-            Apply the <code>support_messages</code> migration to receive Contact Us messages from the app.
-          </p>
-        </div>
+        <h1 className="mb-4 text-2xl font-bold tracking-tight">Messages</h1>
+        <Alert>
+          <Inbox />
+          <AlertTitle>Messaging isn&apos;t enabled yet</AlertTitle>
+          <AlertDescription>
+            Apply the <code>support_messages</code> migration to receive Contact
+            Us messages from the app.
+          </AlertDescription>
+        </Alert>
       </div>
     );
   }
@@ -116,96 +124,116 @@ export default function MessagesPage() {
     <div className="flex h-[calc(100dvh-57px)]">
       {/* Thread list */}
       <div
-        className={`w-full shrink-0 overflow-y-auto border-r border-gray-200 bg-white md:w-80 ${
+        className={cn(
+          "w-full shrink-0 border-r bg-card md:w-80",
           selected ? "hidden md:block" : "block"
-        }`}
-      >
-        <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
-          <span className="font-semibold text-gray-900">Messages</span>
-          <button
-            onClick={loadThreads}
-            className="rounded-lg p-1.5 text-gray-500 hover:bg-gray-100"
-            title="Refresh"
-          >
-            <RefreshCw className={`h-4 w-4 ${loadingThreads ? "animate-spin" : ""}`} />
-          </button>
-        </div>
-        {threads.length === 0 && !loadingThreads && (
-          <p className="p-6 text-center text-sm text-gray-400">No messages yet.</p>
         )}
-        {threads.map((t) => (
-          <button
-            key={t.userId}
-            onClick={() => openThread(t)}
-            className={`flex w-full items-start gap-3 border-b border-gray-50 px-4 py-3 text-left hover:bg-gray-50 ${
-              selected?.userId === t.userId ? "bg-blue-50" : ""
-            }`}
+      >
+        <div className="flex items-center justify-between border-b px-4 py-3">
+          <span className="font-semibold">Messages</span>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={loadThreads}
+            aria-label="Refresh"
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
-              {(t.email[0] || "?").toUpperCase()}
-            </span>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
-                <span className="truncate text-sm font-medium text-gray-900">{t.email}</span>
-                {t.unread > 0 && (
-                  <span className="ml-auto shrink-0 rounded-full bg-blue-600 px-1.5 py-0.5 text-[10px] font-bold text-white">
-                    {t.unread}
-                  </span>
-                )}
+            <RefreshCw className={loadingThreads ? "animate-spin" : undefined} />
+          </Button>
+        </div>
+
+        <ScrollArea className="h-[calc(100%-53px)]">
+          {threads.length === 0 && !loadingThreads && (
+            <p className="p-6 text-center text-sm text-muted-foreground">
+              No messages yet.
+            </p>
+          )}
+          {threads.map((t) => (
+            <button
+              key={t.userId}
+              onClick={() => openThread(t)}
+              className={cn(
+                "flex w-full items-start gap-3 border-b px-4 py-3 text-left transition hover:bg-muted",
+                selected?.userId === t.userId && "bg-muted"
+              )}
+            >
+              <Avatar className="size-9">
+                <AvatarFallback>{(t.email[0] || "?").toUpperCase()}</AvatarFallback>
+              </Avatar>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="truncate text-sm font-medium">{t.email}</span>
+                  {t.unread > 0 && (
+                    <Badge className="ml-auto shrink-0">{t.unread}</Badge>
+                  )}
+                </div>
+                <p className="truncate text-xs text-muted-foreground">
+                  {t.lastSender === "admin" ? "You: " : ""}
+                  {t.preview}
+                </p>
               </div>
-              <p className="truncate text-xs text-gray-500">
-                {t.lastSender === "admin" ? "You: " : ""}
-                {t.preview}
-              </p>
-            </div>
-          </button>
-        ))}
+            </button>
+          ))}
+        </ScrollArea>
       </div>
 
       {/* Conversation */}
-      <div className={`flex flex-1 flex-col ${selected ? "flex" : "hidden md:flex"}`}>
+      <div className={cn("flex flex-1 flex-col", selected ? "flex" : "hidden md:flex")}>
         {!selected ? (
-          <div className="flex flex-1 items-center justify-center text-gray-400">
+          <div className="flex flex-1 items-center justify-center text-muted-foreground">
             Select a conversation
           </div>
         ) : (
           <>
-            <div className="flex items-center gap-3 border-b border-gray-200 bg-white px-4 py-3">
-              <button
+            <div className="flex items-center gap-3 border-b bg-card px-4 py-3">
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                className="md:hidden"
                 onClick={() => setSelected(null)}
-                className="rounded-lg p-1.5 text-gray-600 hover:bg-gray-100 md:hidden"
+                aria-label="Back"
               >
-                <ArrowLeft className="h-5 w-5" />
-              </button>
-              <span className="font-medium text-gray-900">{selected.email}</span>
+                <ArrowLeft />
+              </Button>
+              <span className="font-medium">{selected.email}</span>
             </div>
 
-            <div className="flex-1 overflow-y-auto bg-gray-50 p-4">
-              {loadingThread && <p className="text-center text-sm text-gray-400">Loading…</p>}
+            <div className="flex-1 overflow-y-auto bg-muted/40 p-4">
+              {loadingThread && (
+                <p className="text-center text-sm text-muted-foreground">
+                  Loading…
+                </p>
+              )}
               {messages.map((m) => {
                 const isAdmin = m.sender === "admin";
                 return (
                   <div
                     key={m.id}
-                    className={`mb-3 flex ${isAdmin ? "justify-end" : "justify-start"}`}
+                    className={cn(
+                      "mb-3 flex",
+                      isAdmin ? "justify-end" : "justify-start"
+                    )}
                   >
                     <div
-                      className={`max-w-[78%] rounded-2xl px-4 py-2 ${
+                      className={cn(
+                        "max-w-[78%] rounded-2xl px-4 py-2",
                         isAdmin
-                          ? "rounded-br-sm bg-blue-600 text-white"
-                          : "rounded-bl-sm border border-gray-200 bg-white text-gray-800"
-                      }`}
+                          ? "rounded-br-sm bg-primary text-primary-foreground"
+                          : "rounded-bl-sm border bg-card"
+                      )}
                     >
                       {m.audio_url ? (
-                        <audio
-                          controls
-                          src={m.audio_url}
-                          className="max-w-[240px]"
-                        />
+                        <audio controls src={m.audio_url} className="max-w-[240px]" />
                       ) : (
                         <p className="whitespace-pre-wrap text-sm">{m.body}</p>
                       )}
-                      <p className={`mt-1 text-[10px] ${isAdmin ? "text-blue-100" : "text-gray-400"}`}>
+                      <p
+                        className={cn(
+                          "mt-1 text-[10px]",
+                          isAdmin
+                            ? "text-primary-foreground/70"
+                            : "text-muted-foreground"
+                        )}
+                      >
                         {when(m.created_at)}
                       </p>
                     </div>
@@ -215,30 +243,37 @@ export default function MessagesPage() {
               <div ref={endRef} />
             </div>
 
-            <form onSubmit={sendReply} className="flex items-center gap-2 border-t border-gray-200 bg-white p-3">
-              <input
+            <form
+              onSubmit={sendReply}
+              className="flex items-center gap-2 border-t bg-card p-3"
+            >
+              <Input
                 value={reply}
                 onChange={(e) => setReply(e.target.value)}
                 placeholder="Type a reply…"
-                className="flex-1 rounded-full border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500"
+                className="flex-1 rounded-full"
               />
-              <button
+              <Button
                 type="submit"
+                size="icon-lg"
+                className="rounded-full"
                 disabled={sending || !reply.trim()}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white transition hover:bg-blue-700 disabled:opacity-50"
-                title="Send reply"
+                aria-label="Send reply"
               >
-                <Send className="h-4 w-4" />
-              </button>
+                <Send />
+              </Button>
             </form>
           </>
         )}
       </div>
 
       {error && (
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 rounded-lg bg-red-600 px-4 py-2 text-sm text-white shadow-lg">
-          {error}
-        </div>
+        <Alert
+          variant="destructive"
+          className="fixed bottom-4 left-1/2 w-auto -translate-x-1/2 shadow-lg"
+        >
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
     </div>
   );
