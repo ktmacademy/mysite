@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { adminFetch } from "@/lib/admin-api";
 import PageHeader from "@/components/page-header";
+import BarChart from "@/components/bar-chart";
 
 interface Seg {
   label: string;
@@ -68,7 +69,6 @@ export default function AnalyticsPage() {
       .catch((e) => setError(e.message));
   }, []);
 
-  const maxDay = data ? Math.max(1, ...data.signups14.map((d) => d.value)) : 1;
 
   return (
     <div className="mx-auto max-w-6xl p-6 md:p-8">
@@ -113,17 +113,15 @@ export default function AnalyticsPage() {
             {/* Signups 14d */}
             <Panel title="Signups · 14 days" wide>
               <div className="p-5">
-                <div className="flex h-36 items-end gap-1.5">
-                  {data.signups14.map((d, i) => (
-                    <div key={i} className="flex flex-1 flex-col items-center gap-1">
-                      <div
-                        className="w-full rounded-t bg-gradient-to-t from-blue-700 to-blue-400"
-                        style={{ height: `${(d.value / maxDay) * 100}%`, minHeight: 3 }}
-                        title={`${d.day}: ${d.value}`}
-                      />
-                    </div>
-                  ))}
-                </div>
+                <BarChart
+                  bars={data.signups14.map((d) => ({
+                    label: d.day.slice(8),
+                    value: d.value,
+                  }))}
+                  height="h-36"
+                  gap="gap-1.5"
+                  showLabels={false}
+                />
                 <div className="mt-2 flex justify-between text-[10px] text-gray-400">
                   <span>{data.signups14[0]?.day}</span>
                   <span>{data.signups14[data.signups14.length - 1]?.day}</span>

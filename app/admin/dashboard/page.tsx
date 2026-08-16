@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { adminFetch } from "@/lib/admin-api";
 import PageHeader from "@/components/page-header";
+import BarChart from "@/components/bar-chart";
 
 interface Overview {
   counts: {
@@ -72,7 +73,6 @@ export default function OverviewPage() {
   }, []);
 
   const days = data ? Object.entries(data.signupsByDay) : [];
-  const maxDay = Math.max(1, ...days.map(([, v]) => v));
 
   return (
     <div className="mx-auto max-w-6xl p-6 md:p-8">
@@ -140,18 +140,9 @@ export default function OverviewPage() {
             {/* Signups sparkline */}
             <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
               <div className="mb-4 font-semibold text-gray-900">Signups · 7 days</div>
-              <div className="flex h-32 items-end gap-2">
-                {days.map(([day, v]) => (
-                  <div key={day} className="flex flex-1 flex-col items-center gap-1">
-                    <div
-                      className="w-full rounded-t bg-gradient-to-t from-blue-700 to-blue-400"
-                      style={{ height: `${(v / maxDay) * 100}%`, minHeight: 4 }}
-                      title={`${day}: ${v}`}
-                    />
-                    <span className="text-[10px] text-gray-400">{day.slice(8)}</span>
-                  </div>
-                ))}
-              </div>
+              <BarChart
+                bars={days.map(([day, v]) => ({ label: day.slice(8), value: v }))}
+              />
               <div className="mt-3 text-xs text-gray-400">
                 {data.counts.signupsThisWeek} new users this week
               </div>
