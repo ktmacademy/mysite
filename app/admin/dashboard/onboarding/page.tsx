@@ -4,6 +4,23 @@ import { useCallback, useEffect, useState } from "react";
 import { DoorOpen, Save, RefreshCw, AlertTriangle } from "lucide-react";
 import { adminGet, adminFetch } from "@/lib/admin-api";
 import PageHeader from "@/components/page-header";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 /** One admin-managed fill-out step of the in-app onboarding form. */
 interface FormStep {
@@ -101,7 +118,7 @@ function toFormSteps(raw: unknown): FormStep[] {
   });
 }
 
-/** Labelled on/off switch, styled like the other switches on this page. */
+/** Labelled on/off switch, used for the per-step controls. */
 function Toggle({
   label,
   checked,
@@ -114,23 +131,20 @@ function Toggle({
   disabled?: boolean;
 }) {
   return (
-    <label
-      className={`flex items-center gap-2 ${
-        disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
-      }`}
+    <Label
+      className={cn(
+        "flex items-center gap-2 text-xs",
+        disabled && "cursor-not-allowed opacity-50"
+      )}
     >
-      <span className="text-xs font-medium text-gray-700">{label}</span>
-      <span className="relative inline-flex items-center">
-        <input
-          type="checkbox"
-          checked={checked}
-          disabled={disabled}
-          onChange={(e) => onChange(e.target.checked)}
-          className="peer sr-only"
-        />
-        <span className="block h-6 w-11 rounded-full bg-gray-300 after:absolute after:left-[3px] after:top-[3px] after:h-[18px] after:w-[18px] after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-green-300" />
-      </span>
-    </label>
+      {label}
+      <Switch
+        checked={checked}
+        disabled={disabled}
+        onCheckedChange={(v) => onChange(Boolean(v))}
+        aria-label={label}
+      />
+    </Label>
   );
 }
 
@@ -197,131 +211,119 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div>
+    <div className="mx-auto max-w-4xl p-6 md:p-8">
       <PageHeader
         title="Onboarding"
         subtitle="Control the login-screen Skip button, the welcome content, and the in-app form steps (and their Skip buttons)"
         actions={
-          <button
-            onClick={load}
-            className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700"
-          >
-            <RefreshCw className="h-4 w-4" /> Refresh
-          </button>
+          <Button variant="outline" size="sm" onClick={load}>
+            <RefreshCw /> Refresh
+          </Button>
         }
       />
 
       {error && (
-        <div className="mb-4 flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
-          <AlertTriangle className="h-4 w-4 shrink-0" /> {error}
-        </div>
+        <Alert variant="destructive" className="mb-4">
+          <AlertTriangle />
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
       {message && (
-        <div className="mb-4 rounded-lg border border-green-200 bg-green-50 p-3 text-sm font-medium text-green-700">
-          {message}
-        </div>
+        <Alert className="mb-4">
+          <AlertDescription>{message}</AlertDescription>
+        </Alert>
       )}
 
       {loading ? (
-        <p className="text-sm text-gray-600">Loading…</p>
+        <div className="space-y-6">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <Skeleton key={i} className="h-40 rounded-xl" />
+          ))}
+        </div>
       ) : (
         <div className="space-y-6">
           {/* Skip button control */}
-          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-md">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-start gap-3">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-lg">
                 <DoorOpen
-                  className={`h-6 w-6 shrink-0 ${
-                    form.skip_enabled ? "text-green-600" : "text-gray-400"
-                  }`}
+                  className={cn(
+                    "size-5 shrink-0",
+                    form.skip_enabled ? "text-primary" : "text-muted-foreground"
+                  )}
                 />
-                <div>
-                  <h2 className="text-lg font-semibold text-gray-900">
-                    Allow &ldquo;Skip&rdquo; on the login screen
-                  </h2>
-                  <p className="text-sm text-gray-600">
-                    When on, users see a Skip button and can enter the app without
-                    signing in. When off, sign-in is required.
-                  </p>
-                </div>
-              </div>
-              <label className="relative inline-flex shrink-0 cursor-pointer items-center">
-                <input
-                  type="checkbox"
+                Allow &ldquo;Skip&rdquo; on the login screen
+              </CardTitle>
+              <CardDescription>
+                When on, users see a Skip button and can enter the app without
+                signing in. When off, sign-in is required.
+              </CardDescription>
+              <CardAction>
+                <Switch
                   checked={form.skip_enabled}
-                  onChange={(e) => patchField("skip_enabled", e.target.checked)}
-                  className="peer sr-only"
+                  onCheckedChange={(v) => patchField("skip_enabled", Boolean(v))}
+                  aria-label="Allow Skip on the login screen"
                 />
-                <div className="h-7 w-14 rounded-full bg-gray-300 after:absolute after:left-[4px] after:top-0.5 after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-green-300" />
-              </label>
-            </div>
-
-            <div className="mt-4">
-              <label className="mb-1 block text-sm font-medium text-gray-700">
-                Skip button label
-              </label>
-              <input
-                type="text"
+              </CardAction>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Label htmlFor="skip-label">Skip button label</Label>
+              <Input
+                id="skip-label"
                 value={form.skip_button_label}
                 disabled={!form.skip_enabled}
                 maxLength={60}
                 onChange={(e) => patchField("skip_button_label", e.target.value)}
                 placeholder="Skip for now"
-                className="w-full max-w-sm rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-400"
+                className="max-w-sm"
               />
-            </div>
-          </div>
+            </CardContent>
+          </Card>
 
           {/* Welcome content */}
-          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-md">
-            <h2 className="mb-4 text-lg font-semibold text-gray-900">
-              Welcome content
-            </h2>
-            <div className="space-y-4">
-              <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">
-                  Welcome title
-                </label>
-                <input
-                  type="text"
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg">Welcome content</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="welcome-title">Welcome title</Label>
+                <Input
+                  id="welcome-title"
                   value={form.welcome_title}
                   maxLength={120}
                   onChange={(e) => patchField("welcome_title", e.target.value)}
                   placeholder="CTEVT Plus (KTM Academy)"
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
-              <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">
-                  Welcome subtitle
-                </label>
-                <textarea
+              <div className="space-y-2">
+                <Label htmlFor="welcome-subtitle">Welcome subtitle</Label>
+                <Textarea
+                  id="welcome-subtitle"
                   value={form.welcome_subtitle}
                   maxLength={240}
                   rows={2}
                   onChange={(e) => patchField("welcome_subtitle", e.target.value)}
                   placeholder="Your companion for CTEVT preparation"
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 />
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
 
           {/* In-app form steps */}
-          <div className="rounded-xl border border-gray-200 bg-white shadow-md">
-            <div className="border-b border-gray-200 p-5">
-              <h2 className="text-lg font-semibold text-gray-900">
-                Form steps (after sign-in)
-              </h2>
-              <p className="text-sm text-gray-600">
+          <Card className="py-0">
+            <CardHeader className="border-b py-5">
+              <CardTitle className="text-lg">Form steps (after sign-in)</CardTitle>
+              <CardDescription>
                 The questions the app asks a new user, in order. Turn a step off
                 to drop it from the flow, and decide per step whether the user
-                gets a &ldquo;Skip&rdquo; button. Leave title and subtitle blank
-                to keep the app&rsquo;s built-in wording.
-              </p>
-            </div>
+                gets a &ldquo;Skip&rdquo; button. Turning Skip off makes that
+                step&rsquo;s answer required in the app. Leave title and subtitle
+                blank to keep the app&rsquo;s built-in wording.
+              </CardDescription>
+            </CardHeader>
 
-            <div className="divide-y divide-gray-100">
+            <CardContent className="px-0">
               {FORM_STEPS.map((meta, i) => {
                 const step =
                   form.form_steps.find((s) => s.key === meta.key) ??
@@ -333,22 +335,26 @@ export default function OnboardingPage() {
                     subtitle: "",
                   } as FormStep);
                 return (
-                  <div key={meta.key} className="p-5">
+                  <div
+                    key={meta.key}
+                    className={cn("p-5", i < FORM_STEPS.length - 1 && "border-b")}
+                  >
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div className="min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-500">
+                          <Badge variant="secondary" className="rounded-full">
                             {i + 1}
-                          </span>
+                          </Badge>
                           <h3
-                            className={`font-semibold ${
-                              step.enabled ? "text-gray-900" : "text-gray-400"
-                            }`}
+                            className={cn(
+                              "font-semibold",
+                              !step.enabled && "text-muted-foreground"
+                            )}
                           >
                             {meta.name}
                           </h3>
                         </div>
-                        <p className="mt-1 text-xs text-gray-500">
+                        <p className="mt-1 text-xs text-muted-foreground">
                           Collects: {meta.collects}
                         </p>
                       </div>
@@ -357,9 +363,7 @@ export default function OnboardingPage() {
                         <Toggle
                           label="Show step"
                           checked={step.enabled}
-                          onChange={(v) =>
-                            updateFormStep(meta.key, { enabled: v })
-                          }
+                          onChange={(v) => updateFormStep(meta.key, { enabled: v })}
                         />
                         <Toggle
                           label="Skip button"
@@ -373,12 +377,9 @@ export default function OnboardingPage() {
                     </div>
 
                     <div className="mt-4 grid gap-3 md:grid-cols-2">
-                      <div>
-                        <label className="mb-1 block text-xs font-medium text-gray-700">
-                          Title
-                        </label>
-                        <input
-                          type="text"
+                      <div className="space-y-1.5">
+                        <Label className="text-xs">Title</Label>
+                        <Input
                           value={step.title}
                           maxLength={120}
                           disabled={!step.enabled}
@@ -386,42 +387,31 @@ export default function OnboardingPage() {
                             updateFormStep(meta.key, { title: e.target.value })
                           }
                           placeholder={meta.defaultTitle}
-                          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-400"
                         />
                       </div>
-                      <div>
-                        <label className="mb-1 block text-xs font-medium text-gray-700">
-                          Subtitle
-                        </label>
-                        <input
-                          type="text"
+                      <div className="space-y-1.5">
+                        <Label className="text-xs">Subtitle</Label>
+                        <Input
                           value={step.subtitle}
                           maxLength={240}
                           disabled={!step.enabled}
                           onChange={(e) =>
-                            updateFormStep(meta.key, {
-                              subtitle: e.target.value,
-                            })
+                            updateFormStep(meta.key, { subtitle: e.target.value })
                           }
                           placeholder={meta.defaultSubtitle}
-                          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-400"
                         />
                       </div>
                     </div>
                   </div>
                 );
               })}
-            </div>
-          </div>
+            </CardContent>
+          </Card>
 
           <div className="flex justify-end">
-            <button
-              onClick={save}
-              disabled={saving}
-              className="flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-300"
-            >
-              <Save className="h-4 w-4" /> {saving ? "Saving…" : "Save changes"}
-            </button>
+            <Button onClick={save} disabled={saving}>
+              <Save /> {saving ? "Saving…" : "Save changes"}
+            </Button>
           </div>
         </div>
       )}

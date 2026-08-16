@@ -5,6 +5,21 @@ import { LayoutGrid, RefreshCw, Power, AlertTriangle } from "lucide-react";
 import { getSupabase } from "@/lib/supabase";
 import { adminAdsWrite } from "@/lib/admin-ads";
 import PageHeader from "@/components/page-header";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface Placement {
   placement_key: string;
@@ -15,14 +30,6 @@ interface Placement {
   max_per_session: number | null;
   grace_seconds: number | null;
 }
-
-const FORMAT_STYLE: Record<string, string> = {
-  banner: "bg-sky-100 text-sky-700",
-  native: "bg-violet-100 text-violet-700",
-  interstitial: "bg-amber-100 text-amber-700",
-  rewarded: "bg-emerald-100 text-emerald-700",
-  app_open: "bg-rose-100 text-rose-700",
-};
 
 // Only the full-screen formats honour the frequency knobs.
 const CAPPED = new Set(["interstitial", "app_open"]);
@@ -101,106 +108,79 @@ export default function AdPlacementsPage() {
       />
 
       {/* Global master kill switch — overrides every placement on every device. */}
-      <div
-        className={`mb-6 rounded-xl border p-5 shadow-md ${
-          master === false
-            ? "border-red-200 bg-red-50"
-            : "border-gray-200 bg-white"
-        }`}
-      >
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-start gap-3">
+      <Card className={cn("mb-6", master === false && "border-destructive/40")}>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-3 text-lg">
             <Power
-              className={`h-6 w-6 shrink-0 ${
-                master === false ? "text-red-600" : "text-green-600"
-              }`}
+              className={cn(
+                "size-5",
+                master === false ? "text-destructive" : "text-primary"
+              )}
             />
-            <div>
-              <h2 className="text-lg font-semibold text-gray-900">
-                All ads · every device
-              </h2>
-              <p className="text-sm text-gray-600">
-                Master kill switch. When off, no ad shows anywhere, whatever the
-                placements below say.
-              </p>
-            </div>
-          </div>
-          <label className="relative inline-flex shrink-0 cursor-pointer items-center">
-            <input
-              type="checkbox"
+            All ads · every device
+          </CardTitle>
+          <CardDescription>
+            Master kill switch. When off, no ad shows anywhere, whatever the
+            placements below say.
+          </CardDescription>
+          <CardAction>
+            <Switch
               checked={master ?? false}
               disabled={master === null}
-              onChange={(e) => setMasterEnabled(e.target.checked)}
-              className="peer sr-only"
+              onCheckedChange={(v) => setMasterEnabled(Boolean(v))}
+              aria-label="All ads on every device"
             />
-            <div className="h-7 w-14 rounded-full bg-gray-300 after:absolute after:left-[4px] after:top-0.5 after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-green-300" />
-          </label>
-        </div>
+          </CardAction>
+        </CardHeader>
         {master === false && (
-          <div className="mt-3 flex items-center gap-2 text-sm font-medium text-red-700">
-            <AlertTriangle className="h-4 w-4" />
-            Ads are globally disabled. The placements below are ignored until you
-            turn this back on.
-          </div>
+          <CardContent>
+            <Alert variant="destructive">
+              <AlertTriangle />
+              <AlertDescription>
+                Ads are globally disabled. The placements below are ignored until
+                you turn this back on.
+              </AlertDescription>
+            </Alert>
+          </CardContent>
         )}
-      </div>
+      </Card>
 
       <div className="mb-4 flex items-center justify-between">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted-foreground">
           {loading
             ? "Loading…"
             : `${enabledCount} of ${rows.length} placements enabled`}
         </p>
-        <button
-          onClick={load}
-          className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700"
-        >
-          <RefreshCw className="h-4 w-4" /> Refresh
-        </button>
+        <Button variant="outline" size="sm" onClick={load}>
+          <RefreshCw /> Refresh
+        </Button>
       </div>
 
-      <div
-        className={`space-y-4 ${
-          master === false ? "opacity-50" : ""
-        }`}
-      >
+      <div className={cn("space-y-4", master === false && "opacity-60")}>
         {rows.map((p) => (
-          <div key={p.placement_key} className="rounded-xl bg-white p-5 shadow-md">
-            <div className="flex items-start justify-between gap-4">
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-2">
-                  <LayoutGrid className="h-5 w-5 shrink-0 text-blue-600" />
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {p.label ?? p.placement_key}
-                  </h3>
-                  <span
-                    className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                      FORMAT_STYLE[p.format] ?? "bg-gray-100 text-gray-600"
-                    }`}
-                  >
-                    {p.format}
-                  </span>
-                </div>
-                <p className="mt-1 font-mono text-xs text-gray-400">
-                  {p.placement_key}
-                </p>
-              </div>
-
-              <label className="relative inline-flex shrink-0 cursor-pointer items-center">
-                <input
-                  type="checkbox"
+          <Card key={p.placement_key}>
+            <CardHeader>
+              <CardTitle className="flex flex-wrap items-center gap-2 text-lg">
+                <LayoutGrid className="size-5 shrink-0 text-primary" />
+                {p.label ?? p.placement_key}
+                <Badge variant="secondary">{p.format}</Badge>
+              </CardTitle>
+              <CardDescription className="font-mono text-xs">
+                {p.placement_key}
+              </CardDescription>
+              <CardAction>
+                <Switch
                   checked={p.enabled}
-                  onChange={(e) =>
-                    persist(p.placement_key, { enabled: e.target.checked })
+                  onCheckedChange={(v) =>
+                    persist(p.placement_key, { enabled: Boolean(v) })
                   }
-                  className="peer sr-only"
+                  aria-label={p.label ?? p.placement_key}
                 />
-                <div className="h-7 w-14 rounded-full bg-gray-300 after:absolute after:left-[4px] after:top-0.5 after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-blue-300" />
-              </label>
-            </div>
+              </CardAction>
+            </CardHeader>
 
             {CAPPED.has(p.format) && (
-              <div className="mt-4 grid grid-cols-1 gap-3 border-t border-gray-100 pt-4 sm:grid-cols-3">
+              <CardContent className="grid grid-cols-1 gap-3 border-t pt-4 sm:grid-cols-3">
                 <NumberField
                   label="Min gap (seconds)"
                   value={p.frequency_cap_seconds}
@@ -211,27 +191,23 @@ export default function AdPlacementsPage() {
                 <NumberField
                   label="Max / session"
                   value={p.max_per_session}
-                  onCommit={(v) =>
-                    persist(p.placement_key, { max_per_session: v })
-                  }
+                  onCommit={(v) => persist(p.placement_key, { max_per_session: v })}
                 />
                 <NumberField
                   label="New-session grace (s)"
                   value={p.grace_seconds}
-                  onCommit={(v) =>
-                    persist(p.placement_key, { grace_seconds: v })
-                  }
+                  onCommit={(v) => persist(p.placement_key, { grace_seconds: v })}
                 />
-              </div>
+              </CardContent>
             )}
-          </div>
+          </Card>
         ))}
       </div>
 
       {message && (
-        <div className="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-4 text-blue-800">
-          {message}
-        </div>
+        <Alert className="mt-6">
+          <AlertDescription>{message}</AlertDescription>
+        </Alert>
       )}
     </div>
   );
@@ -253,11 +229,9 @@ function NumberField({
   }, [value]);
 
   return (
-    <label className="block">
-      <span className="mb-1 block text-xs font-medium text-gray-500">
-        {label}
-      </span>
-      <input
+    <div className="space-y-1.5">
+      <Label className="text-xs text-muted-foreground">{label}</Label>
+      <Input
         type="number"
         min={0}
         value={draft}
@@ -266,8 +240,7 @@ function NumberField({
           const trimmed = draft.trim();
           onCommit(trimmed === "" ? null : Number(trimmed));
         }}
-        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500"
       />
-    </label>
+    </div>
   );
 }

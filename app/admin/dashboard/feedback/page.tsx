@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { Trash2, MessageSquare } from "lucide-react";
 import { adminFetch } from "@/lib/admin-api";
 import PageHeader from "@/components/page-header";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Item {
   id: string;
@@ -45,42 +49,56 @@ export default function FeedbackPage() {
 
   return (
     <div className="mx-auto max-w-4xl p-6 md:p-8">
-      <PageHeader title="Feedback" subtitle={`${items.length} message${items.length === 1 ? "" : "s"}`} />
+      <PageHeader
+        title="Feedback"
+        subtitle={`${items.length} message${items.length === 1 ? "" : "s"}`}
+      />
 
       {error && (
-        <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 text-red-800">{error}</div>
+        <Alert variant="destructive" className="mb-6">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
 
-      {loading && <div className="text-gray-500">Loading…</div>}
+      {loading && (
+        <div className="space-y-3">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Skeleton key={i} className="h-20 rounded-xl" />
+          ))}
+        </div>
+      )}
 
       {!loading && items.length === 0 && (
-        <div className="rounded-xl border border-gray-200 bg-white p-10 text-center text-gray-500 shadow-sm">
-          <MessageSquare className="mx-auto mb-3 h-8 w-8 text-gray-300" />
-          {enabled ? "No feedback yet." : "The feedbacks table isn't available."}
-        </div>
+        <Card>
+          <CardContent className="p-10 text-center text-muted-foreground">
+            <MessageSquare className="mx-auto mb-3 size-8 opacity-40" />
+            {enabled ? "No feedback yet." : "The feedbacks table isn't available."}
+          </CardContent>
+        </Card>
       )}
 
       <div className="space-y-3">
         {items.map((i) => (
-          <div
-            key={i.id}
-            className="flex items-start justify-between gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm"
-          >
-            <div className="min-w-0">
-              <p className="text-sm text-gray-800">{i.feedback}</p>
-              <p className="mt-1 text-xs text-gray-400">
-                {i.name || "Anonymous"}
-                {i.email ? ` · ${i.email}` : ""} · {new Date(i.created_at).toLocaleString()}
-              </p>
-            </div>
-            <button
-              onClick={() => remove(i.id)}
-              className="shrink-0 rounded-lg p-2 text-red-500 transition hover:bg-red-50"
-              title="Delete"
-            >
-              <Trash2 className="h-5 w-5" />
-            </button>
-          </div>
+          <Card key={i.id}>
+            <CardContent className="flex items-start justify-between gap-4 p-4">
+              <div className="min-w-0">
+                <p className="text-sm">{i.feedback}</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {i.name || "Anonymous"}
+                  {i.email ? ` · ${i.email}` : ""} ·{" "}
+                  {new Date(i.created_at).toLocaleString()}
+                </p>
+              </div>
+              <Button
+                variant="destructive"
+                size="icon-sm"
+                onClick={() => remove(i.id)}
+                aria-label="Delete"
+              >
+                <Trash2 />
+              </Button>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </div>

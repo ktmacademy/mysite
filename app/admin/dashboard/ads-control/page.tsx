@@ -5,6 +5,19 @@ import { Search, Settings as SettingsIcon, LayoutGrid, RotateCcw } from "lucide-
 import { getSupabase } from "@/lib/supabase";
 import { adminAdsWrite } from "@/lib/admin-ads";
 import PageHeader from "@/components/page-header";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface PlacementRow {
   placement_key: string;
@@ -12,14 +25,6 @@ interface PlacementRow {
   format: string;
   enabled: boolean; // global default
 }
-
-const FORMAT_STYLE: Record<string, string> = {
-  banner: "bg-sky-100 text-sky-700",
-  native: "bg-violet-100 text-violet-700",
-  interstitial: "bg-amber-100 text-amber-700",
-  rewarded: "bg-emerald-100 text-emerald-700",
-  app_open: "bg-rose-100 text-rose-700",
-};
 
 export default function AdsControlPage() {
   const [email, setEmail] = useState("");
@@ -129,145 +134,127 @@ export default function AdsControlPage() {
         subtitle="Manage a single user's ads — the global kill switch and each ad slot individually"
       />
 
-      {/* Search Card */}
-      <div className="mb-6 rounded-xl bg-white p-6 shadow-md">
-        <div className="mb-4 flex items-center gap-3">
-          <Search className="h-6 w-6 text-blue-600" />
-          <h2 className="text-xl font-semibold text-gray-900">Search User</h2>
-        </div>
-        <p className="mb-6 text-gray-600">
-          Enter a user email to manage their ad settings
-        </p>
-        <form onSubmit={handleFetch} className="space-y-4">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="user@example.com"
-            className="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-transparent focus:ring-2 focus:ring-blue-500"
-          />
-          <button
-            type="submit"
-            disabled={loading}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
-          >
-            <Search className="h-5 w-5" />
-            {loading ? "Searching..." : "Fetch User Settings"}
-          </button>
-        </form>
-      </div>
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-3 text-lg">
+            <Search className="size-5 text-primary" />
+            Search user
+          </CardTitle>
+          <CardDescription>
+            Enter a user email to manage their ad settings
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleFetch} className="space-y-4">
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="user@example.com"
+            />
+            <Button type="submit" size="lg" disabled={loading} className="w-full">
+              <Search />
+              {loading ? "Searching…" : "Fetch user settings"}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
 
-      {/* Global per-user toggle */}
       {adsEnabled !== null && (
-        <div className="mb-6 rounded-xl bg-white p-6 shadow-md">
-          <div className="mb-6 flex items-center gap-3">
-            <SettingsIcon className="h-6 w-6 text-blue-600" />
-            <h2 className="text-xl font-semibold text-gray-900">
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-lg">
+              <SettingsIcon className="size-5 text-primary" />
               All ads for this user
-            </h2>
-          </div>
-          <div className="flex items-center justify-between rounded-lg bg-gray-50 p-4">
-            <div>
-              <p className="mb-1 font-medium text-gray-900">User: {email}</p>
-              <p
-                className={`text-sm font-medium ${
-                  adsEnabled ? "text-green-600" : "text-red-600"
-                }`}
-              >
-                {adsEnabled ? "Ads Enabled" : "Ads Disabled (ad-free)"}
-              </p>
-            </div>
-            <label className="relative inline-flex cursor-pointer items-center">
-              <input
-                type="checkbox"
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between rounded-lg bg-muted p-4">
+              <div>
+                <p className="mb-1 font-medium">User: {email}</p>
+                <p className="text-sm text-muted-foreground">
+                  {adsEnabled ? "Ads enabled" : "Ads disabled (ad-free)"}
+                </p>
+              </div>
+              <Switch
                 checked={adsEnabled}
-                onChange={(e) => handleToggle(e.target.checked)}
+                onCheckedChange={(v) => handleToggle(Boolean(v))}
                 disabled={loading}
-                className="peer sr-only"
+                aria-label="All ads for this user"
               />
-              <div className="h-7 w-14 rounded-full bg-gray-300 after:absolute after:left-[4px] after:top-0.5 after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-blue-300" />
-            </label>
-          </div>
-        </div>
+            </div>
+          </CardContent>
+        </Card>
       )}
 
-      {/* Per-placement per-user overrides */}
       {adsEnabled !== null && placements.length > 0 && (
-        <div className={`mb-6 rounded-xl bg-white p-6 shadow-md ${adsEnabled ? "" : "opacity-50"}`}>
-          <div className="mb-2 flex items-center gap-3">
-            <LayoutGrid className="h-6 w-6 text-blue-600" />
-            <h2 className="text-xl font-semibold text-gray-900">
+        <Card className={cn("mb-6", !adsEnabled && "opacity-60")}>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-3 text-lg">
+              <LayoutGrid className="size-5 text-primary" />
               Individual ads for this user
-            </h2>
-          </div>
-          <p className="mb-5 text-sm text-gray-600">
-            Each slot follows the global default unless you override it here.
-            {!adsEnabled && " (This user is ad-free, so these have no effect until you re-enable ads above.)"}
-          </p>
-          <div className="space-y-3">
+            </CardTitle>
+            <CardDescription>
+              Each slot follows the global default unless you override it here.
+              {!adsEnabled &&
+                " This user is ad-free, so these have no effect until you re-enable ads above."}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
             {placements.map((p) => {
               const overridden = p.placement_key in overrides;
               return (
                 <div
                   key={p.placement_key}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-gray-100 p-3"
+                  className="flex items-center justify-between gap-3 rounded-lg border p-3"
                 >
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-medium text-gray-900">
+                      <span className="font-medium">
                         {p.label ?? p.placement_key}
                       </span>
-                      <span
-                        className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-                          FORMAT_STYLE[p.format] ?? "bg-gray-100 text-gray-600"
-                        }`}
-                      >
-                        {p.format}
-                      </span>
+                      <Badge variant="secondary">{p.format}</Badge>
                       {overridden ? (
-                        <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-semibold text-blue-700">
-                          overridden
-                        </span>
+                        <Badge>overridden</Badge>
                       ) : (
-                        <span className="text-xs text-gray-400">following global</span>
+                        <span className="text-xs text-muted-foreground">
+                          following global
+                        </span>
                       )}
                     </div>
-                    <p className="mt-0.5 font-mono text-xs text-gray-400">
+                    <p className="mt-0.5 font-mono text-xs text-muted-foreground">
                       {p.placement_key}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
                     {overridden && (
-                      <button
+                      <Button
+                        variant="ghost"
+                        size="xs"
                         onClick={() => clearOverride(p)}
                         title="Reset to global default"
-                        className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700"
                       >
-                        <RotateCcw className="h-3.5 w-3.5" /> Reset
-                      </button>
+                        <RotateCcw /> Reset
+                      </Button>
                     )}
-                    <label className="relative inline-flex cursor-pointer items-center">
-                      <input
-                        type="checkbox"
-                        checked={effective(p)}
-                        onChange={(e) => setPlacementOverride(p, e.target.checked)}
-                        className="peer sr-only"
-                      />
-                      <div className="h-6 w-11 rounded-full bg-gray-300 after:absolute after:left-[3px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white" />
-                    </label>
+                    <Switch
+                      checked={effective(p)}
+                      onCheckedChange={(v) => setPlacementOverride(p, Boolean(v))}
+                      aria-label={p.label ?? p.placement_key}
+                    />
                   </div>
                 </div>
               );
             })}
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       )}
 
       {message && (
-        <div className="flex items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 p-4">
-          <SettingsIcon className="h-5 w-5 text-blue-600" />
-          <p className="text-blue-800">{message}</p>
-        </div>
+        <Alert>
+          <SettingsIcon />
+          <AlertDescription>{message}</AlertDescription>
+        </Alert>
       )}
     </div>
   );
