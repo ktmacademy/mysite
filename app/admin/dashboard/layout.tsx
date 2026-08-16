@@ -31,6 +31,7 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { ModeToggle } from "@/components/mode-toggle";
 
 interface NavItem {
   href: string;
@@ -119,18 +120,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const sidebar = (
     <div className="flex h-full flex-col bg-sidebar text-sidebar-foreground">
-      <div className="flex items-center gap-2 px-5 py-4">
-        <span className="flex size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sm font-bold text-sidebar-primary-foreground">
+      <div className="flex h-14 items-center gap-2 border-b border-sidebar-border px-5">
+        <span className="flex size-7 items-center justify-center rounded-md bg-sidebar-primary text-xs font-bold text-sidebar-primary-foreground">
           C+
         </span>
-        <span className="font-bold">CTEVT+ Admin</span>
+        <span className="text-sm font-semibold">CTEVT+ Admin</span>
       </div>
 
       <ScrollArea className="flex-1 px-3 pb-4">
         <nav>
           {NAV.map((group) => (
             <div key={group.label} className="mb-4">
-              <div className="px-3 pb-1 pt-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/50">
+              <div className="px-3 pb-1 pt-2 text-xs font-medium text-muted-foreground">
                 {group.label}
               </div>
               {group.items.map((item) => (
@@ -138,13 +139,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "mb-0.5 flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition",
+                    "mb-0.5 flex items-center gap-2.5 rounded-md px-3 py-1.5 text-sm transition-colors",
                     isActive(item)
-                      ? "bg-sidebar-accent font-semibold text-sidebar-accent-foreground"
-                      : "text-sidebar-foreground/70 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
+                      ? "bg-sidebar-accent font-medium text-sidebar-accent-foreground"
+                      : "text-muted-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground"
                   )}
                 >
-                  <item.icon className="size-[18px]" />
+                  <item.icon className="size-4" />
                   {item.label}
                 </Link>
               ))}
@@ -157,11 +158,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="p-3">
         <Button
           variant="ghost"
-          size="lg"
           onClick={handleLogout}
-          className="w-full justify-start gap-3 text-destructive hover:bg-sidebar-accent hover:text-destructive"
+          className="w-full justify-start gap-2.5 text-muted-foreground hover:bg-sidebar-accent hover:text-destructive"
         >
-          <LogOut className="size-[18px]" />
+          <LogOut className="size-4" />
           Sign out
         </Button>
       </div>
@@ -171,10 +171,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex min-h-screen bg-background">
       {/* Desktop sidebar */}
-      <aside className="hidden w-60 shrink-0 md:block">{sidebar}</aside>
+      <aside className="hidden w-60 shrink-0 border-r md:block">{sidebar}</aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex items-center justify-between border-b bg-card px-4 py-3">
+        <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
               render={
@@ -190,9 +190,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </Sheet>
 
           <div className="ml-auto flex items-center gap-2 text-sm text-muted-foreground">
+            <ModeToggle />
             <span className="hidden sm:inline">{username}</span>
             <Avatar className="size-7">
-              <AvatarFallback className="bg-primary text-xs font-bold text-primary-foreground">
+              <AvatarFallback className="text-xs font-medium">
                 {(username[0] || "A").toUpperCase()}
               </AvatarFallback>
             </Avatar>

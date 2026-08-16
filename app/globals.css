@@ -1,10 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
+
 /*
- * Tailwind v4 is CSS-first: the design tokens live here rather than in
- * tailwind.config.ts, and `@theme inline` is what turns each token into a
- * utility (`--color-primary` -> `bg-primary`, `text-primary`, …).
+ * Tailwind v4 is CSS-first: the design tokens live here rather than in a
+ * config file, and `@theme inline` is what turns each token into a utility
+ * (`--color-primary` -> `bg-primary`, `text-primary`, …).
+ *
+ * The palette is shadcn/ui's own neutral theme, matching ui.shadcn.com.
  */
 @theme inline {
   --color-background: var(--background);
@@ -23,10 +27,6 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -54,65 +54,110 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/*
- * The panel is a light-only UI. `color-scheme: light` keeps native form
- * controls painting dark text on light backgrounds even when the OS is dark —
- * without it the browser renders input text white on our white cards.
- */
 :root {
+  /* Keeps native controls (date, time, file pickers) matching the theme. */
   color-scheme: light;
 
   --radius: 0.625rem;
 
-  --background: oklch(0.985 0.002 247);
-  --foreground: oklch(0.21 0.03 264);
-
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.21 0.03 264);
+  --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.21 0.03 264);
-
-  /* Brand blue — the same hue the charts plot with (#2563eb). */
-  --primary: oklch(0.546 0.215 262.9);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
-
-  --secondary: oklch(0.968 0.007 247);
-  --secondary-foreground: oklch(0.279 0.031 264);
-
-  --muted: oklch(0.968 0.007 247);
-  --muted-foreground: oklch(0.554 0.032 264);
-
-  --accent: oklch(0.968 0.007 247);
-  --accent-foreground: oklch(0.279 0.031 264);
-
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
 
-  --success: oklch(0.596 0.145 163);
-  --success-foreground: oklch(0.985 0 0);
+  /*
+   * Chart slots. shadcn's own chart hues, ordered so every adjacent pair
+   * clears CVD separation — its stock order puts a near-gray, out-of-band
+   * navy in slot 3, which fails both the lightness band and the chroma floor.
+   */
+  --chart-1: #2662d9;
+  --chart-2: #e76e50;
+  --chart-3: #2a9d90;
+  --chart-4: #e8c468;
+  --chart-5: #f4a462;
 
-  --warning: oklch(0.769 0.163 70);
-  --warning-foreground: oklch(0.279 0.031 264);
+  /* Sequential ramp for the heatmap: one hue, lightness strictly decreasing. */
+  --heat-0: oklch(0.97 0 0);
+  --heat-1: #dbeafe;
+  --heat-2: #bfdbfe;
+  --heat-3: #93c5fd;
+  --heat-4: #60a5fa;
+  --heat-5: #3b82f6;
+  --heat-6: #2563eb;
+  --heat-7: #1d4ed8;
 
-  --border: oklch(0.928 0.013 256);
-  --input: oklch(0.928 0.013 256);
-  --ring: oklch(0.546 0.215 262.9);
-
-  /* Chart slots — validated for CVD separation against a white surface. */
-  --chart-1: oklch(0.546 0.215 262.9);
-  --chart-2: oklch(0.671 0.181 41.5);
-  --chart-3: oklch(0.678 0.137 165.5);
-  --chart-4: oklch(0.769 0.163 70);
-  --chart-5: oklch(0.627 0.265 303.9);
-
-  --sidebar: oklch(0.208 0.042 265.7);
-  --sidebar-foreground: oklch(0.968 0.007 247);
-  --sidebar-primary: oklch(0.546 0.215 262.9);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.279 0.041 260);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.269 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.371 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+
+  /* Re-stepped for the dark surface, not an automatic flip of the light set. */
+  --chart-1: #4f8bea;
+  --chart-2: #cf6a37;
+  --chart-3: #12a07f;
+  --chart-4: #d4a94a;
+  --chart-5: #d98a4e;
+
+  --heat-0: oklch(0.269 0 0);
+  --heat-1: #1e3a8a;
+  --heat-2: #1e40af;
+  --heat-3: #1d4ed8;
+  --heat-4: #2563eb;
+  --heat-5: #3b82f6;
+  --heat-6: #60a5fa;
+  --heat-7: #93c5fd;
+
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.279 0.041 260);
-  --sidebar-ring: oklch(0.546 0.215 262.9);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
 @layer base {

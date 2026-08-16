@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
 
-// Next 14's next/font/google has no Geist (added in Next 15), so Inter backs
-// the --font-sans token the shadcn components expect.
+// Now on Next 15, but Inter stays — it already backs the --font-sans token the
+// shadcn components expect.
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
@@ -18,8 +19,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", inter.variable)}>
-      <body className={inter.className}>{children}</body>
+    // suppressHydrationWarning: next-themes writes the class on <html> before
+    // React hydrates, so the server and client markup differ by design.
+    <html
+      lang="en"
+      className={cn("font-sans antialiased", inter.variable)}
+      suppressHydrationWarning
+    >
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

@@ -13,19 +13,25 @@ import { ResponsiveContainer } from "recharts";
  * single series, which said "these are different things" about data that isn't.
  */
 
-/** Single-series mark colour. Matches the `primary` token in tailwind.config. */
-export const SERIES_COLOR = "#2563eb";
+/** Single-series mark colour — chart slot 1 from the theme. */
+export const SERIES_COLOR = "var(--chart-1)";
 
 /**
  * Categorical slots, in fixed order — assigned by series identity, never
  * cycled and never re-assigned when a filter changes the series count.
- * Validated for CVD separation and contrast against a white surface; the aqua
- * sits just under 3:1, which is why every panel offers a table view.
+ *
+ * The values live in globals.css so light and dark each get their own steps.
+ * Both sets pass the lightness band, chroma floor, CVD separation and 3:1
+ * contrast against their own surface.
  */
-export const SERIES_COLORS = ["#2563eb", "#eb6834", "#1baf7a"] as const;
+export const SERIES_COLORS = [
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+] as const;
 
 /** De-emphasis ink for "one series is the point, the rest are context". */
-export const MUTED_COLOR = "#cbd5e1";
+export const MUTED_COLOR = "var(--muted-foreground)";
 
 /** Recessive grid / axis ink, matching the shadcn border/muted tokens. */
 export const GRID_COLOR = "var(--border)";
@@ -89,4 +95,7 @@ export function ChartTooltipContent({
 }
 
 /** Hover backdrop behind the hovered mark. Softer than Recharts' default. */
-export const HOVER_CURSOR = { fill: "#2563eb", fillOpacity: 0.06 } as const;
+export const HOVER_CURSOR = {
+  fill: "var(--foreground)",
+  fillOpacity: 0.06,
+} as const;

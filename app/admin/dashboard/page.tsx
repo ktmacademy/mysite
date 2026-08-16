@@ -188,7 +188,10 @@ export default function OverviewPage() {
                     tick: day.slice(8),
                     value: v,
                   }))}
+                  height={190}
                   valueLabel="signups"
+                  xLabel="Day of month"
+                  yLabel="Signups"
                 />
                 <div className="mt-3 text-xs text-muted-foreground">
                   {data.counts.signupsThisWeek} new users this week

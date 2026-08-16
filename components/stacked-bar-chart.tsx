@@ -122,7 +122,7 @@ export default function StackedBarChart({
             />
           )}
         </YAxis>
-        <Tooltip cursor={{ fill: "#2563eb", fillOpacity: 0.06 }} content={<StackTooltip />} />
+        <Tooltip cursor={{ fill: "var(--foreground)", fillOpacity: 0.06 }} content={<StackTooltip />} />
         <Legend
           verticalAlign="top"
           align="left"

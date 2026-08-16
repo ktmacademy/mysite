@@ -10,15 +10,16 @@ import { useState } from "react";
  * Sequential single hue, light → dark, lightness strictly decreasing. Never a
  * rainbow: more-is-darker is the only thing the reader has to learn.
  */
+// Steps live in globals.css so light and dark each get their own ramp.
 const RAMP = [
-  "#f1f5f9", // 0 — empty, reads as surface
-  "#dbeafe",
-  "#bfdbfe",
-  "#93c5fd",
-  "#60a5fa",
-  "#3b82f6",
-  "#2563eb",
-  "#1d4ed8", // densest
+  "var(--heat-0)", // empty, reads as surface
+  "var(--heat-1)",
+  "var(--heat-2)",
+  "var(--heat-3)",
+  "var(--heat-4)",
+  "var(--heat-5)",
+  "var(--heat-6)",
+  "var(--heat-7)", // densest
 ];
 
 export interface HeatmapData {
