@@ -52,6 +52,14 @@ const NAV: NavGroup[] = [
       { href: "/admin/dashboard", label: "Overview", icon: LayoutDashboard, exact: true },
     ],
   },
+  // Who they are and what they do.
+  {
+    label: "People",
+    items: [
+      { href: "/admin/dashboard/users", label: "Users", icon: Users },
+      { href: "/admin/dashboard/analytics", label: "Analytics", icon: BarChart3 },
+    ],
+  },
   // Everything a student sees in the app.
   {
     label: "Content",
@@ -62,14 +70,6 @@ const NAV: NavGroup[] = [
       { href: "/admin/dashboard/notifications", label: "Notifications", icon: Bell },
       { href: "/admin/dashboard/loksewa", label: "Loksewa URLs", icon: Briefcase },
       { href: "/admin/dashboard/onboarding", label: "Onboarding", icon: DoorOpen },
-    ],
-  },
-  // Who they are and what they do.
-  {
-    label: "People",
-    items: [
-      { href: "/admin/dashboard/users", label: "Users", icon: Users },
-      { href: "/admin/dashboard/analytics", label: "Analytics", icon: BarChart3 },
     ],
   },
   // Messages the academy sends out.
