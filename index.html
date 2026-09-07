@@ -94,24 +94,14 @@ p{margin:0}
 .hero p.sub{color:#C6D6E6;margin-top:22px}
 .hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,60px);align-items:center}
 
-/* Duotone without a gradient: desaturate the photo, then lay one flat brand
-   colour over it with multiply. Keeps the picture inside the palette so it
-   sits in the navy band instead of fighting it. */
-.shotframe{margin:0;position:relative;isolation:isolate;border:1px solid rgba(255,255,255,.28);overflow:hidden}
-.shotframe img{width:100%;height:100%;object-fit:cover;display:block;
-  filter:grayscale(.45) contrast(1.06);transition:filter .5s ease}
-.shotframe::after{content:"";position:absolute;inset:0;background:var(--brand);opacity:.30;
-  mix-blend-mode:multiply;pointer-events:none;transition:opacity .5s ease}
-/* the colour returns when a visitor looks at it */
-.shotframe:hover img{filter:grayscale(0) contrast(1)}
-.shotframe:hover::after{opacity:.08}
+/* Photographs run in full colour. The hairline frame is what ties them to
+   the page, rather than any tint over the image. */
+.shotframe{margin:0;border:1px solid rgba(255,255,255,.28);overflow:hidden}
+.shotframe img{width:100%;height:100%;object-fit:cover;display:block}
 
-/* the same treatment, used small among the quotes */
-.quotephoto{margin:0;position:relative;isolation:isolate;border:1px solid var(--rule);overflow:hidden;min-height:220px}
-.quotephoto img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.45) contrast(1.06);transition:filter .5s ease}
-.quotephoto::after{content:"";position:absolute;inset:0;background:var(--brand);opacity:.26;mix-blend-mode:multiply;pointer-events:none;transition:opacity .5s ease}
-.quotephoto:hover img{filter:grayscale(0) contrast(1)}
-.quotephoto:hover::after{opacity:.06}
+/* the same frame, used small among the quotes */
+.quotephoto{margin:0;border:1px solid var(--rule);overflow:hidden;min-height:220px}
+.quotephoto img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ---- proof band: flat colour, hard rules between figures ---- */
 .proof{display:grid;grid-template-columns:repeat(3,1fr)}
