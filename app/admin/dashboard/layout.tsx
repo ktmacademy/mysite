@@ -124,7 +124,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <span className="flex size-7 items-center justify-center rounded-md bg-sidebar-primary text-xs font-bold text-sidebar-primary-foreground">
           C+
         </span>
-        <span className="text-sm font-semibold">CTEVT+ Admin</span>
+        <span className="text-sm font-semibold">CTEVT Plus Admin</span>
       </div>
 
       <ScrollArea className="flex-1 px-3 pb-4">

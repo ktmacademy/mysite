@@ -9,8 +9,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "CTEVT+ Admin Panel",
-  description: "Admin panel for CTEVT+ mobile app",
+  title: "CTEVT Plus Admin Panel",
+  description: "Admin panel for CTEVT Plus mobile app",
 };
 
 export default function RootLayout({

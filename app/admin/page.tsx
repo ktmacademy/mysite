@@ -54,7 +54,7 @@ export default function LoginPage() {
           </div>
           <div className="space-y-1">
             <h1 className="text-xl font-semibold tracking-tight">Admin Login</h1>
-            <p className="text-sm text-muted-foreground">CTEVT+ Admin Panel</p>
+            <p className="text-sm text-muted-foreground">CTEVT Plus Admin Panel</p>
           </div>
         </div>
 
