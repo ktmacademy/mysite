@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   Users,
   MessageCircle,
@@ -11,6 +12,7 @@ import {
   FileText as DocIcon,
   MessageSquare,
   UserPlus,
+  ChevronRight,
 } from "lucide-react";
 import { adminFetch } from "@/lib/admin-api";
 import PageHeader from "@/components/page-header";
@@ -38,7 +40,13 @@ interface Overview {
     signupsThisWeek: number;
   };
   signupsByDay: Record<string, number>;
-  activity: { type: string; title: string; subtitle: string; at: string }[];
+  activity: {
+    type: string;
+    title: string;
+    subtitle: string;
+    at: string;
+    href?: string;
+  }[];
 }
 
 const num = (n: number | null | undefined) =>
@@ -151,14 +159,8 @@ export default function OverviewPage() {
                 )}
                 {data.activity.map((a, i) => {
                   const Icon = ACTIVITY_ICON[a.type] || DocIcon;
-                  return (
-                    <div
-                      key={i}
-                      className={cn(
-                        "flex items-center gap-3 px-5 py-3",
-                        i < data.activity.length - 1 && "border-b"
-                      )}
-                    >
+                  const row = (
+                    <>
                       <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground">
                         <Icon className="size-4" />
                       </span>
@@ -171,6 +173,26 @@ export default function OverviewPage() {
                       <span className="shrink-0 text-xs text-muted-foreground">
                         {timeAgo(a.at)}
                       </span>
+                      {a.href && (
+                        <ChevronRight className="size-4 shrink-0 text-muted-foreground/60" />
+                      )}
+                    </>
+                  );
+                  const className = cn(
+                    "flex items-center gap-3 px-5 py-3",
+                    i < data.activity.length - 1 && "border-b",
+                    a.href &&
+                      "transition-colors hover:bg-muted/60 focus-visible:bg-muted/60 focus-visible:outline-none"
+                  );
+                  // Rows without a target stay plain text rather than looking
+                  // clickable and doing nothing.
+                  return a.href ? (
+                    <Link key={i} href={a.href} className={className}>
+                      {row}
+                    </Link>
+                  ) : (
+                    <div key={i} className={className}>
+                      {row}
                     </div>
                   );
                 })}

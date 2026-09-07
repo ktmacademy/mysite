@@ -6,6 +6,9 @@ interface Activity {
   title: string;
   subtitle: string;
   at: string;
+  /** Where the row leads. Users have a detail page; the rest open their list
+   *  with the row identified so it can be scrolled to and highlighted. */
+  href?: string;
 }
 
 function dayKey(d: Date): string {
@@ -73,18 +76,21 @@ export async function POST(request: Request) {
         .filter(Boolean)
         .join(" · "),
       at: r.created_at,
+      href: r.id ? `/admin/dashboard/documents?focus=${r.id}` : undefined,
     })),
     pushRows("notifications", "created_on", (r) => ({
       type: "notification",
       title: r.title || "Notification",
       subtitle: r.description || "",
       at: r.created_on,
+      href: r.id ? `/admin/dashboard/notifications?focus=${r.id}` : undefined,
     })),
     pushRows("feedbacks", "created_at", (r) => ({
       type: "feedback",
       title: `Feedback from ${r.name || r.email || "user"}`,
       subtitle: r.feedback || "",
       at: r.created_at,
+      href: r.id ? `/admin/dashboard/feedback?focus=${r.id}` : undefined,
     })),
   ]);
 
@@ -99,6 +105,7 @@ export async function POST(request: Request) {
         title: u.full_name || u.email,
         subtitle: `signed up via ${u.provider}`,
         at: u.created_at,
+        href: u.id ? `/admin/dashboard/users/${u.id}` : undefined,
       })
     );
 
