@@ -74,6 +74,29 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
+
+        /* Price block: the figure is the point, so it gets the size and the
+           only strong colour. No discount badge — the fee is simply the fee. */
+        .fee-amount {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--primary);
+        }
+        .fee-currency {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6c757d;
+            letter-spacing: 0.04em;
+        }
+        .fee-unit {
+            display: block;
+            margin-top: 0.5rem;
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+        .price-section .btn-lg { font-weight: 600; }
         .price-section {
             background-color: #f8f9fa;
             padding: 2rem;
@@ -155,7 +178,7 @@
                     <div class="alert alert-info mb-4">
                         <p class="mb-2"><strong><i class="fas fa-info-circle me-2"></i>Important:</strong></p>
                         <ul class="mb-0">
-                            <li><strong>Investment:</strong> NPR 1,500/- per subject per month</li>
+                            <li><strong>Fee:</strong> NPR 3,000/- per subject, per month</li>
                             <li><strong>Course Length:</strong> 2 Months</li>
                             <li><strong>Class Days:</strong> Sunday - Friday</li>
                            
@@ -171,7 +194,6 @@
                                     <p class="mb-2"><strong>Schedule:</strong></p>
                                     <ul class="list-unstyled mb-3">
                                         <li><i class="fas fa-clock text-primary me-2"></i>7 PM to 8 PM (Sun - Fri)</li>
-                                        <li><i class="fas fa-calendar-alt text-primary me-2"></i>Starts: 2082 Magh 1st</li>
                                     </ul>
                                     <p class="mb-2"><strong>Topics:</strong></p>
                                     <ul>
@@ -180,7 +202,7 @@
                               
                                     </ul>
                                     <a href="https://meet.google.com/fms-guff-mex" target="_blank" class="btn btn-sm btn-outline-success">
-                                        <i class="fas fa-video me-1"></i>Join Trial Class 2082 Magh 1st
+                                        <i class="fas fa-video me-1"></i>Join a Trial Class
                                     </a>
                                 </div>
                             </div>
@@ -192,7 +214,6 @@
                                     <p class="mb-2"><strong>Schedule:</strong></p>
                                     <ul class="list-unstyled mb-3">
                                         <li><i class="fas fa-clock text-primary me-2"></i>8 PM to 9 PM (Sun - Fri)</li>
-                                        <li><i class="fas fa-calendar-alt text-primary me-2"></i>Starts: Magh 1st, 2082</li>
                                     </ul>
                                     <p class="mb-2"><strong>Topics:</strong></p>
                                     <ul>
@@ -200,7 +221,7 @@
                                         <li>Exam Focused Classes </li>
                                     </ul>
                                     <a href="https://meet.google.com/fms-guff-mex" target="_blank" class="btn btn-sm btn-outline-success">
-                                        <i class="fas fa-video me-1"></i>Join Trial Class on 2082 Magh 1st
+                                        <i class="fas fa-video me-1"></i>Join a Trial Class
                                     </a>
                                 </div>
                             </div>
@@ -232,19 +253,16 @@
             <div class="col-lg-4">
                 <div class="price-section sticky-top" style="top: 100px;">
                     <div class="text-center">
-                        <span class="badge bg-success mb-2">
-                            <i class="fas fa-tag"></i> 50% OFF
-                        </span>
                         <div class="mb-3">
-                            <span class="text-decoration-line-through text-muted">NPR 3,000</span>
-                            <h2 class="text-primary mb-0">NPR 1,500/-</h2>
-                            <small class="text-muted">per subject per month</small>
+                            <span class="fee-currency">NPR</span>
+                            <div class="fee-amount">3,000</div>
+                            <span class="fee-unit">per subject, per month</span>
                         </div>
                         <button class="btn btn-primary btn-lg w-100 mb-2" onclick="window.open('https://forms.gle/R5L4kvYjGqQwZyDb8', '_blank')">
                             <i class="fas fa-user-plus"></i> Enroll Now
                         </button>
                         <a href="https://meet.google.com/fms-guff-mex" target="_blank" class="btn btn-outline-success w-100">
-                            <i class="fas fa-video"></i> Join Trial Class on 2082 Magh 1st
+                            <i class="fas fa-video"></i> Join a Trial Class
                         </a>
                     </div>
 
