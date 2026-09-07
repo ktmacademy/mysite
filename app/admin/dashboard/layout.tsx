@@ -45,10 +45,17 @@ interface NavGroup {
 }
 
 const NAV: NavGroup[] = [
+  // Overview is the landing page, not one item among many — it sits alone.
   {
-    label: "Manage",
+    label: "",
     items: [
       { href: "/admin/dashboard", label: "Overview", icon: LayoutDashboard, exact: true },
+    ],
+  },
+  // Everything a student sees in the app.
+  {
+    label: "Content",
+    items: [
       { href: "/admin/dashboard/documents", label: "Documents", icon: FileText },
       { href: "/admin/dashboard/courses", label: "Courses", icon: ListVideo },
       { href: "/admin/dashboard/carousel", label: "Carousel", icon: GalleryHorizontalEnd },
@@ -57,21 +64,35 @@ const NAV: NavGroup[] = [
       { href: "/admin/dashboard/onboarding", label: "Onboarding", icon: DoorOpen },
     ],
   },
+  // Who they are and what they do.
   {
-    label: "Grow",
+    label: "People",
     items: [
       { href: "/admin/dashboard/users", label: "Users", icon: Users },
-      { href: "/admin/dashboard/whatsapp", label: "WhatsApp", icon: MessageCircle },
-      { href: "/admin/dashboard/broadcasts", label: "Broadcasts", icon: Megaphone },
       { href: "/admin/dashboard/analytics", label: "Analytics", icon: BarChart3 },
     ],
   },
+  // Messages the academy sends out.
   {
-    label: "Support",
+    label: "Outbound",
+    items: [
+      { href: "/admin/dashboard/broadcasts", label: "Broadcasts", icon: Megaphone },
+      { href: "/admin/dashboard/whatsapp", label: "WhatsApp", icon: MessageCircle },
+    ],
+  },
+  // Messages that arrive from students.
+  {
+    label: "Inbox",
     items: [
       { href: "/admin/dashboard/messages", label: "Messages", icon: MessagesSquare },
       { href: "/admin/dashboard/feedback", label: "Feedback", icon: MessageSquare },
       { href: "/admin/dashboard/voice-messages", label: "Voice messages", icon: Mic },
+    ],
+  },
+  // Were under "Support", which they never belonged to.
+  {
+    label: "Ads",
+    items: [
       { href: "/admin/dashboard/ads-control", label: "Ads Control", icon: Settings },
       { href: "/admin/dashboard/ad-placements", label: "Ad Placements", icon: LayoutGrid },
     ],
@@ -130,10 +151,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <ScrollArea className="flex-1 px-3 pb-4">
         <nav>
           {NAV.map((group) => (
-            <div key={group.label} className="mb-4">
-              <div className="px-3 pb-1 pt-2 text-xs font-medium text-muted-foreground">
-                {group.label}
-              </div>
+            <div key={group.label} className={group.label ? "mb-4" : "mb-2"}>
+              {group.label && (
+                <div className="px-3 pb-1 pt-2 text-xs font-medium text-muted-foreground">
+                  {group.label}
+                </div>
+              )}
               {group.items.map((item) => (
                 <Link
                   key={item.href}
