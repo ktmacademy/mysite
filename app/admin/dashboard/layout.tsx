@@ -194,7 +194,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex min-h-screen bg-background">
       {/* Desktop sidebar */}
-      <aside className="hidden w-60 shrink-0 border-r md:block">{sidebar}</aside>
+      {/* Pinned to the viewport: the nav is 16 items deep, and without a
+          height it stretched with the page and scrolled out of reach on any
+          long list. The inner ScrollArea handles overflow on short screens. */}
+      <aside className="sticky top-0 hidden h-screen w-60 shrink-0 self-start border-r md:block">
+        {sidebar}
+      </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
