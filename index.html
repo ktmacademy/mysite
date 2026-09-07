@@ -1,565 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KTM Academy </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <style>
-        :root {
-            --primary: #1963a7;
-            --primary-light: #93afd3;
-            --text-primary: #000000;
-            --background: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KTM Academy — AI, NEB and CTEVT classes in Nepal</title>
+<meta name="description" content="KTM Academy teaches AI, Class 12 NEB and CTEVT diploma subjects in Nepal. Paid classes, 135 free video lessons on YouTube, and the CTEVT Plus app for notes and past papers.">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Mukta:wght@500;700&family=Mulish:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --ink:#0A1A2A;          /* deep navy ground */
+  --ink-soft:#16324B;
+  --brand:#145086;        /* existing KTM Academy blue */
+  --brand-bright:#1963A7; /* existing lighter blue */
+  --brand-pale:#93AFD3;   /* existing pale blue */
+  --marigold:#E8A33D;     /* sayapatri — reserved for prices only */
+  --paper:#F4F7FB;
+  --white:#FFFFFF;
+  --line:rgba(10,26,42,.12);
+  --line-dark:rgba(255,255,255,.16);
 
-        body {
-            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Mulish",system-ui,sans-serif;
+  --deva:"Mukta",system-ui,sans-serif;
 
-        .btn-primary {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            transition: all 0.2s;
-        }
+  --wrap:1160px;
+  --pad:clamp(20px,5vw,40px);
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:-.02em;font-weight:800}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad)}
+.section{padding-block:clamp(64px,9vw,110px)}
+.section--paper{background:var(--paper)}
+.section--white{background:var(--white)}
 
-        .btn-primary:hover {
-            background-color: #145086;
-            border-color: #145086;
-            transform: translateY(-1px);
-        }
+/* eyebrow: bilingual, because the audience reads both */
+.eyebrow{
+  font-family:var(--deva);font-weight:700;font-size:.82rem;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brand-bright);margin:0 0 14px;
+}
+.section--dark .eyebrow{color:var(--brand-pale)}
+.h-sec{font-size:clamp(2rem,4.6vw,3.1rem);max-width:18ch}
+.lead{font-size:clamp(1.02rem,1.5vw,1.16rem);color:#41576B;max-width:60ch}
+.section--dark .lead{color:#C3D3E4}
 
-        .navbar {
-            background-color: var(--background);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-        }
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(10,26,42,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-dark)}
+.nav__in{display:flex;align-items:center;gap:20px;height:66px;max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad)}
+.brand{display:flex;align-items:center;gap:11px;color:var(--white);text-decoration:none;font-family:var(--display);font-weight:800;letter-spacing:-.02em}
+.brand img{width:34px;height:34px;border-radius:9px;object-fit:cover}
+.nav__links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.nav__links a{color:#D6E2EE;text-decoration:none;font-size:.94rem;font-weight:500}
+.nav__links a:hover{color:var(--white)}
+.nav__cta{background:var(--brand-bright);color:var(--white)!important;padding:9px 16px;border-radius:999px;font-weight:700!important}
+.nav__cta:hover{background:var(--brand)}
+.nav__toggle{display:none;margin-left:auto;background:none;border:0;color:var(--white);font-size:1.35rem;cursor:pointer;padding:6px}
 
-        .navbar-brand {
-            color: var(--primary) !important;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
+/* ---------- hero ---------- */
+.hero{background:var(--ink);color:var(--white);padding-block:clamp(56px,9vw,104px);position:relative;overflow:hidden}
+/* one quiet atmospheric device, not a decorative gradient blob party */
+.hero::after{
+  content:"";position:absolute;inset:auto -10% -60% auto;width:min(680px,80vw);aspect-ratio:1;
+  background:radial-gradient(circle,rgba(25,99,167,.42),transparent 62%);pointer-events:none;
+}
+.hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center;position:relative;z-index:1}
+.hero h1{font-size:clamp(2.5rem,6vw,4.3rem);max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--brand-pale)}
+.hero p{margin:20px 0 30px;max-width:52ch;color:#C3D3E4;font-size:clamp(1.02rem,1.6vw,1.18rem)}
+.btn{display:inline-flex;align-items:center;gap:9px;border:0;cursor:pointer;text-decoration:none;
+  font-family:var(--body);font-weight:700;font-size:1rem;padding:14px 24px;border-radius:999px;transition:transform .18s,background .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:var(--brand-bright);color:var(--white);box-shadow:0 8px 22px rgba(25,99,167,.35)}
+.btn--primary:hover{background:#2075C0}
+.btn--ghost{background:transparent;color:var(--white);border:1.5px solid var(--line-dark)}
+.btn--ghost:hover{border-color:var(--brand-pale);background:rgba(255,255,255,.06)}
+.btn--dark{background:var(--brand);color:var(--white)}
+.btn--dark:hover{background:var(--brand-bright)}
+.btn--yt{background:#C4302B;color:var(--white)}
+.btn--yt:hover{background:#A82722}
+.hero__actions{display:flex;gap:14px;flex-wrap:wrap}
 
-        .nav-link {
-            color: var(--text-primary) !important;
-            font-weight: 500;
-            padding: 0.5rem 1rem !important;
-            transition: color 0.2s;
-        }
+/* proof strip — real, checkable numbers only */
+.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;border-top:1px solid var(--line-dark);padding-top:26px}
+.proof dt{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3vw,2.05rem);color:var(--white)}
+.proof dd{margin:4px 0 0;font-size:.86rem;color:#9FB6CC;line-height:1.35}
 
-        .nav-link:hover {
-            color: var(--primary) !important;
-        }
+/* hero card: the app, since it is the thing students actually hold */
+.appcard{background:linear-gradient(160deg,#123C63,#0C2740);border:1px solid var(--line-dark);border-radius:20px;padding:26px;color:var(--white)}
+.appcard__top{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.appcard__top img{width:52px;height:52px;border-radius:13px}
+.appcard__name{font-family:var(--display);font-weight:800;font-size:1.12rem;line-height:1.2}
+.appcard__sub{font-size:.83rem;color:#9FB6CC}
+.appcard ul{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:9px}
+.appcard li{font-size:.93rem;color:#CFE0EE;display:flex;gap:10px;align-items:flex-start}
+.appcard li i{color:var(--brand-pale);margin-top:4px;font-size:.8rem}
 
-        .hero {
-            background: linear-gradient(45deg, var(--primary-light), var(--primary));
-            padding: 8rem 0;
-            color: var(--background);
-        }
+/* ---------- program cards: the signature ---------- */
+.programs{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px}
+.prog{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .22s,box-shadow .22s}
+.prog:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(10,26,42,.11)}
+.prog__img{aspect-ratio:16/9;object-fit:cover;width:100%;background:#DCE6F2}
+.prog__body{padding:26px;display:flex;flex-direction:column;flex:1}
+.prog__name{font-size:1.4rem}
+.prog__meta{color:#5B7185;font-size:.94rem;margin:8px 0 0}
+.prog__rule{height:1px;background:var(--line);margin:22px 0}
+/* the one bold move: the price, set large, in the only warm colour on the page */
+.price{display:flex;align-items:baseline;gap:10px;font-family:var(--display);}
+.price__cur{font-size:1rem;font-weight:600;color:#5B7185;letter-spacing:.04em}
+.price__num{font-size:clamp(2.6rem,5.4vw,3.5rem);font-weight:800;color:var(--marigold);letter-spacing:-.03em;line-height:1}
+.price__unit{font-family:var(--deva);font-size:.9rem;color:#5B7185;margin-top:8px}
+.prog .btn{margin-top:22px;align-self:flex-start}
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
+/* ---------- semester ladder: numbering is real here, these are a sequence ---------- */
+.ladder{display:grid;gap:20px;margin-top:44px}
+.rung{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:start;
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.rung__no{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--brand);
+  width:52px;height:52px;display:grid;place-items:center;border:1.5px solid var(--line);border-radius:12px}
+.rung h3{font-size:1.22rem}
+.rung p{margin:8px 0 0;color:#5B7185;font-size:.96rem}
+.rung__list{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.rung__list li{font-size:.83rem;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:#41576B}
+.rung__act{display:flex;flex-direction:column;gap:10px}
+.rung__act .btn{padding:11px 18px;font-size:.92rem;white-space:nowrap}
 
-        .feature-card {
-            background: var(--background);
-            border-radius: 1rem;
-            padding: 2rem;
-            height: 100%;
-            transition: all 0.3s;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
+/* ---------- app + cards ---------- */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .22s,box-shadow .22s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(10,26,42,.1)}
+.card i{font-size:1.4rem;color:var(--brand-bright);margin-bottom:14px;display:block}
+.card h3{font-size:1.12rem}
+.card p{margin:9px 0 0;color:#5B7185;font-size:.95rem}
+.card--link{cursor:pointer}
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
+/* ---------- testimonials ---------- */
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:44px}
+.quote{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--brand-pale);border-radius:0 var(--radius) var(--radius) 0;padding:24px}
+.quote p{margin:0 0 14px;font-size:1rem;color:#2B4053}
+.quote cite{font-style:normal;font-weight:700;font-size:.9rem;color:var(--brand)}
 
-        .feature-icon {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
+/* ---------- form ---------- */
+.formwrap{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,4vw,38px);margin-top:36px;max-width:720px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.88rem;font-weight:700;margin-bottom:7px;color:var(--ink-soft)}
+.field input{width:100%;padding:13px 15px;font:inherit;font-size:.98rem;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.field input:focus{outline:2px solid var(--brand-bright);outline-offset:1px;background:var(--white)}
 
-        .contact-section {
-            background-color: #f8f9fa;
-            border-radius: 1rem;
-            padding: 4rem 0;
-        }
+/* ---------- contact + footer ---------- */
+.section--dark{background:var(--ink);color:var(--white)}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:40px}
+.contact a{display:flex;align-items:center;gap:12px;text-decoration:none;color:#D6E2EE;
+  border:1px solid var(--line-dark);border-radius:var(--radius);padding:18px 20px;font-size:.96rem;transition:border-color .2s,background .2s}
+.contact a:hover{border-color:var(--brand-pale);background:rgba(255,255,255,.05)}
+.contact i{color:var(--brand-pale);width:20px;text-align:center}
+.foot{background:#061320;color:#8DA3B8;padding-block:34px;font-size:.9rem}
+.foot__in{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+.social{display:flex;gap:10px}
+.social a{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--line-dark);border-radius:50%;color:#B9CBDC;text-decoration:none;transition:background .2s,color .2s}
+.social a:hover{background:var(--brand-bright);color:var(--white);border-color:transparent}
 
-        .social-link {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            transition: transform 0.2s;
-        }
+/* ---------- motion ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
 
-        .social-link:hover {
-            transform: scale(1.1);
-        }
-
-        #adminModal .modal-content {
-            border-radius: 1rem;
-            border: none;
-        }
-
-        .admin-form input {
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-            margin-bottom: 1rem;
-        }
-    </style>
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .hero__grid{grid-template-columns:1fr}
+  .programs,.cards3{grid-template-columns:1fr}
+  .nav__links{position:absolute;top:66px;left:0;right:0;background:var(--ink);flex-direction:column;
+    align-items:stretch;gap:0;padding:10px var(--pad) 18px;border-bottom:1px solid var(--line-dark);display:none}
+  .nav__links.is-open{display:flex}
+  .nav__links a{padding:12px 0}
+  .nav__cta{text-align:center;margin-top:8px}
+  .nav__toggle{display:block}
+}
+@media (max-width:640px){
+  .proof{grid-template-columns:1fr;gap:14px}
+  .rung{grid-template-columns:1fr;gap:16px}
+  .rung__act{flex-direction:row;flex-wrap:wrap}
+}
+</style>
 </head>
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">
 
-            <img src="home_logo.jpg" alt="KTM Academy Logo" style="height: 62px; margin-right: 10px;">
+<!-- nav -->
+<header class="nav">
+  <nav class="nav__in" aria-label="Main">
+    <a class="brand" href="#top"><img src="home_logo.jpg" alt="">KTM Academy</a>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="navlinks" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="nav__links" id="navlinks">
+      <a href="#classes">Classes</a>
+      <a href="#free">Free lessons</a>
+      <a href="#app">App</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.youtube.com/@ktm-academy" target="_blank" rel="noopener">YouTube</a>
+      <a class="nav__cta" href="./padhai.html"><i class="fas fa-video"></i> PadhAI</a>
+    </div>
+  </nav>
+</header>
 
-            KTM Academy
+<!-- hero -->
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">काठमाडौं एकेडेमी · Kathmandu</p>
+      <h1>Pass the exam in front of you. <em>Then keep going.</em></h1>
+      <p>We teach Class 12 NEB and CTEVT diploma subjects the way they are actually examined — and an AI course for what comes after. Free video lessons for everyone, paid classes when you want a teacher.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#classes">See classes and fees</a>
+        <a class="btn btn--ghost" href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" rel="noopener">
+          <i class="fab fa-youtube"></i> Watch free lessons
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#features">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#courses">Courses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#testimonials">Testimonials</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#download-app">Download</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.youtube.com/@ktm-academy" target="_blank">Youtube</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary text-white ms-lg-2 text-white" href="./padhai.html">
-                        <i class="fas fa-video me-1 text-white"></i>PadhAI Video Generator
-                    </a>
-                </li>
+      </div>
+      <dl class="proof">
+        <div><dt>135</dt><dd>free video lessons on YouTube</dd></div>
+        <div><dt>10,000+</dt><dd>downloads of the CTEVT Plus app</dd></div>
+        <div><dt>2</dt><dd>CTEVT semesters covered end to end</dd></div>
+      </dl>
+    </div>
+
+    <aside class="appcard">
+      <div class="appcard__top">
+        <img src="home_logo.jpg" alt="">
+        <div>
+          <div class="appcard__name">CTEVT Plus</div>
+          <div class="appcard__sub">Free on Android</div>
+        </div>
+      </div>
+      <ul>
+        <li><i class="fas fa-check"></i> Notes, past papers and syllabus by semester</li>
+        <li><i class="fas fa-check"></i> Notices and results from CTEVT</li>
+        <li><i class="fas fa-check"></i> Ask the AI tutor about any page you are reading</li>
+        <li><i class="fas fa-check"></i> Works offline once a file is downloaded</li>
+      </ul>
+      <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.one.ctevt_plus" target="_blank" rel="noopener">
+        <i class="fab fa-google-play"></i> Get it on Google Play
+      </a>
+    </aside>
+  </div>
+</section>
+
+<!-- classes -->
+<section class="section section--paper" id="classes">
+  <div class="wrap">
+    <p class="eyebrow reveal">कक्षा · Paid classes</p>
+    <h2 class="h-sec reveal">Two classes running now</h2>
+    <p class="lead reveal">Small groups, taught live. Fees below are what you pay — nothing is added later.</p>
+
+    <div class="programs">
+      <article class="prog reveal">
+        <img class="prog__img" src="assets/AIforeveryone.png" alt="AI for Everyone course">
+        <div class="prog__body">
+          <h3 class="prog__name">AI for Everyone</h3>
+          <p class="prog__meta">No coding background needed. Tools, prompts and real coursework you can use the same week.</p>
+          <div class="prog__rule"></div>
+          <div class="price"><span class="price__cur">NPR</span><span class="price__num">6,000</span></div>
+          <p class="price__unit">for the full course</p>
+          <a class="btn btn--dark" href="ai-course.html">Course details</a>
+        </div>
+      </article>
+
+      <article class="prog reveal">
+        <img class="prog__img" src="assets/class12tuition.png" alt="Class 12 NEB tuition">
+        <div class="prog__body">
+          <h3 class="prog__name">Class 12 NEB Tuition</h3>
+          <p class="prog__meta">Mathematics, Physics and other subjects, taught to the NEB question pattern.</p>
+          <div class="prog__rule"></div>
+          <div class="price"><span class="price__cur">NPR</span><span class="price__num">3,000</span></div>
+          <p class="price__unit">per subject, per month</p>
+          <a class="btn btn--dark" href="class12-course.html">Course details</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- free lessons: a genuine sequence, so it is numbered -->
+<section class="section section--white" id="free">
+  <div class="wrap">
+    <p class="eyebrow reveal">निःशुल्क · Free on YouTube</p>
+    <h2 class="h-sec reveal">The CTEVT diploma, semester by semester</h2>
+    <p class="lead reveal">Every lesson below is free to watch, in order, with no sign-up. These were taught as live classes and left up for the students who came after.</p>
+
+    <div class="ladder">
+      <article class="rung reveal">
+        <div class="rung__no">1</div>
+        <div>
+          <h3>First semester</h3>
+          <p>The full first-semester curriculum, plus bridge courses for students arriving from different backgrounds.</p>
+          <ul class="rung__list">
+            <li>Live classes · 27 videos</li>
+            <li>Math model questions · 3 videos</li>
+            <li>Bridge: Math, Physics, Chemistry, English, Biology</li>
           </ul>
         </div>
+        <div class="rung__act">
+          <a class="btn btn--dark" href="ctevt-1st-sem.html">Details</a>
+          <a class="btn btn--yt" href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> Watch</a>
+        </div>
+      </article>
+
+      <article class="rung reveal">
+        <div class="rung__no">2</div>
+        <div>
+          <h3>Second semester</h3>
+          <p>Applied Mechanics, Physics and the complete Math II course, worked through problem by problem.</p>
+          <ul class="rung__list">
+            <li>Applied Mechanics · 32 videos</li>
+            <li>Physics · 30 videos</li>
+            <li>Math II · 43 lessons</li>
+          </ul>
+        </div>
+        <div class="rung__act">
+          <a class="btn btn--dark" href="ctevt-2nd-sem.html">Details</a>
+          <a class="btn btn--yt" href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> Watch</a>
+        </div>
+      </article>
     </div>
-</nav>
+  </div>
+</section>
 
+<!-- app -->
+<section class="section section--paper" id="app">
+  <div class="wrap">
+    <p class="eyebrow reveal">एप · CTEVT Plus</p>
+    <h2 class="h-sec reveal">Your syllabus, in your pocket</h2>
+    <p class="lead reveal">Built for CTEVT students: the notes and papers you need, the notices you would otherwise miss, and a tutor that can read the page with you.</p>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container text-center">
-            <h1>Empowering Minds, Shaping Futures</h1>
-            <p class="lead mb-4">Join KTM Academy to gain advanced skills in AI, NEB, and CTEVT programs, and prepare for a successful career in technology.
-</p>
-            <button class="btn btn-light btn-lg" onclick="document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });">Explore Courses</button>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">Why Choose KTM Academy?</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <i class="fas fa-graduation-cap feature-icon"></i>
-                        <h3 class="h5 mb-3">Expert Faculty</h3>
-                        <p>Learn from experienced NEB, CTEVT & Industry instructors dedicated to your success</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card" onclick="window.open('https://www.facebook.com/profile.php?id=61555613042402', '_blank')">
-                        <i class="fas fa-mobile-alt feature-icon"></i>
-                        <h3 class="h5 mb-3">Mobile App</h3>
-                        <p>Access free notes and resources through our mobile application</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card" onclick="window.open('https://www.youtube.com/@ktm-academy', '_blank')">
-                        <i class="fab fa-youtube feature-icon"></i>
-                        <h3 class="h5 mb-3">YouTube Channel</h3>
-                        <p>Additional learning resources through our KTM Academy Youtube channel</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Courses Section -->
-    <section id="courses" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Our Courses</h2>
-            
-            <!-- Currently Active Courses -->
-            <div class="mb-5">
-                <h3 class="mb-4">Currently Active Courses</h3>
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="feature-card text-center">
-                            <img src="assets/AIforeveryone.png" alt="AI for Everyone Course" class="img-fluid mb-3" style="max-height: 250px; object-fit: cover; border-radius: 0.5rem;">
-                            <h4 class="h5 mb-3">AI for Everyone Course</h4>
-                            <div class="mb-3">
-                                <span class="badge bg-success mb-2">
-                                    <i class="fas fa-tag"></i> 75% OFF
-                                </span>
-                                <div>
-                                    <span class="text-decoration-line-through text-muted">NPR 1,500</span>
-                                    <span class="fs-4 fw-bold text-primary ms-2">NPR 500/-</span>
-                                </div>
-                                <small class="text-muted">for full course</small>
-                            </div>
-                            <a href="ai-course.html" class="btn btn-primary">View More</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="feature-card text-center">
-                            <img src="assets/class12tuition.png" alt="Class 12 NEB Tuition" class="img-fluid mb-3" style="max-height: 250px; object-fit: cover; border-radius: 0.5rem;">
-                            <h4 class="h5 mb-3">Class 12 NEB Tuition Class</h4>
-                            <p class="text-muted mb-3">(Mathematics, Physics & Others)</p>
-                            <div class="mb-3">
-                                <span class="badge bg-success mb-2">
-                                    <i class="fas fa-tag"></i> 50% OFF
-                                </span>
-                                <div>
-                                    <span class="text-decoration-line-through text-muted">NPR 3,000</span>
-                                    <span class="fs-4 fw-bold text-primary ms-2">NPR 1,500/-</span>
-                                </div>
-                                <small class="text-muted">per subject per month</small>
-                            </div>
-                            <a href="class12-course.html" class="btn btn-primary">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Past Courses -->
-            <div class="mb-5">
-                <h3 class="mb-4">Past Courses & Free YouTube Resources</h3>
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="feature-card">
-                            <h4 class="h5 mb-3"><i class="fas fa-graduation-cap text-primary me-2"></i>1st Sem CTEVT Tuition Classes</h4>
-                            <p class="mb-3">Comprehensive coverage of first semester CTEVT curriculum, including essential notes and study materials.</p>
-                            
-                            <div class="mb-3">
-                                <p class="small mb-2"><strong><i class="fab fa-youtube text-danger me-2"></i>Free Video Playlists Available:</strong></p>
-                                <ul class="small">
-                                    <li>1st Sem Live Classes (27 videos)</li>
-                                    <li>Math Model Questions (3 videos)</li>
-                                    <li>Bridge Courses (Math, Physics, Chemistry, English, Biology)</li>
-                                </ul>
-                            </div>
-                            
-                            <a href="ctevt-1st-sem.html" class="btn btn-outline-primary me-2 mb-2">View Details</a>
-                            <a href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" class="btn btn-outline-danger mb-2">
-                                <i class="fab fa-youtube me-1"></i>YouTube
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="feature-card">
-                            <h4 class="h5 mb-3"><i class="fas fa-graduation-cap text-primary me-2"></i>2nd Sem CTEVT Tuition Classes</h4>
-                            <p class="mb-3">In-depth study materials and expert guidance for the second semester of CTEVT.</p>
-                            
-                            <div class="mb-3">
-                                <p class="small mb-2"><strong><i class="fab fa-youtube text-danger me-2"></i>Free Video Playlists Available:</strong></p>
-                                <ul class="small">
-                                    <li>Applied Mechanics (32 videos)</li>
-                                    <li>Physics 2nd Sem (30 videos)</li>
-                                    <li>Math II Full Course (43 lessons)</li>
-                                </ul>
-                            </div>
-                            
-                            <a href="ctevt-2nd-sem.html" class="btn btn-outline-primary me-2 mb-2">View Details</a>
-                            <a href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" class="btn btn-outline-danger mb-2">
-                                <i class="fab fa-youtube me-1"></i>YouTube
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-4">
-                    <p class="text-muted mb-2">Explore all our free educational content on YouTube</p>
-                    <a href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" class="btn btn-danger btn-lg">
-                        <i class="fab fa-youtube me-2"></i>View All YouTube Playlists
-                    </a>
-                </div>
-            </div>
-
-            <!-- Courses You're Interested In -->
-            <div>
-                <h3 class="mb-4">Courses You're Interested In</h3>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="feature-card">
-                            <p class="mb-4">Let us know what courses you'd like to see! We'll consider your suggestions for future offerings.</p>
-                            <form id="courseInterestForm">
-                                <div class="mb-3">
-                                    <label for="studentName" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="studentName" name="name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="studentAddress" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="studentAddress" name="address" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="courseInterested" class="form-label">Course Interested In</label>
-                                    <input type="text" class="form-control" id="courseInterested" name="course" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="expectedPrice" class="form-label">Expected Price for the Course</label>
-                                    <input type="text" class="form-control" id="expectedPrice" name="price" placeholder="e.g., NPR 5000" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">What Our Students Say</h2>
-            <div class="row flex-nowrap overflow-auto g-4">
-                <div class="col-md-3">
-                    <div class="feature-card testimonial-card">
-                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                        <p class="lead">"KTM Academy has transformed my learning experience. The resources are top-notch!"</p>
-                        <h5>Krishna Subedi</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card testimonial-card">
-                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                        <p class="lead">"The instructors are very knowledgeable and always ready to help."</p>
-                        <h5>Sita Thapa</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card testimonial-card">
-                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                        <p class="lead">"I love the flexibility and the comprehensive materials provided."</p>
-                        <h5>Hari Sunar</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card testimonial-card">
-                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                        <p class="lead">"The online classes are very interactive and engaging."</p>
-                        <h5>Gita Khanal</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card testimonial-card">
-                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                        <p class="lead">"The platform is user-friendly and the support team is very responsive."</p>
-                        <h5>Ramesh Karki</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card testimonial-card">
-                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                        <p class="lead">"I have improved my grades significantly since joining KTM Academy."</p>
-                        <h5>Sarita Lama</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card testimonial-card">
-                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                        <p class="lead">"The study materials are very detailed and easy to understand."</p>
-                        <h5>Manoj Shrestha</h5>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card testimonial-card">
-                        <i class="fas fa-user-graduate fa-3x text-primary mb-3"></i>
-                        <p class="lead">"I highly recommend KTM Academy to anyone looking to excel in their studies."</p>
-                        <h5>Sunita Rai</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <style>
-        .testimonial-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .testimonial-card i {
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-    </style>
-
-    
-
-    <!-- Download App Section -->
-    <section id="download-app" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Download Our App</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-4">
-                    <div class="feature-card text-center">
-                        <i class="fas fa-mobile-alt feature-icon"></i>
-                        <h3 class="h5 mb-3">Get it on Play Store</h3>
-                        <p>Download our app from the Google Play Store for the best mobile experience.</p>
-                        <button class="btn btn-primary mt-3" onclick="window.open('https://docs.google.com/document/d/1faIDsuoL3f6JI8rEi5OB-p9tSf1ZPmDjDq4xA7F1VKU/edit?usp=sharing', '_blank')">Download</button>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card text-center">
-                        <i class="fas fa-apple-alt feature-icon"></i>
-                        <h3 class="h5 mb-3">Download on App Store</h3>
-                        <p>Get our app from the Apple App Store for the best mobile experience.</p>
-                        <button class="btn btn-primary mt-3" onclick="window.open('https://docs.google.com/document/d/1faIDsuoL3f6JI8rEi5OB-p9tSf1ZPmDjDq4xA7F1VKU/edit?usp=sharing', '_blank')">Download</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section py-5 bg">
-        <div class="container text-center">
-            <h2 class="mb-4">Get in Touch</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <p class="mb-3">
-                        <i class="fas fa-phone me-2"></i>
-                        <a href="tel:9868004742" class="text-decoration-none">9868004742</a>
-                    </p>
-                    <p class="mb-3">
-                        <a href="https://wa.me/9779807590455" class="text-decoration-none">
-                            <i class="fab fa-whatsapp me-2"></i>WhatsApp +9779807590455
-                        </a>
-                    </p>
-                    <p class="mb-3">
-                        <a href="https://wa.me/9779868004742" class="text-decoration-none">
-                            <i class="fab fa-whatsapp me-2"></i>WhatsApp +9779868004742
-                        </a>
-                    </p>
-                    <p class="mb-3">
-                        <i class="fas fa-envelope me-2"></i>
-                        <a href="mailto:info.ktmacademy@gmail.com" class="text-decoration-none">info.ktmacademy@gmail.com</a>
-                    </p>
-                    <p>
-                        <i class="fas fa-globe me-2"></i>
-                        <a href="http://www.ktmacademy.com" target="_blank" class="text-decoration-none">ktmacademy.com</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Admin Modal -->
-    <div class="modal fade" id="adminModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Admin Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="adminForm" class="admin-form">
-                        <input type="text" class="form-control" id="username" placeholder="Username" required>
-                        <input type="password" class="form-control" id="password" placeholder="Password" required>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="cards3">
+      <div class="card reveal">
+        <i class="fas fa-file-lines"></i>
+        <h3>Notes and past papers</h3>
+        <p>Filed by program and semester, downloadable, and readable offline afterwards.</p>
+      </div>
+      <div class="card card--link reveal" onclick="window.open('https://www.youtube.com/@ktm-academy','_blank')">
+        <i class="fab fa-youtube"></i>
+        <h3>Video lessons inside</h3>
+        <p>The same free YouTube courses, playable in the app without leaving it.</p>
+      </div>
+      <div class="card card--link reveal" onclick="window.open('https://www.facebook.com/profile.php?id=61555613042402','_blank')">
+        <i class="fas fa-bell"></i>
+        <h3>Notices and results</h3>
+        <p>CTEVT notices and published results, pushed to you when they appear.</p>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-light py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2024 KTM Academy. All rights reserved.</p>
-            <div class="mt-3">
-                <a href="https://www.facebook.com/ctevtplus" target="_blank" class="social-link">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=61555613042402" target="_blank" class="social-link">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://www.youtube.com/@ktm-academy" target="_blank" class="social-link">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://wa.me/9779868004742" target="_blank" class="social-link">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+    <p style="margin-top:32px">
+      <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.one.ctevt_plus" target="_blank" rel="noopener">
+        <i class="fab fa-google-play"></i> Get CTEVT Plus on Google Play
+      </a>
+    </p>
+  </div>
+</section>
 
-    <script>
-        // Handle Course Interest Form Submission
-        document.getElementById('courseInterestForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('studentName').value,
-                address: document.getElementById('studentAddress').value,
-                course: document.getElementById('courseInterested').value,
-                price: document.getElementById('expectedPrice').value
-            };
-            
-            // Create mailto link
-            const subject = encodeURIComponent('Course Interest: ' + formData.course);
-            const body = encodeURIComponent(
-                'Name: ' + formData.name + '\n' +
-                'Address: ' + formData.address + '\n' +
-                'Course Interested In: ' + formData.course + '\n' +
-                'Expected Price: ' + formData.price
-            );
-            
-            const mailtoLink = 'mailto:info.ktmacademy@gmail.com?subject=' + subject + '&body=' + body;
-            window.location.href = mailtoLink;
-            
-            // Reset form
-            this.reset();
-            alert('Thank you for your interest! Your email client will open to send the details.');
-        });
-    </script>
+<!-- testimonials -->
+<section class="section section--white" id="students">
+  <div class="wrap">
+    <p class="eyebrow reveal">विद्यार्थी · Students</p>
+    <h2 class="h-sec reveal">What students tell us</h2>
+    <div class="quotes">
+      <figure class="quote reveal"><p>“KTM Academy has transformed my learning experience. The resources are top-notch.”</p><cite>Krishna Subedi</cite></figure>
+      <figure class="quote reveal"><p>“The instructors are very knowledgeable and always ready to help.”</p><cite>Sita Thapa</cite></figure>
+      <figure class="quote reveal"><p>“I love the flexibility and the comprehensive materials provided.”</p><cite>Hari Sunar</cite></figure>
+      <figure class="quote reveal"><p>“The online classes are very interactive and engaging.”</p><cite>Gita Khanal</cite></figure>
+      <figure class="quote reveal"><p>“The platform is easy to use and the support team replies quickly.”</p><cite>Ramesh Karki</cite></figure>
+      <figure class="quote reveal"><p>“My grades have improved a lot since joining KTM Academy.”</p><cite>Sarita Lama</cite></figure>
+    </div>
+  </div>
+</section>
+
+<!-- request a course -->
+<section class="section section--paper" id="request">
+  <div class="wrap">
+    <p class="eyebrow reveal">सुझाव · Requests</p>
+    <h2 class="h-sec reveal">Want a class we don't run yet?</h2>
+    <p class="lead reveal">Tell us the subject and what you would expect to pay. We read every one of these when planning the next term.</p>
+
+    <div class="formwrap reveal">
+      <form id="courseInterestForm">
+        <div class="field">
+          <label for="studentName">Name</label>
+          <input type="text" id="studentName" name="name" required>
+        </div>
+        <div class="field">
+          <label for="studentAddress">Address</label>
+          <input type="text" id="studentAddress" name="address" required>
+        </div>
+        <div class="field">
+          <label for="courseInterested">Course you want</label>
+          <input type="text" id="courseInterested" name="course" required>
+        </div>
+        <div class="field">
+          <label for="expectedPrice">What you would expect to pay</label>
+          <input type="text" id="expectedPrice" name="price" placeholder="e.g. NPR 5,000" required>
+        </div>
+        <button type="submit" class="btn btn--primary">Send request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- contact -->
+<section class="section section--dark" id="contact">
+  <div class="wrap">
+    <p class="eyebrow reveal">सम्पर्क · Contact</p>
+    <h2 class="h-sec reveal">Talk to us before you enrol</h2>
+    <p class="lead reveal">Ask about timings, the syllabus, or whether a class is right for you. WhatsApp is usually fastest.</p>
+    <div class="contact">
+      <a href="tel:9868004742"><i class="fas fa-phone"></i> 9868004742</a>
+      <a href="https://wa.me/9779807590455" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> +977 980 759 0455</a>
+      <a href="https://wa.me/9779868004742" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> +977 986 800 4742</a>
+      <a href="mailto:info.ktmacademy@gmail.com"><i class="fas fa-envelope"></i> info.ktmacademy@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p style="margin:0">© <span id="yr">2026</span> KTM Academy · Kathmandu, Nepal</p>
+    <div class="social">
+      <a href="https://www.facebook.com/ctevtplus" target="_blank" rel="noopener" aria-label="Facebook — CTEVT Plus"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61555613042402" target="_blank" rel="noopener" aria-label="Facebook — KTM Academy"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.youtube.com/@ktm-academy" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://wa.me/9779868004742" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// mobile menu
+var toggle = document.querySelector('.nav__toggle');
+var links  = document.getElementById('navlinks');
+toggle.addEventListener('click', function () {
+  var open = links.classList.toggle('is-open');
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+links.addEventListener('click', function (e) {
+  if (e.target.tagName === 'A') {
+    links.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// scroll reveal, skipped entirely when the visitor asks for less motion
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var items = document.querySelectorAll('.reveal');
+if (reduce || !('IntersectionObserver' in window)) {
+  items.forEach(function (el) { el.classList.add('is-in'); });
+} else {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  items.forEach(function (el) { io.observe(el); });
+}
+
+// course request -> email, same behaviour as before
+document.getElementById('courseInterestForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var name = document.getElementById('studentName').value;
+  var address = document.getElementById('studentAddress').value;
+  var course = document.getElementById('courseInterested').value;
+  var price = document.getElementById('expectedPrice').value;
+  var subject = encodeURIComponent('Course request: ' + course);
+  var body = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Address: ' + address + '\n' +
+    'Course wanted: ' + course + '\n' +
+    'Expected price: ' + price
+  );
+  window.location.href = 'mailto:info.ktmacademy@gmail.com?subject=' + subject + '&body=' + body;
+  this.reset();
+});
+</script>
 </body>
 </html>
