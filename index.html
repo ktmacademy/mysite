@@ -4,219 +4,254 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KTM Academy — AI, NEB and CTEVT classes in Nepal</title>
-<meta name="description" content="KTM Academy teaches AI, Class 12 NEB and CTEVT diploma subjects in Nepal. Paid classes, 135 free video lessons on YouTube, and the CTEVT Plus app for notes and past papers.">
+<meta name="description" content="KTM Academy teaches AI, Class 12 NEB and CTEVT diploma subjects in Nepal. Paid classes, 135 free video lessons on YouTube, and the CTEVT Plus app used by more than 10,000 students.">
 <link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Mulish:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-/* ---------- tokens ---------- */
+/* ============================================================
+   Flat by rule: every surface is one solid colour.
+   No gradients, no soft shadows — separation comes from
+   colour blocks and 1px rules only.
+   ============================================================ */
 :root{
-  --ink:#0A1A2A;          /* deep navy ground */
-  --ink-soft:#16324B;
+  --navy:#0B2136;
+  --navy-2:#123C63;
   --brand:#145086;        /* existing KTM Academy blue */
-  --brand-bright:#1963A7; /* existing lighter blue */
-  --brand-pale:#93AFD3;   /* existing pale blue */
-  --marigold:#E8A33D;     /* sayapatri — reserved for prices only */
-  --paper:#F4F7FB;
-  --white:#FFFFFF;
-  --line:rgba(10,26,42,.12);
-  --line-dark:rgba(255,255,255,.16);
+  --brand-bright:#1963A7; /* existing */
+  --pale:#93AFD3;         /* existing */
+  --wash:#E8EEF6;
+  --paper:#FFFFFF;
+  --ink:#0B2136;
+  --muted:#54687C;
+  --rule:#D3DEEA;
+  --rule-dark:#22405C;
 
-  --display:"Bricolage Grotesque",system-ui,sans-serif;
-  --body:"Mulish",system-ui,sans-serif;
-
-  --wrap:1160px;
-  --pad:clamp(20px,5vw,40px);
-  --radius:14px;
+  --sans:"Archivo",system-ui,-apple-system,sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+  --wrap:1180px;
+  --pad:clamp(20px,5vw,44px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--body);font-size:17px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
-a{color:inherit}
-h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:-.02em;font-weight:800}
+h1,h2,h3,h4{margin:0;font-weight:800;line-height:1.04;letter-spacing:-.025em}
+p{margin:0}
 .wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad)}
-.section{padding-block:clamp(64px,9vw,110px)}
-.section--paper{background:var(--paper)}
-.section--white{background:var(--white)}
+:focus-visible{outline:3px solid var(--brand-bright);outline-offset:2px}
 
-/* eyebrow: bilingual, because the audience reads both */
-.eyebrow{
-  font-weight:700;font-size:.82rem;
-  letter-spacing:.16em;text-transform:uppercase;
-  color:var(--brand-bright);margin:0 0 14px;
-}
-.section--dark .eyebrow{color:var(--brand-pale)}
-.h-sec{font-size:clamp(2rem,4.6vw,3.1rem);max-width:18ch}
-.lead{font-size:clamp(1.02rem,1.5vw,1.16rem);color:#41576B;max-width:60ch}
-.section--dark .lead{color:#C3D3E4}
+/* ---- section index: the syllabus-style marker, this page's one flourish ---- */
+.band{padding-block:clamp(56px,8vw,96px);border-top:1px solid var(--rule)}
+.band--wash{background:var(--wash)}
+.band--navy{background:var(--navy);color:#fff;border-top-color:var(--rule-dark)}
+.band--brand{background:var(--brand);color:#fff;border-top-color:transparent}
+.mark{display:flex;align-items:baseline;gap:14px;margin-bottom:28px}
+.mark__no{font-family:var(--serif);font-size:.95rem;font-weight:600;color:var(--brand-bright);
+  border:1px solid var(--rule);border-radius:2px;padding:2px 9px;letter-spacing:.06em}
+.band--navy .mark__no,.band--brand .mark__no{color:#fff;border-color:var(--rule-dark)}
+.band--brand .mark__no{border-color:rgba(255,255,255,.4)}
+.mark__label{font-size:.82rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.band--navy .mark__label,.band--brand .mark__label{color:var(--pale)}
+.h2{font-size:clamp(1.95rem,4.4vw,3rem);max-width:20ch}
+.sub{margin-top:16px;max-width:62ch;font-size:clamp(1rem,1.4vw,1.12rem);color:var(--muted)}
+.band--navy .sub,.band--brand .sub{color:#C6D6E6}
 
-/* ---------- nav ---------- */
-.nav{position:sticky;top:0;z-index:50;background:rgba(10,26,42,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-dark)}
-.nav__in{display:flex;align-items:center;gap:20px;height:66px;max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad)}
-.brand{display:flex;align-items:center;gap:11px;color:var(--white);text-decoration:none;font-family:var(--display);font-weight:800;letter-spacing:-.02em}
-.brand img{width:34px;height:34px;border-radius:9px;object-fit:cover}
-.nav__links{display:flex;gap:26px;margin-left:auto;align-items:center}
-.nav__links a{color:#D6E2EE;text-decoration:none;font-size:.94rem;font-weight:500}
-.nav__links a:hover{color:var(--white)}
-.nav__cta{background:var(--brand-bright);color:var(--white)!important;padding:9px 16px;border-radius:999px;font-weight:700!important}
-.nav__cta:hover{background:var(--brand)}
-.nav__toggle{display:none;margin-left:auto;background:none;border:0;color:var(--white);font-size:1.35rem;cursor:pointer;padding:6px}
+/* ---- nav ---- */
+.nav{position:sticky;top:0;z-index:60;background:var(--navy);border-bottom:1px solid var(--rule-dark)}
+.nav__in{display:flex;align-items:center;height:64px;gap:22px;max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad)}
+.logo{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;font-weight:800;letter-spacing:-.02em}
+.logo img{width:32px;height:32px;border-radius:4px;object-fit:cover}
+.menu{display:flex;gap:24px;align-items:center;margin-left:auto}
+.menu a{color:#C6D6E6;text-decoration:none;font-size:.94rem;font-weight:500}
+.menu a:hover{color:#fff}
+.menu .btn{margin-left:4px}
+.burger{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:1.3rem;padding:6px;cursor:pointer}
 
-/* ---------- hero ---------- */
-.hero{background:var(--ink);color:var(--white);padding-block:clamp(56px,9vw,104px);position:relative;overflow:hidden}
-/* one quiet atmospheric device, not a decorative gradient blob party */
-.hero::after{
-  content:"";position:absolute;inset:auto -10% -60% auto;width:min(680px,80vw);aspect-ratio:1;
-  background:radial-gradient(circle,rgba(25,99,167,.42),transparent 62%);pointer-events:none;
-}
-.hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center;position:relative;z-index:1}
-.hero h1{font-size:clamp(2.5rem,6vw,4.3rem);max-width:15ch}
-.hero h1 em{font-style:normal;color:var(--brand-pale)}
-.hero p{margin:20px 0 30px;max-width:52ch;color:#C3D3E4;font-size:clamp(1.02rem,1.6vw,1.18rem)}
-.btn{display:inline-flex;align-items:center;gap:9px;border:0;cursor:pointer;text-decoration:none;
-  font-family:var(--body);font-weight:700;font-size:1rem;padding:14px 24px;border-radius:999px;transition:transform .18s,background .18s,box-shadow .18s}
-.btn:hover{transform:translateY(-2px)}
-.btn--primary{background:var(--brand-bright);color:var(--white);box-shadow:0 8px 22px rgba(25,99,167,.35)}
-.btn--primary:hover{background:#2075C0}
-.btn--ghost{background:transparent;color:var(--white);border:1.5px solid var(--line-dark)}
-.btn--ghost:hover{border-color:var(--brand-pale);background:rgba(255,255,255,.06)}
-.btn--dark{background:var(--brand);color:var(--white)}
-.btn--dark:hover{background:var(--brand-bright)}
-.btn--yt{background:#C4302B;color:var(--white)}
-.btn--yt:hover{background:#A82722}
-.hero__actions{display:flex;gap:14px;flex-wrap:wrap}
+/* ---- buttons: flat fills, square-ish corners ---- */
+.btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;border:1px solid transparent;
+  font:inherit;font-weight:600;font-size:.97rem;padding:12px 20px;border-radius:4px;transition:background .15s,color .15s,border-color .15s}
+.btn--solid{background:var(--brand-bright);color:#fff}
+.btn--solid:hover{background:#155F9E}
+.btn--onNavy{background:#fff;color:var(--navy)}
+.btn--onNavy:hover{background:var(--wash)}
+.btn--line{background:transparent;color:inherit;border-color:currentColor}
+.btn--line:hover{background:rgba(255,255,255,.1)}
+.band--wash .btn--line:hover,.faq .btn--line:hover{background:var(--wash)}
+.btn--yt{background:#C4302B;color:#fff}
+.btn--yt:hover{background:#A72520}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 
-/* proof strip — real, checkable numbers only */
-.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;border-top:1px solid var(--line-dark);padding-top:26px}
-.proof dt{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3vw,2.05rem);color:var(--white)}
-.proof dd{margin:4px 0 0;font-size:.86rem;color:#9FB6CC;line-height:1.35}
+/* ---- hero ---- */
+.hero{background:var(--navy);color:#fff;padding-block:clamp(58px,9vw,104px)}
+.hero h1{font-size:clamp(2.4rem,6.2vw,4.4rem);max-width:16ch}
+/* the second sentence carries the pale blue, so the promise reads as two beats */
+.hero h1 em{font-style:normal;color:var(--pale)}
+.hero .kicker{font-family:var(--serif);font-size:1.05rem;color:var(--pale);margin-bottom:20px}
+.hero p.sub{color:#C6D6E6;margin-top:22px}
+.hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,60px);align-items:center}
 
-/* hero card: the app, since it is the thing students actually hold */
-.appcard{background:linear-gradient(160deg,#123C63,#0C2740);border:1px solid var(--line-dark);border-radius:20px;padding:26px;color:var(--white)}
-.appcard__top{display:flex;align-items:center;gap:13px;margin-bottom:16px}
-.appcard__top img{width:52px;height:52px;border-radius:13px}
-.appcard__name{font-family:var(--display);font-weight:800;font-size:1.12rem;line-height:1.2}
-.appcard__sub{font-size:.83rem;color:#9FB6CC}
-.appcard ul{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:9px}
-.appcard li{font-size:.93rem;color:#CFE0EE;display:flex;gap:10px;align-items:flex-start}
-.appcard li i{color:var(--brand-pale);margin-top:4px;font-size:.8rem}
+/* Duotone without a gradient: desaturate the photo, then lay one flat brand
+   colour over it with multiply. Keeps the picture inside the palette so it
+   sits in the navy band instead of fighting it. */
+.shotframe{margin:0;position:relative;isolation:isolate;border:1px solid rgba(255,255,255,.28);overflow:hidden}
+.shotframe img{width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(.45) contrast(1.06);transition:filter .5s ease}
+.shotframe::after{content:"";position:absolute;inset:0;background:var(--brand);opacity:.30;
+  mix-blend-mode:multiply;pointer-events:none;transition:opacity .5s ease}
+/* the colour returns when a visitor looks at it */
+.shotframe:hover img{filter:grayscale(0) contrast(1)}
+.shotframe:hover::after{opacity:.08}
 
-/* ---------- program cards: the signature ---------- */
-.programs{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px}
-.prog{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;
-  transition:transform .22s,box-shadow .22s}
-.prog:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(10,26,42,.11)}
-.prog__img{aspect-ratio:16/9;object-fit:cover;width:100%;background:#DCE6F2}
-.prog__body{padding:26px;display:flex;flex-direction:column;flex:1}
-.prog__name{font-size:1.4rem}
-.prog__meta{color:#5B7185;font-size:.94rem;margin:8px 0 0}
-.prog__rule{height:1px;background:var(--line);margin:22px 0}
-/* the one bold move: the price, set large, in the only warm colour on the page */
-.price{display:flex;align-items:baseline;gap:10px;font-family:var(--display);}
-.price__cur{font-size:1rem;font-weight:600;color:#5B7185;letter-spacing:.04em}
-.price__num{font-size:clamp(2.6rem,5.4vw,3.5rem);font-weight:800;color:var(--marigold);letter-spacing:-.03em;line-height:1}
-.price__unit{font-size:.9rem;color:#5B7185;margin-top:8px}
-.prog .btn{margin-top:22px;align-self:flex-start}
+/* the same treatment, used small among the quotes */
+.quotephoto{margin:0;position:relative;isolation:isolate;border:1px solid var(--rule);overflow:hidden;min-height:220px}
+.quotephoto img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.45) contrast(1.06);transition:filter .5s ease}
+.quotephoto::after{content:"";position:absolute;inset:0;background:var(--brand);opacity:.26;mix-blend-mode:multiply;pointer-events:none;transition:opacity .5s ease}
+.quotephoto:hover img{filter:grayscale(0) contrast(1)}
+.quotephoto:hover::after{opacity:.06}
 
-/* ---------- semester ladder: numbering is real here, these are a sequence ---------- */
-.ladder{display:grid;gap:20px;margin-top:44px}
-.rung{display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:start;
-  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-.rung__no{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--brand);
-  width:52px;height:52px;display:grid;place-items:center;border:1.5px solid var(--line);border-radius:12px}
-.rung h3{font-size:1.22rem}
-.rung p{margin:8px 0 0;color:#5B7185;font-size:.96rem}
-.rung__list{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.rung__list li{font-size:.83rem;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:#41576B}
-.rung__act{display:flex;flex-direction:column;gap:10px}
-.rung__act .btn{padding:11px 18px;font-size:.92rem;white-space:nowrap}
+/* ---- proof band: flat colour, hard rules between figures ---- */
+.proof{display:grid;grid-template-columns:repeat(3,1fr)}
+.proof div{padding:30px 26px;border-left:1px solid rgba(255,255,255,.28)}
+.proof div:first-child{border-left:0;padding-left:0}
+.proof b{display:block;font-size:clamp(2rem,4.6vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1}
+.proof span{display:block;margin-top:8px;font-size:.92rem;color:#D3E1EE}
 
-/* ---------- app + cards ---------- */
-.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
-.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:transform .22s,box-shadow .22s}
-.card:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(10,26,42,.1)}
-.card i{font-size:1.4rem;color:var(--brand-bright);margin-bottom:14px;display:block}
-.card h3{font-size:1.12rem}
-.card p{margin:9px 0 0;color:#5B7185;font-size:.95rem}
-.card--link{cursor:pointer}
+/* ---- fee cards: flat, bordered, the number does the work ---- */
+.fees{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule);background:var(--paper)}
+.fee{padding:clamp(26px,3.4vw,38px);border-left:1px solid var(--rule)}
+.fee:first-child{border-left:0}
+.fee img{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--rule);margin-bottom:22px}
+.fee h3{font-size:1.45rem}
+.fee p{margin-top:9px;color:var(--muted);font-size:.98rem}
+.fee__rule{height:1px;background:var(--rule);margin:24px 0}
+.fee__amt{display:flex;align-items:baseline;gap:9px}
+.fee__cur{font-size:1rem;font-weight:600;color:var(--muted)}
+.fee__num{font-size:clamp(2.7rem,6vw,3.7rem);font-weight:800;letter-spacing:-.035em;line-height:1;color:var(--brand)}
+.fee__per{margin-top:10px;font-family:var(--serif);font-size:.98rem;color:var(--muted)}
+.fee .btn{margin-top:24px}
 
-/* ---------- testimonials ---------- */
-.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:44px}
-.quote{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--brand-pale);border-radius:0 var(--radius) var(--radius) 0;padding:24px}
-.quote p{margin:0 0 14px;font-size:1rem;color:#2B4053}
-.quote cite{font-style:normal;font-weight:700;font-size:.9rem;color:var(--brand)}
+/* ---- semester list ---- */
+.sem{border:1px solid var(--rule);background:var(--paper)}
+.sem__row{display:grid;grid-template-columns:74px 1fr auto;gap:24px;padding:28px clamp(20px,3vw,32px);border-top:1px solid var(--rule);align-items:start}
+.sem__row:first-child{border-top:0}
+.sem__n{font-family:var(--serif);font-size:2.1rem;font-weight:600;color:var(--pale);line-height:1}
+.sem h3{font-size:1.2rem}
+.sem p{margin-top:8px;color:var(--muted);font-size:.96rem}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;padding:0;list-style:none}
+.tags li{font-size:.82rem;border:1px solid var(--rule);border-radius:2px;padding:4px 10px;color:var(--muted)}
+.sem__act{display:flex;gap:10px;flex-wrap:wrap}
 
-/* ---------- form ---------- */
-.formwrap{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,4vw,38px);margin-top:36px;max-width:720px}
-.field{margin-bottom:18px}
-.field label{display:block;font-size:.88rem;font-weight:700;margin-bottom:7px;color:var(--ink-soft)}
-.field input{width:100%;padding:13px 15px;font:inherit;font-size:.98rem;color:var(--ink);
-  background:var(--paper);border:1px solid var(--line);border-radius:10px}
-.field input:focus{outline:2px solid var(--brand-bright);outline-offset:1px;background:var(--white)}
+/* ---- app band ---- */
+.appgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,64px);align-items:center}
+.applist{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:13px}
+.applist li{display:flex;gap:12px;align-items:flex-start;color:#D3E1EE;font-size:1rem}
+.applist i{color:#fff;margin-top:5px;font-size:.78rem}
+.shot{border:1px solid rgba(255,255,255,.3);padding:22px;background:var(--navy-2)}
+.shot__head{display:flex;gap:13px;align-items:center;margin-bottom:14px}
+.shot__head img{width:48px;height:48px;border-radius:8px}
+.shot__t{font-weight:800;line-height:1.2}
+.shot__s{font-size:.85rem;color:var(--pale)}
 
-/* ---------- contact + footer ---------- */
-.section--dark{background:var(--ink);color:var(--white)}
-.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:40px}
-.contact a{display:flex;align-items:center;gap:12px;text-decoration:none;color:#D6E2EE;
-  border:1px solid var(--line-dark);border-radius:var(--radius);padding:18px 20px;font-size:.96rem;transition:border-color .2s,background .2s}
-.contact a:hover{border-color:var(--brand-pale);background:rgba(255,255,255,.05)}
-.contact i{color:var(--brand-pale);width:20px;text-align:center}
-.foot{background:#061320;color:#8DA3B8;padding-block:34px;font-size:.9rem}
-.foot__in{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
-.social{display:flex;gap:10px}
-.social a{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--line-dark);border-radius:50%;color:#B9CBDC;text-decoration:none;transition:background .2s,color .2s}
-.social a:hover{background:var(--brand-bright);color:var(--white);border-color:transparent}
+/* ---- FAQ: native details/summary, no JS ---- */
+.faq{border:1px solid var(--rule);background:var(--paper)}
+.faq details{border-top:1px solid var(--rule)}
+.faq details:first-of-type{border-top:0}
+.faq summary{list-style:none;cursor:pointer;padding:22px clamp(20px,3vw,30px);
+  font-weight:600;font-size:1.05rem;display:flex;justify-content:space-between;gap:20px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--serif);font-size:1.5rem;color:var(--brand-bright);line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq summary:hover{background:var(--wash)}
+.faq .answer{padding:0 clamp(20px,3vw,30px) 24px;color:var(--muted);max-width:72ch}
+.ilink{color:var(--brand-bright);font-weight:600;text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px}
+.ilink:hover{color:var(--brand)}
 
-/* ---------- motion ---------- */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-.reveal.is-in{opacity:1;transform:none}
+/* ---- quotes ---- */
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:18px}
+.quote{background:var(--paper);border:1px solid var(--rule);border-left:3px solid var(--brand-bright);
+  border-radius:0 4px 4px 0;padding:26px;transition:transform .2s,border-left-color .2s}
+.quote:hover{transform:translateY(-3px);border-left-color:var(--brand)}
+.quote p{font-family:var(--serif);font-size:1.06rem;color:var(--ink)}
+.quote cite{display:block;margin-top:14px;font-style:normal;font-weight:600;font-size:.9rem;color:var(--brand)}
+
+/* ---- form ---- */
+.form{border:1px solid var(--rule);padding:clamp(24px,4vw,38px);max-width:700px;background:var(--paper)}
+.f{margin-bottom:18px}
+.f label{display:block;font-size:.88rem;font-weight:600;margin-bottom:7px}
+.f input{width:100%;padding:12px 14px;font:inherit;font-size:.98rem;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink)}
+.f input:focus{outline:3px solid var(--brand-bright);outline-offset:1px}
+
+/* ---- contact + footer ---- */
+.reach{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border:1px solid rgba(255,255,255,.28);margin-top:34px}
+.reach a{display:flex;align-items:center;gap:13px;padding:20px 22px;color:#D3E1EE;text-decoration:none;
+  border-left:1px solid rgba(255,255,255,.28);font-size:.96rem}
+.reach a:first-child{border-left:0}
+.reach a:hover{background:rgba(255,255,255,.09);color:#fff}
+.reach i{color:var(--pale);width:18px;text-align:center}
+.foot{background:#071726;color:#8FA6BB;padding-block:30px;font-size:.9rem}
+.foot__in{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+.soc{display:flex;gap:8px}
+.soc a{width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--rule-dark);color:#B7C9DA;text-decoration:none;border-radius:3px}
+.soc a:hover{background:var(--brand-bright);color:#fff;border-color:transparent}
+
+/* ---- motion ---- */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;transition-delay:var(--d,0ms)}
+.rv.in{opacity:1;transform:none}
+
+/* the marker rule draws itself in beside the section number */
+.mark__line{flex:1;height:1px;background:var(--rule);transform:scaleX(0);transform-origin:left;
+  transition:transform .7s cubic-bezier(.2,.7,.3,1) 120ms}
+.band--navy .mark__line,.band--brand .mark__line{background:rgba(255,255,255,.35)}
+.mark.in .mark__line{transform:scaleX(1)}
+
+/* numbers hold their width while counting so the row does not jitter */
+.proof b{font-variant-numeric:tabular-nums}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *{animation:none!important;transition:none!important}
-  .reveal{opacity:1;transform:none}
+  *{transition:none!important;animation:none!important}
+  .rv{opacity:1;transform:none}
+  .mark__line{transform:scaleX(1)}
 }
 
-/* ---------- responsive ---------- */
-@media (max-width:900px){
-  .hero__grid{grid-template-columns:1fr}
-  .programs,.cards3{grid-template-columns:1fr}
-  .nav__links{position:absolute;top:66px;left:0;right:0;background:var(--ink);flex-direction:column;
-    align-items:stretch;gap:0;padding:10px var(--pad) 18px;border-bottom:1px solid var(--line-dark);display:none}
-  .nav__links.is-open{display:flex}
-  .nav__links a{padding:12px 0}
-  .nav__cta{text-align:center;margin-top:8px}
-  .nav__toggle{display:block}
-}
-@media (max-width:640px){
-  .proof{grid-template-columns:1fr;gap:14px}
-  .rung{grid-template-columns:1fr;gap:16px}
-  .rung__act{flex-direction:row;flex-wrap:wrap}
+/* ---- responsive ---- */
+@media (max-width:920px){
+  .fees,.appgrid,.proof,.hero__grid{grid-template-columns:1fr}
+  .shotframe{aspect-ratio:16/10}
+  .fee{border-left:0;border-top:1px solid var(--rule)}
+  .fee:first-child{border-top:0}
+  .proof div{border-left:0;border-top:1px solid rgba(255,255,255,.28);padding-left:0}
+  .proof div:first-child{border-top:0}
+  .sem__row{grid-template-columns:1fr;gap:14px}
+  .menu{position:absolute;top:64px;left:0;right:0;background:var(--navy);flex-direction:column;
+    align-items:stretch;gap:0;padding:8px var(--pad) 16px;border-bottom:1px solid var(--rule-dark);display:none}
+  .menu.open{display:flex}
+  .menu a{padding:12px 0}
+  .menu .btn{margin:8px 0 0;justify-content:center}
+  .burger{display:block}
+  .quote{border-left-width:3px}
+  .reach a{border-left:0;border-top:1px solid rgba(255,255,255,.28)}
+  .reach a:first-child{border-top:0}
 }
 </style>
 </head>
 <body>
 
-<!-- nav -->
 <header class="nav">
   <nav class="nav__in" aria-label="Main">
-    <a class="brand" href="#top"><img src="home_logo.jpg" alt="">KTM Academy</a>
-    <button class="nav__toggle" aria-expanded="false" aria-controls="navlinks" aria-label="Menu">
-      <i class="fas fa-bars"></i>
-    </button>
-    <div class="nav__links" id="navlinks">
+    <a class="logo" href="#top"><img src="home_logo.jpg" alt="">KTM Academy</a>
+    <button class="burger" aria-expanded="false" aria-controls="menu" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <div class="menu" id="menu">
       <a href="#classes">Classes</a>
       <a href="#free">Free lessons</a>
       <a href="#app">App</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
-      <a href="https://www.youtube.com/@ktm-academy" target="_blank" rel="noopener">YouTube</a>
-      <a class="nav__cta" href="./padhai.html"><i class="fas fa-video"></i> PadhAI</a>
+      <a class="btn btn--solid" href="./padhai.html"><i class="fas fa-video"></i> PadhAI</a>
     </div>
   </nav>
 </header>
@@ -224,211 +259,242 @@ h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:
 <!-- hero -->
 <section class="hero" id="top">
   <div class="wrap hero__grid">
-    <div>
-      <p class="eyebrow">Kathmandu, Nepal</p>
-      <h1>Pass the exam in front of you. <em>Then keep going.</em></h1>
-      <p>We teach Class 12 NEB and CTEVT diploma subjects the way they are actually examined — and an AI course for what comes after. Free video lessons for everyone, paid classes when you want a teacher.</p>
-      <div class="hero__actions">
-        <a class="btn btn--primary" href="#classes">See classes and fees</a>
-        <a class="btn btn--ghost" href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" rel="noopener">
-          <i class="fab fa-youtube"></i> Watch free lessons
-        </a>
+    <div class="hero__text">
+      <p class="kicker">Kathmandu, Nepal</p>
+      <h1>Empowering Minds, <em>Shaping Futures</em></h1>
+      <p class="sub">Class 12 NEB and CTEVT diploma subjects, taught the way they are actually examined — plus an AI course for what comes after. Free video lessons for everyone, paid classes when you want a teacher.</p>
+      <div class="btnrow">
+        <a class="btn btn--onNavy" href="#classes">See classes and fees</a>
+        <a class="btn btn--line" href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> Watch free lessons</a>
       </div>
-      <dl class="proof">
-        <div><dt>135</dt><dd>free video lessons on YouTube</dd></div>
-        <div><dt>10,000+</dt><dd>downloads of the CTEVT Plus app</dd></div>
-        <div><dt>2</dt><dd>CTEVT semesters covered end to end</dd></div>
-      </dl>
     </div>
+    <figure class="shotframe rv">
+      <img src="assets/students-hero.jpg"
+           alt="Secondary school students in uniform outside their school in Nepal"
+           width="1600" height="1066" loading="eager" decoding="async">
+    </figure>
+  </div>
+</section>
 
-    <aside class="appcard">
-      <div class="appcard__top">
-        <img src="home_logo.jpg" alt="">
-        <div>
-          <div class="appcard__name">CTEVT Plus</div>
-          <div class="appcard__sub">Free on Android</div>
-        </div>
+<!-- proof -->
+<section class="band band--brand" aria-label="By the numbers">
+  <div class="wrap">
+    <div class="proof rv">
+      <div>
+        <b data-count="10000" data-suffix="+">10,000+</b>
+        <span>downloads of CTEVT Plus — the app CTEVT students across Nepal use for notes, papers and notices</span>
       </div>
-      <ul>
-        <li><i class="fas fa-check"></i> Notes, past papers and syllabus by semester</li>
-        <li><i class="fas fa-check"></i> Notices and results from CTEVT</li>
-        <li><i class="fas fa-check"></i> Ask the AI tutor about any page you are reading</li>
-        <li><i class="fas fa-check"></i> Works offline once a file is downloaded</li>
-      </ul>
-      <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.one.ctevt_plus" target="_blank" rel="noopener">
-        <i class="fab fa-google-play"></i> Get it on Google Play
-      </a>
-    </aside>
+      <div>
+        <b data-count="135">135</b>
+        <span>free video lessons on YouTube, no sign-up needed</span>
+      </div>
+      <div>
+        <b data-count="2">2</b>
+        <span>CTEVT semesters taught end to end, plus bridge courses</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- classes -->
-<section class="section section--paper" id="classes">
+<section class="band" id="classes">
   <div class="wrap">
-    <p class="eyebrow reveal">Paid classes</p>
-    <h2 class="h-sec reveal">Two classes running now</h2>
-    <p class="lead reveal">Small groups, taught live. Fees below are what you pay — nothing is added later.</p>
+    <div class="mark rv"><span class="mark__no">01</span><span class="mark__label">Paid classes</span><span class="mark__line" aria-hidden="true"></span></div>
+    <h2 class="h2 rv">Two classes running now</h2>
+    <p class="sub rv">Small groups, taught live. The fee below is what you pay — nothing is added later.</p>
 
-    <div class="programs">
-      <article class="prog reveal">
-        <img class="prog__img" src="assets/AIforeveryone.png" alt="AI for Everyone course">
-        <div class="prog__body">
-          <h3 class="prog__name">AI for Everyone</h3>
-          <p class="prog__meta">No coding background needed. Tools, prompts and real coursework you can use the same week.</p>
-          <div class="prog__rule"></div>
-          <div class="price"><span class="price__cur">NPR</span><span class="price__num">6,000</span></div>
-          <p class="price__unit">for the full course</p>
-          <a class="btn btn--dark" href="ai-course.html">Course details</a>
-        </div>
+    <div class="fees rv" style="margin-top:38px">
+      <article class="fee">
+        <img src="assets/AIforeveryone.png" alt="AI for Everyone course">
+        <h3>AI for Everyone</h3>
+        <p>No coding background needed. Tools, prompts and coursework you can use the same week.</p>
+        <div class="fee__rule"></div>
+        <div class="fee__amt"><span class="fee__cur">NPR</span><span class="fee__num">6,000</span></div>
+        <p class="fee__per">for the full course</p>
+        <a class="btn btn--solid" href="ai-course.html">Course details</a>
       </article>
-
-      <article class="prog reveal">
-        <img class="prog__img" src="assets/class12tuition.png" alt="Class 12 NEB tuition">
-        <div class="prog__body">
-          <h3 class="prog__name">Class 12 NEB Tuition</h3>
-          <p class="prog__meta">Mathematics, Physics and other subjects, taught to the NEB question pattern.</p>
-          <div class="prog__rule"></div>
-          <div class="price"><span class="price__cur">NPR</span><span class="price__num">3,000</span></div>
-          <p class="price__unit">per subject, per month</p>
-          <a class="btn btn--dark" href="class12-course.html">Course details</a>
-        </div>
+      <article class="fee">
+        <img src="assets/class12tuition.png" alt="Class 12 NEB tuition">
+        <h3>Class 12 NEB Tuition</h3>
+        <p>Mathematics, Physics and other subjects, taught to the NEB question pattern.</p>
+        <div class="fee__rule"></div>
+        <div class="fee__amt"><span class="fee__cur">NPR</span><span class="fee__num">3,000</span></div>
+        <p class="fee__per">per subject, per month</p>
+        <a class="btn btn--solid" href="class12-course.html">Course details</a>
       </article>
     </div>
   </div>
 </section>
 
-<!-- free lessons: a genuine sequence, so it is numbered -->
-<section class="section section--white" id="free">
+<!-- free lessons -->
+<section class="band band--wash" id="free">
   <div class="wrap">
-    <p class="eyebrow reveal">Free on YouTube</p>
-    <h2 class="h-sec reveal">The CTEVT diploma, semester by semester</h2>
-    <p class="lead reveal">Every lesson below is free to watch, in order, with no sign-up. These were taught as live classes and left up for the students who came after.</p>
+    <div class="mark rv"><span class="mark__no">02</span><span class="mark__label">Free on YouTube</span><span class="mark__line" aria-hidden="true"></span></div>
+    <h2 class="h2 rv">The CTEVT diploma, semester by semester</h2>
+    <p class="sub rv">Every lesson is free to watch, in order, with no sign-up. These were taught as live classes and left up for the students who came after.</p>
 
-    <div class="ladder">
-      <article class="rung reveal">
-        <div class="rung__no">1</div>
+    <div class="sem rv" style="margin-top:38px">
+      <div class="sem__row">
+        <div class="sem__n">I</div>
         <div>
           <h3>First semester</h3>
           <p>The full first-semester curriculum, plus bridge courses for students arriving from different backgrounds.</p>
-          <ul class="rung__list">
+          <ul class="tags">
             <li>Live classes · 27 videos</li>
             <li>Math model questions · 3 videos</li>
             <li>Bridge: Math, Physics, Chemistry, English, Biology</li>
           </ul>
         </div>
-        <div class="rung__act">
-          <a class="btn btn--dark" href="ctevt-1st-sem.html">Details</a>
+        <div class="sem__act">
+          <a class="btn btn--line" href="ctevt-1st-sem.html">Details</a>
           <a class="btn btn--yt" href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> Watch</a>
         </div>
-      </article>
-
-      <article class="rung reveal">
-        <div class="rung__no">2</div>
+      </div>
+      <div class="sem__row">
+        <div class="sem__n">II</div>
         <div>
           <h3>Second semester</h3>
           <p>Applied Mechanics, Physics and the complete Math II course, worked through problem by problem.</p>
-          <ul class="rung__list">
+          <ul class="tags">
             <li>Applied Mechanics · 32 videos</li>
             <li>Physics · 30 videos</li>
             <li>Math II · 43 lessons</li>
           </ul>
         </div>
-        <div class="rung__act">
-          <a class="btn btn--dark" href="ctevt-2nd-sem.html">Details</a>
+        <div class="sem__act">
+          <a class="btn btn--line" href="ctevt-2nd-sem.html">Details</a>
           <a class="btn btn--yt" href="https://www.youtube.com/@ktm-academy/playlists" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> Watch</a>
         </div>
-      </article>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- app -->
-<section class="section section--paper" id="app">
+<section class="band band--navy" id="app">
   <div class="wrap">
-    <p class="eyebrow reveal">The app</p>
-    <h2 class="h-sec reveal">Your syllabus, in your pocket</h2>
-    <p class="lead reveal">Built for CTEVT students: the notes and papers you need, the notices you would otherwise miss, and a tutor that can read the page with you.</p>
-
-    <div class="cards3">
-      <div class="card reveal">
-        <i class="fas fa-file-lines"></i>
-        <h3>Notes and past papers</h3>
-        <p>Filed by program and semester, downloadable, and readable offline afterwards.</p>
+    <div class="mark rv"><span class="mark__no">03</span><span class="mark__label">The app</span><span class="mark__line" aria-hidden="true"></span></div>
+    <div class="appgrid" style="margin-top:10px">
+      <div>
+        <h2 class="h2 rv">Used by more than 10,000 CTEVT students</h2>
+        <p class="sub rv">CTEVT Plus keeps the syllabus, the past papers and the notices in one place — and reads along with you when something does not make sense.</p>
+        <ul class="applist rv">
+          <li><i class="fas fa-check"></i> Notes and past papers, filed by program and semester</li>
+          <li><i class="fas fa-check"></i> CTEVT notices and published results as they appear</li>
+          <li><i class="fas fa-check"></i> Ask the AI tutor about the page you are reading</li>
+          <li><i class="fas fa-check"></i> Downloaded files stay readable offline</li>
+        </ul>
+        <div class="btnrow">
+          <a class="btn btn--onNavy" href="https://play.google.com/store/apps/details?id=com.one.ctevt_plus" target="_blank" rel="noopener">
+            <i class="fab fa-google-play"></i> Get it on Google Play
+          </a>
+        </div>
       </div>
-      <div class="card card--link reveal" onclick="window.open('https://www.youtube.com/@ktm-academy','_blank')">
-        <i class="fab fa-youtube"></i>
-        <h3>Video lessons inside</h3>
-        <p>The same free YouTube courses, playable in the app without leaving it.</p>
-      </div>
-      <div class="card card--link reveal" onclick="window.open('https://www.facebook.com/profile.php?id=61555613042402','_blank')">
-        <i class="fas fa-bell"></i>
-        <h3>Notices and results</h3>
-        <p>CTEVT notices and published results, pushed to you when they appear.</p>
-      </div>
-    </div>
-
-    <p style="margin-top:32px">
-      <a class="btn btn--primary" href="https://play.google.com/store/apps/details?id=com.one.ctevt_plus" target="_blank" rel="noopener">
-        <i class="fab fa-google-play"></i> Get CTEVT Plus on Google Play
-      </a>
-    </p>
-  </div>
-</section>
-
-<!-- testimonials -->
-<section class="section section--white" id="students">
-  <div class="wrap">
-    <p class="eyebrow reveal">Students</p>
-    <h2 class="h-sec reveal">What students tell us</h2>
-    <div class="quotes">
-      <figure class="quote reveal"><p>“KTM Academy has transformed my learning experience. The resources are top-notch.”</p><cite>Krishna Subedi</cite></figure>
-      <figure class="quote reveal"><p>“The instructors are very knowledgeable and always ready to help.”</p><cite>Sita Thapa</cite></figure>
-      <figure class="quote reveal"><p>“I love the flexibility and the comprehensive materials provided.”</p><cite>Hari Sunar</cite></figure>
-      <figure class="quote reveal"><p>“The online classes are very interactive and engaging.”</p><cite>Gita Khanal</cite></figure>
-      <figure class="quote reveal"><p>“The platform is easy to use and the support team replies quickly.”</p><cite>Ramesh Karki</cite></figure>
-      <figure class="quote reveal"><p>“My grades have improved a lot since joining KTM Academy.”</p><cite>Sarita Lama</cite></figure>
+      <aside class="shot rv">
+        <div class="shot__head">
+          <img src="home_logo.jpg" alt="">
+          <div>
+            <div class="shot__t">CTEVT Plus</div>
+            <div class="shot__s">Free on Android · 10,000+ downloads</div>
+          </div>
+        </div>
+        <ul class="applist" style="margin-top:0">
+          <li><i class="fas fa-book"></i> Diploma notes by semester</li>
+          <li><i class="fas fa-file-lines"></i> Past questions and solutions</li>
+          <li><i class="fas fa-bell"></i> Notices and results</li>
+          <li><i class="fas fa-comments"></i> AI tutor for any document</li>
+        </ul>
+      </aside>
     </div>
   </div>
 </section>
 
-<!-- request a course -->
-<section class="section section--paper" id="request">
+<!-- FAQ -->
+<section class="band" id="faq">
   <div class="wrap">
-    <p class="eyebrow reveal">Requests</p>
-    <h2 class="h-sec reveal">Want a class we don't run yet?</h2>
-    <p class="lead reveal">Tell us the subject and what you would expect to pay. We read every one of these when planning the next term.</p>
+    <div class="mark rv"><span class="mark__no">04</span><span class="mark__label">Questions</span><span class="mark__line" aria-hidden="true"></span></div>
+    <h2 class="h2 rv">Before you enrol</h2>
+    <p class="sub rv">If your question is not here, message us on <a class="ilink" href="https://wa.me/9779868004742" target="_blank" rel="noopener">WhatsApp</a> — that is usually the fastest way to get an answer.</p>
 
-    <div class="formwrap reveal">
+    <div class="faq rv" style="margin-top:38px">
+      <details>
+        <summary>Are classes online or in person?</summary>
+        <div class="answer">Classes are taught live in small groups. Message us on <a class="ilink" href="https://wa.me/9779868004742" target="_blank" rel="noopener">WhatsApp</a> for the current format and timings before you enrol, as these change between terms.</div>
+      </details>
+      <details>
+        <summary>What does the fee cover?</summary>
+        <div class="answer">AI for Everyone is NPR 6,000 for the full course. Class 12 NEB tuition is NPR 3,000 per subject, per month. Those are the full amounts — there is no separate registration or material charge.</div>
+      </details>
+      <details>
+        <summary>Do I have to pay to use the videos or the app?</summary>
+        <div class="answer">No. All 135 video lessons on YouTube are free and need no sign-up, and the <a class="ilink" href="https://play.google.com/store/apps/details?id=com.one.ctevt_plus" target="_blank" rel="noopener">CTEVT Plus app</a> is free on Google Play. Only the live classes above are paid.</div>
+      </details>
+      <details>
+        <summary>Which CTEVT semesters do you cover?</summary>
+        <div class="answer">The free video courses cover the first and second semesters end to end, along with bridge courses in Math, Physics, Chemistry, English and Biology. <a class="ilink" href="https://play.google.com/store/apps/details?id=com.one.ctevt_plus" target="_blank" rel="noopener">The app</a> carries notes and past papers for more programs and semesters than the videos do.</div>
+      </details>
+      <details>
+        <summary>Can I get the notes without joining a class?</summary>
+        <div class="answer">Yes. Download <a class="ilink" href="https://play.google.com/store/apps/details?id=com.one.ctevt_plus" target="_blank" rel="noopener">CTEVT Plus on Google Play</a> and the notes, past papers and syllabus are there for free. Joining a class gets you a teacher, not access to materials.</div>
+      </details>
+      <details>
+        <summary>How do I enrol?</summary>
+        <div class="answer">Message us on <a class="ilink" href="https://wa.me/9779868004742" target="_blank" rel="noopener">WhatsApp</a> or call <a class="ilink" href="tel:9868004742">9868004742</a>. Tell us the subject and we will confirm the next batch and how to pay.</div>
+      </details>
+      <details>
+        <summary>You do not teach the subject I need. What now?</summary>
+        <div class="answer">Use the form below to tell us the subject and what you would expect to pay. We read every request when planning the next term.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- students -->
+<section class="band band--wash" id="students">
+  <div class="wrap">
+    <div class="mark rv"><span class="mark__no">05</span><span class="mark__label">Students</span><span class="mark__line" aria-hidden="true"></span></div>
+    <h2 class="h2 rv">What students tell us</h2>
+    <div class="quotes rv" style="margin-top:38px">
+      <figure class="quotephoto">
+        <img src="assets/students-square.jpg"
+             alt="Students in school uniform in Nepal"
+             width="760" height="760" loading="lazy" decoding="async">
+      </figure>
+      <figure class="quote"><p>“KTM Academy has transformed my learning experience. The resources are top-notch.”</p><cite>Krishna Subedi</cite></figure>
+      <figure class="quote"><p>“The instructors are very knowledgeable and always ready to help.”</p><cite>Sita Thapa</cite></figure>
+      <figure class="quote"><p>“I love the flexibility and the comprehensive materials provided.”</p><cite>Hari Sunar</cite></figure>
+      <figure class="quote"><p>“The online classes are very interactive and engaging.”</p><cite>Gita Khanal</cite></figure>
+      <figure class="quote"><p>“The platform is easy to use and the support team replies quickly.”</p><cite>Ramesh Karki</cite></figure>
+      <figure class="quote"><p>“My grades have improved a lot since joining KTM Academy.”</p><cite>Sarita Lama</cite></figure>
+    </div>
+  </div>
+</section>
+
+<!-- request -->
+<section class="band" id="request">
+  <div class="wrap">
+    <div class="mark rv"><span class="mark__no">06</span><span class="mark__label">Requests</span><span class="mark__line" aria-hidden="true"></span></div>
+    <h2 class="h2 rv">Want a class we don't run yet?</h2>
+    <p class="sub rv">Tell us the subject and what you would expect to pay.</p>
+    <div class="form rv" style="margin-top:34px">
       <form id="courseInterestForm">
-        <div class="field">
-          <label for="studentName">Name</label>
-          <input type="text" id="studentName" name="name" required>
-        </div>
-        <div class="field">
-          <label for="studentAddress">Address</label>
-          <input type="text" id="studentAddress" name="address" required>
-        </div>
-        <div class="field">
-          <label for="courseInterested">Course you want</label>
-          <input type="text" id="courseInterested" name="course" required>
-        </div>
-        <div class="field">
-          <label for="expectedPrice">What you would expect to pay</label>
-          <input type="text" id="expectedPrice" name="price" placeholder="e.g. NPR 5,000" required>
-        </div>
-        <button type="submit" class="btn btn--primary">Send request</button>
+        <div class="f"><label for="studentName">Name</label><input type="text" id="studentName" name="name" required></div>
+        <div class="f"><label for="studentAddress">Address</label><input type="text" id="studentAddress" name="address" required></div>
+        <div class="f"><label for="courseInterested">Course you want</label><input type="text" id="courseInterested" name="course" required></div>
+        <div class="f"><label for="expectedPrice">What you would expect to pay</label><input type="text" id="expectedPrice" name="price" placeholder="e.g. NPR 5,000" required></div>
+        <button type="submit" class="btn btn--solid">Send request</button>
       </form>
     </div>
   </div>
 </section>
 
 <!-- contact -->
-<section class="section section--dark" id="contact">
+<section class="band band--navy" id="contact">
   <div class="wrap">
-    <p class="eyebrow reveal">Contact</p>
-    <h2 class="h-sec reveal">Talk to us before you enrol</h2>
-    <p class="lead reveal">Ask about timings, the syllabus, or whether a class is right for you. WhatsApp is usually fastest.</p>
-    <div class="contact">
+    <div class="mark rv"><span class="mark__no">07</span><span class="mark__label">Contact</span><span class="mark__line" aria-hidden="true"></span></div>
+    <h2 class="h2 rv">Talk to us before you enrol</h2>
+    <p class="sub rv">Ask about timings, the syllabus, or whether a class is right for you.</p>
+    <div class="reach rv">
       <a href="tel:9868004742"><i class="fas fa-phone"></i> 9868004742</a>
       <a href="https://wa.me/9779807590455" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> +977 980 759 0455</a>
       <a href="https://wa.me/9779868004742" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> +977 986 800 4742</a>
@@ -439,8 +505,8 @@ h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:
 
 <footer class="foot">
   <div class="wrap foot__in">
-    <p style="margin:0">© <span id="yr">2026</span> KTM Academy · Kathmandu, Nepal</p>
-    <div class="social">
+    <p>© <span id="yr">2026</span> KTM Academy · Kathmandu, Nepal</p>
+    <div class="soc">
       <a href="https://www.facebook.com/ctevtplus" target="_blank" rel="noopener" aria-label="Facebook — CTEVT Plus"><i class="fab fa-facebook-f"></i></a>
       <a href="https://www.facebook.com/profile.php?id=61555613042402" target="_blank" rel="noopener" aria-label="Facebook — KTM Academy"><i class="fab fa-facebook"></i></a>
       <a href="https://www.youtube.com/@ktm-academy" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
@@ -450,53 +516,76 @@ h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05;letter-spacing:
 </footer>
 
 <script>
-// year
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-// mobile menu
-var toggle = document.querySelector('.nav__toggle');
-var links  = document.getElementById('navlinks');
-toggle.addEventListener('click', function () {
-  var open = links.classList.toggle('is-open');
-  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+var burger = document.querySelector('.burger');
+var menu = document.getElementById('menu');
+burger.addEventListener('click', function () {
+  var open = menu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open ? 'true' : 'false');
 });
-links.addEventListener('click', function (e) {
+menu.addEventListener('click', function (e) {
   if (e.target.tagName === 'A') {
-    links.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
+    menu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
   }
 });
 
-// scroll reveal, skipped entirely when the visitor asks for less motion
 var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var items = document.querySelectorAll('.reveal');
+var items = document.querySelectorAll('.rv');
+var counters = document.querySelectorAll('[data-count]');
+
+// Stagger within a section: each .rv gets a delay based on its position
+// among its siblings, so a group arrives as a sequence rather than at once.
+items.forEach(function (el) {
+  var group = el.parentElement ? [].slice.call(el.parentElement.children) : [];
+  var i = group.filter(function (n) { return n.classList && n.classList.contains('rv'); }).indexOf(el);
+  el.style.setProperty('--d', Math.max(0, i) * 90 + 'ms');
+});
+
+function countUp(el) {
+  var target = parseInt(el.getAttribute('data-count'), 10);
+  var suffix = el.getAttribute('data-suffix') || '';
+  if (isNaN(target)) return;
+  var start = performance.now();
+  var dur = 1100;
+  function frame(now) {
+    var t = Math.min(1, (now - start) / dur);
+    // ease-out so it decelerates into the final figure
+    var v = Math.round(target * (1 - Math.pow(1 - t, 3)));
+    el.textContent = v.toLocaleString('en-US') + suffix;
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
 if (reduce || !('IntersectionObserver' in window)) {
-  items.forEach(function (el) { el.classList.add('is-in'); });
+  items.forEach(function (el) { el.classList.add('in'); el.style.removeProperty('--d'); });
 } else {
   var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-in');
-        io.unobserve(entry.target);
-      }
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   items.forEach(function (el) { io.observe(el); });
+
+  // Numbers count only once, when the stat band is actually on screen.
+  var cio = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { countUp(en.target); cio.unobserve(en.target); }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function (el) { cio.observe(el); });
 }
 
-// course request -> email, same behaviour as before
 document.getElementById('courseInterestForm').addEventListener('submit', function (e) {
   e.preventDefault();
-  var name = document.getElementById('studentName').value;
-  var address = document.getElementById('studentAddress').value;
-  var course = document.getElementById('courseInterested').value;
-  var price = document.getElementById('expectedPrice').value;
-  var subject = encodeURIComponent('Course request: ' + course);
+  var subject = encodeURIComponent('Course request: ' + document.getElementById('courseInterested').value);
   var body = encodeURIComponent(
-    'Name: ' + name + '\n' +
-    'Address: ' + address + '\n' +
-    'Course wanted: ' + course + '\n' +
-    'Expected price: ' + price
+    'Name: ' + document.getElementById('studentName').value + '\n' +
+    'Address: ' + document.getElementById('studentAddress').value + '\n' +
+    'Course wanted: ' + document.getElementById('courseInterested').value + '\n' +
+    'Expected price: ' + document.getElementById('expectedPrice').value
   );
   window.location.href = 'mailto:info.ktmacademy@gmail.com?subject=' + subject + '&body=' + body;
   this.reset();
