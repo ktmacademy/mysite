@@ -15,6 +15,7 @@ import {
   MessagesSquare,
   HelpCircle,
   Inbox,
+  KeyRound,
 } from "lucide-react";
 import { adminFetch } from "@/lib/admin-api";
 import { describeEvent, eventLabel } from "@/lib/analytics-events";
@@ -52,6 +53,7 @@ interface Detail {
   bookmarks: any[];
   quiz: any[];
   courses: any[];
+  aiKeys: any[];
   folders: any[];
   progress: { total: number; completed: number; items: any[] };
   chats: any[];
@@ -109,6 +111,72 @@ function Section({
 const Empty = ({ text = "Nothing here." }: { text?: string }) => (
   <p className="text-sm text-muted-foreground">{text}</p>
 );
+
+/**
+ * One saved Gemini key.
+ *
+ * Masked by default and revealed only on request: these are the users' own
+ * credentials, and an admin usually needs to identify *which* key an account
+ * is on (to explain a 403 or an exhausted quota), not to read it. Showing the
+ * first and last few characters is enough to match a key against one in the
+ * Google console, without putting a working credential on screen in every
+ * page view or screen share.
+ */
+function ApiKeyRow({
+  apiKey,
+  active,
+  model,
+  updatedAt,
+}: {
+  apiKey: string;
+  active: boolean;
+  model?: string | null;
+  updatedAt?: string | null;
+}) {
+  const [revealed, setRevealed] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const masked =
+    apiKey.length > 12
+      ? `${apiKey.slice(0, 6)}${"•".repeat(12)}${apiKey.slice(-4)}`
+      : "•".repeat(apiKey.length);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(apiKey);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard blocked (insecure context) — the revealed text is still
+      // selectable by hand.
+    }
+  };
+
+  return (
+    <div className="space-y-1">
+      <div className="flex items-center gap-2">
+        <code className="min-w-0 flex-1 truncate font-mono text-xs">
+          {revealed ? apiKey : masked}
+        </code>
+        {active && <Badge variant="secondary">active</Badge>}
+      </div>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+        <button
+          type="button"
+          onClick={() => setRevealed((v) => !v)}
+          className="text-primary hover:underline"
+        >
+          {revealed ? "Hide" : "Reveal"}
+        </button>
+        <button type="button" onClick={copy} className="text-primary hover:underline">
+          {copied ? "Copied" : "Copy"}
+        </button>
+        <span>{apiKey.length} chars</span>
+        {model && <span>· {model}</span>}
+        {updatedAt && <span>· {new Date(updatedAt).toLocaleDateString()}</span>}
+      </div>
+    </div>
+  );
+}
 
 export default function UserDetailPage() {
   const params = useParams();
@@ -353,21 +421,52 @@ export default function UserDetailPage() {
             </Section>
 
             {/* Courses saved */}
-            <Section title="Courses saved" icon={BookOpen} count={data.courses.length}>
+            <Section title="Custom courses added" icon={BookOpen} count={data.courses.length}>
               {data.courses.length === 0 ? (
-                <Empty text="No saved courses." />
+                <Empty text="No custom courses added." />
               ) : (
                 <ul className="max-h-56 space-y-2 overflow-y-auto text-sm">
                   {data.courses.map((c: any, i: number) => (
-                    <li key={i}>
+                    <li key={i} className="min-w-0">
                       <a
                         href={c.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="truncate text-primary hover:underline"
+                        className="block truncate font-medium text-primary hover:underline"
                       >
                         {c.title}
                       </a>
+                      {/* The link itself, not just the title behind it: the
+                          point of this section is seeing which YouTube
+                          playlists and videos students are adding. */}
+                      <div className="truncate text-xs text-muted-foreground">
+                        {c.link}
+                      </div>
+                      {c.created_on && (
+                        <div className="text-xs text-muted-foreground">
+                          added {new Date(c.created_on).toLocaleDateString()}
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </Section>
+
+            {/* Gemini API keys the user has saved (newest first) */}
+            <Section title="AI API keys" icon={KeyRound} count={data.aiKeys.length}>
+              {data.aiKeys.length === 0 ? (
+                <Empty text="No API key saved." />
+              ) : (
+                <ul className="max-h-56 space-y-3 overflow-y-auto text-sm">
+                  {data.aiKeys.map((k: any, i: number) => (
+                    <li key={i} className="min-w-0">
+                      <ApiKeyRow
+                        apiKey={k.api_key}
+                        active={i === 0}
+                        model={k.model}
+                        updatedAt={k.updated_at}
+                      />
                     </li>
                   ))}
                 </ul>

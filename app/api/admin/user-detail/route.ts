@@ -39,6 +39,7 @@ export async function POST(request: Request) {
     bookmarks,
     quiz,
     userCourses,
+    aiKeys,
     folders,
     folderItems,
     progress,
@@ -88,6 +89,13 @@ export async function POST(request: Request) {
         .select("title, link, created_on")
         .eq("user_id", userId)
         .order("created_on", { ascending: false })
+    ),
+    rows(
+      supabase
+        .from("user_ai_keys")
+        .select("api_key, model, created_at, updated_at")
+        .eq("user_id", userId)
+        .order("updated_at", { ascending: false })
     ),
     rows(
       supabase
@@ -169,6 +177,10 @@ export async function POST(request: Request) {
     bookmarks,
     quiz,
     courses: userCourses,
+    // The user's own Gemini keys, newest first. Sent whole so an admin can
+    // check which key an account is actually using when its AI chat fails;
+    // the UI masks them until explicitly revealed.
+    aiKeys,
     folders: foldersWithCounts,
     progress: {
       total: (progress as any[]).length,

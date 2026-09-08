@@ -35,6 +35,8 @@ interface Row {
   faculty: string | null;
   semester: number | null;
   district: string | null;
+  /** How many of their own YouTube courses this user has added in the app. */
+  course_count: number;
 }
 interface Resp {
   total: number;
@@ -56,6 +58,7 @@ type SortKey =
   | "provider"
   | "program"
   | "whatsapp"
+  | "course_count"
   | "created_at"
   | "last_sign_in_at";
 
@@ -67,6 +70,8 @@ function sortValue(u: Row, key: SortKey): string | number {
       return (u.provider || "").toLowerCase();
     case "program":
       return (u.program || "").toLowerCase();
+    case "course_count":
+      return u.course_count ?? 0;
     case "whatsapp":
       return u.whatsapp_opt_in ? 1 : 0;
     case "created_at":
@@ -168,6 +173,7 @@ export default function UsersPage() {
       "district",
       "phone",
       "whatsapp_opt_in",
+      "custom_courses",
       "joined",
       "last_seen",
     ];
@@ -183,6 +189,7 @@ export default function UsersPage() {
         u.district,
         u.phone,
         u.whatsapp_opt_in === null ? "" : u.whatsapp_opt_in ? "yes" : "no",
+        u.course_count,
         u.created_at,
         u.last_sign_in_at,
       ]
@@ -251,13 +258,14 @@ export default function UsersPage() {
 
       <Card className="py-0">
         <CardContent className="overflow-x-auto px-0">
-          <Table className="min-w-[720px]">
+          <Table className="min-w-[820px]">
             <TableHeader>
               <TableRow>
                 <SortHeader label="User" k="name" />
                 <SortHeader label="Provider" k="provider" />
                 <SortHeader label="Program" k="program" />
                 <SortHeader label="WhatsApp" k="whatsapp" />
+                <SortHeader label="Courses" k="course_count" />
                 <SortHeader label="Joined" k="created_at" />
                 <SortHeader label="Last seen" k="last_sign_in_at" />
               </TableRow>
@@ -266,7 +274,7 @@ export default function UsersPage() {
               {loading && (
                 <TableRow>
                   <TableCell
-                    colSpan={6}
+                    colSpan={7}
                     className="py-8 text-center text-muted-foreground"
                   >
                     Loading…
@@ -311,6 +319,13 @@ export default function UsersPage() {
                         <span className="text-muted-foreground">—</span>
                       )}
                     </TableCell>
+                    <TableCell>
+                      {u.course_count > 0 ? (
+                        <Badge variant="secondary">{u.course_count}</Badge>
+                      ) : (
+                        <span className="text-muted-foreground">—</span>
+                      )}
+                    </TableCell>
                     <TableCell className="whitespace-nowrap text-muted-foreground">
                       {fmt(u.created_at)}
                     </TableCell>
@@ -322,7 +337,7 @@ export default function UsersPage() {
               {!loading && rows.length === 0 && (
                 <TableRow>
                   <TableCell
-                    colSpan={6}
+                    colSpan={7}
                     className="py-8 text-center text-muted-foreground"
                   >
                     No users match.

@@ -24,6 +24,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  // Count each user's own YouTube courses (the "Add your own course" sheet in
+  // the app). One query for everyone rather than a count per row: the table is
+  // small and per-user counts would be N round trips for a 1000-user page.
+  const courseCounts: Record<string, number> = {};
+  const { data: userCourses, error: coursesError } = await supabase
+    .from("user_courses")
+    .select("user_id");
+  if (coursesError && !tableMissing(coursesError)) {
+    return NextResponse.json({ error: coursesError.message }, { status: 500 });
+  }
+  for (const c of userCourses ?? []) {
+    courseCounts[c.user_id] = (courseCounts[c.user_id] || 0) + 1;
+  }
+
   let rows = users.map((u) => {
     const p = byId[u.id] || {};
     return {
@@ -40,6 +54,7 @@ export async function POST(request: Request) {
       faculty: p.faculty ?? null,
       semester: p.semester ?? null,
       district: p.district ?? null,
+      course_count: courseCounts[u.id] ?? 0,
     };
   });
 
