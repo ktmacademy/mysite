@@ -27,6 +27,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
@@ -87,10 +93,21 @@ function Section({
   title: string;
   icon: any;
   count?: number;
-  /** Optional control shown at the right of the header, e.g. "View details". */
+  /**
+   * Optional control shown at the right of the header, replacing the default
+   * "View details" dialog — e.g. Activity, which has a whole page of its own.
+   */
   action?: React.ReactNode;
   children: React.ReactNode;
 }) {
+  const [open, setOpen] = useState(false);
+  // Every card clamps its list to a short scroll box so the page stays
+  // skimmable, which means most sections only ever show their first few rows.
+  // "View details" reuses the very same content in a dialog, with the height
+  // clamps lifted, so the full list is reachable without a route and an API
+  // per section.
+  const showDetails = action === undefined && (count ?? 0) > 0;
+
   return (
     <Card className="gap-0 py-0">
       <CardHeader className="border-b py-3">
@@ -101,9 +118,32 @@ function Section({
         <CardAction className="flex items-center gap-2">
           {count !== undefined && <Badge variant="secondary">{count}</Badge>}
           {action}
+          {showDetails && (
+            <Button variant="outline" size="xs" onClick={() => setOpen(true)}>
+              View details <ChevronRight />
+            </Button>
+          )}
         </CardAction>
       </CardHeader>
       <CardContent className="p-5">{children}</CardContent>
+
+      {showDetails && (
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogContent className="max-h-[85vh] max-w-2xl overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Icon className="size-4 text-muted-foreground" />
+                {title}
+                {count !== undefined && (
+                  <Badge variant="secondary">{count}</Badge>
+                )}
+              </DialogTitle>
+            </DialogHeader>
+            {/* Lift the inline clamps: the same rows, all of them. */}
+            <div className="[&_*]:max-h-none">{children}</div>
+          </DialogContent>
+        </Dialog>
+      )}
     </Card>
   );
 }
