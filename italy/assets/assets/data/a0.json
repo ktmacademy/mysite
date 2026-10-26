@@ -1,0 +1,1260 @@
+{
+  "version": 1,
+  "level": "A0",
+  "book": "Facile Facile A0 – Principianti assoluti",
+  "units": [
+    {
+      "n": 1, "title": "Ciao", "color": "#29A3DA",
+      "sections": [
+        {
+          "id": "u1_ciao", "kind": "contenuti", "title": "Ciao", "page": 5,
+          "text": ["Anna: Ciao!", "Pablo: Ciao!", "Anna: Io sono Anna.", "Pablo: Io sono Pablo."],
+          "items": [
+            ["ciao", "hi / bye", "नमस्ते / अलविदा", "👋"],
+            ["io", "I", "मैं", "🙋"],
+            ["io sono", "I am", "मैं हूँ", "🙋"],
+            ["io sono Anna", "I am Anna", "मैं अन्ना हूँ", "👩"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Anna: Ciao!  Pablo: ____!", "o": ["Ciao", "Sono", "Io"]},
+            {"t": "pick", "q": "Anna: Io ____ Anna.", "o": ["sono", "ciao", "è"]},
+            {"t": "pick", "q": "Pablo: ____ sono Pablo.", "o": ["Io", "Tu", "Ciao"]},
+            {"t": "words", "w": "io sono Pablo"}
+          ]
+        },
+        {
+          "id": "u1_alfabeto", "kind": "contenuti", "title": "Alfabeto italiano", "page": 6,
+          "items": [
+            ["albero", "tree", "पेड़", "img:albero"],
+            ["banana", "banana", "केला", "img:banana"],
+            ["cane", "dog", "कुत्ता", "img:cane"],
+            ["due", "two", "दो", "img:due"],
+            ["euro", "euro", "यूरो", "img:euro"],
+            ["fuoco", "fire", "आग", "img:fuoco"],
+            ["gelato", "ice cream", "आइसक्रीम", "img:gelato"],
+            ["hotel", "hotel", "होटल", "img:hotel"],
+            ["Italia", "Italy", "इटली", "img:italia"],
+            ["letto", "bed", "बिस्तर", "img:letto"],
+            ["mela", "apple", "सेब", "img:mela"],
+            ["naso", "nose", "नाक", "img:naso"],
+            ["otto", "eight", "आठ", "img:otto"],
+            ["pane", "bread", "ब्रेड", "img:pane"],
+            ["quattro", "four", "चार", "img:quattro"],
+            ["rosa", "rose", "गुलाब", "img:rosa"],
+            ["sole", "sun", "सूरज", "img:sole"],
+            ["tavolo", "table", "मेज़", "img:tavolo"],
+            ["uno", "one", "एक", "img:uno"],
+            ["venti", "twenty", "बीस", "img:venti"],
+            ["zero", "zero", "शून्य", "img:zero"],
+            ["jeans", "jeans", "जींस", "img:jeans"],
+            ["kiwi", "kiwi", "कीवी", "img:kiwi"],
+            ["taxi", "taxi", "टैक्सी", "img:taxi"],
+            ["yogurt", "yogurt", "दही", "img:yogurt"],
+            ["water", "toilet", "शौचालय", "img:water"],
+            ["quaderno", "notebook", "कॉपी", "📓"],
+            ["penna", "pen", "पेन", "🖊️"],
+            ["libro", "book", "किताब", "📕"],
+            ["gomma", "eraser", "रबड़", "🧽"],
+            ["matita", "pencil", "पेंसिल", "✏️"],
+            ["zaino", "backpack", "बस्ता", "🎒"],
+            ["sedia", "chair", "कुर्सी", "🪑"]
+          ],
+          "ex": [
+            {"t": "spell", "w": "albero", "m": "al__ro", "img": "albero"},
+            {"t": "spell", "w": "pane", "m": "pa__", "img": "pane"},
+            {"t": "spell", "w": "jeans", "m": "je__s", "img": "jeans"},
+            {"t": "spell", "w": "letto", "m": "le__o", "img": "letto"},
+            {"t": "spell", "w": "cane", "m": "ca__", "img": "cane"},
+            {"t": "spell", "w": "mela", "m": "m__a", "img": "mela"},
+            {"t": "spell", "w": "sole", "m": "s_l_", "img": "sole"},
+            {"t": "spell", "w": "gelato", "m": "g_la_o", "img": "gelato"},
+            {"t": "spell", "w": "hotel", "m": "h___l", "img": "hotel"},
+            {"t": "spell", "w": "yogurt", "m": "yo_u_t", "img": "yogurt"},
+            {"t": "spell", "w": "fuoco", "m": "f__co", "img": "fuoco"}
+          ]
+        },
+        {
+          "id": "u1_buongiorno", "kind": "contenuti", "title": "Buongiorno!", "page": 9,
+          "text": ["Anna: Buongiorno, io sono Anna, sono italiana.", "Pablo: Buongiorno, io sono Pablo, sono peruviano.", "Alì: Buongiorno, io sono Alì, sono tunisino."],
+          "items": [
+            ["buongiorno", "good morning", "सुप्रभात", "☀️"],
+            ["sono italiana", "I am Italian (f)", "मैं इतालवी हूँ (स्त्री)", "🇮🇹"],
+            ["peruviano", "Peruvian", "पेरू का", "🇵🇪"],
+            ["tunisino", "Tunisian", "ट्यूनीशियाई", "🇹🇳"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Buongiorno, io ____ Anna, sono italiana.", "o": ["sono", "sei", "è"]},
+            {"t": "pick", "q": "Buongiorno, io sono Alì, sono ____.", "o": ["tunisino", "Anna", "ciao"]},
+            {"t": "pick", "q": "Pablo è ____.", "o": ["peruviano", "italiana", "tunisino"]},
+            {"t": "words", "w": "buongiorno io sono Anna"}
+          ]
+        },
+        {
+          "id": "u1_iosono", "kind": "contenuti", "title": "Io sono", "page": 10,
+          "text": ["Luca: Io sono Luca, sono italiano, sono professore.", "Luis: Io sono Luis, sono brasiliano, sono studente.", "Irina: Io sono Irina, sono russa, sono studentessa."],
+          "items": [
+            ["professore", "teacher", "शिक्षक", "👨‍🏫"],
+            ["studente", "student (m)", "छात्र", "👨‍🎓"],
+            ["studentessa", "student (f)", "छात्रा", "👩‍🎓"],
+            ["italiano", "Italian", "इतालवी", "🇮🇹"],
+            ["brasiliano", "Brazilian", "ब्राज़ीली", "🇧🇷"],
+            ["russa", "Russian (f)", "रूसी (स्त्री)", "🇷🇺"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Io sono Luca, sono italiano, sono ____.", "o": ["professore", "russa", "studentessa"]},
+            {"t": "pick", "q": "Io sono Luis, sono ____, sono studente.", "o": ["brasiliano", "russa", "italiana"]},
+            {"t": "pick", "q": "Io sono Irina, sono russa, sono ____.", "o": ["studentessa", "studente", "professore"]},
+            {"t": "spell", "w": "studente"},
+            {"t": "words", "w": "io sono Luis sono studente"}
+          ]
+        },
+        {
+          "id": "u1_saluti", "kind": "lessico", "title": "Saluti", "page": 10,
+          "items": [
+            ["mattina", "morning", "सुबह", "img:mattina"],
+            ["sera", "evening", "शाम", "img:sera"],
+            ["notte", "night", "रात", "img:notte"],
+            ["buonasera", "good evening", "शुभ संध्या", "🌆"],
+            ["buona notte", "good night", "शुभ रात्रि", "🌙"],
+            ["arrivederci", "goodbye", "फिर मिलेंगे", "👋"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Mattina →", "img": "mattina", "o": ["Buongiorno!", "Buonasera!", "Buona notte!"]},
+            {"t": "pick", "q": "Sera →", "img": "sera", "o": ["Buonasera!", "Buongiorno!", "Buona notte!"]},
+            {"t": "pick", "q": "Notte →", "img": "notte", "o": ["Buona notte!", "Buongiorno!", "Ciao!"]},
+            {"t": "match", "p": [["mattina", "buongiorno"], ["sera", "buonasera"], ["notte", "buona notte"]]}
+          ]
+        },
+        {
+          "id": "u1_numeri", "kind": "lessico", "title": "Numeri 0–10", "page": 11,
+          "items": [
+            ["zero", "0", "0", "img:zero"],
+            ["uno", "1", "1", "img:uno"],
+            ["due", "2", "2", "img:due"],
+            ["tre", "3", "3", "3️⃣"],
+            ["quattro", "4", "4", "img:quattro"],
+            ["cinque", "5", "5", "5️⃣"],
+            ["sei", "6", "6", "6️⃣"],
+            ["sette", "7", "7", "7️⃣"],
+            ["otto", "8", "8", "img:otto"],
+            ["nove", "9", "9", "9️⃣"],
+            ["dieci", "10", "10", "🔟"]
+          ],
+          "ex": [
+            {"t": "spell", "w": "sette", "m": "se__e"},
+            {"t": "spell", "w": "uno", "m": "u_o"},
+            {"t": "spell", "w": "cinque", "m": "c_nq__"},
+            {"t": "spell", "w": "nove", "m": "n__e"},
+            {"t": "spell", "w": "zero", "m": "__ro"},
+            {"t": "spell", "w": "quattro", "m": "q__t_ro"},
+            {"t": "spell", "w": "dieci", "m": "d_e_i"},
+            {"t": "pick", "q": "8 =", "o": ["otto", "sette", "nove"]},
+            {"t": "pick", "q": "6 =", "o": ["sei", "sette", "dieci"]},
+            {"t": "pick", "q": "3 =", "o": ["tre", "due", "dieci"]}
+          ]
+        },
+        {
+          "id": "u1_lettera_c", "kind": "fonetica", "title": "La lettera C", "page": 12,
+          "text": ["C + I = CI → cinese", "C + E = CE → cento", "C + A = CA → casa", "C + O = CO → coltello", "C + U = CU → cucina", "C + HI = CHI → chiave", "C + HE = CHE → forchetta"],
+          "items": [
+            ["cinese", "Chinese", "चीनी", "🇨🇳"],
+            ["cento", "hundred", "सौ", "💯"],
+            ["città", "city", "शहर", "🏙️"],
+            ["cerotto", "plaster", "पट्टी", "🩹"],
+            ["centro", "centre", "केंद्र", "🎯"],
+            ["camicia", "shirt", "कमीज़", "👔"],
+            ["luce", "light", "रोशनी", "💡"],
+            ["faccia", "face", "चेहरा", "🙂"],
+            ["casa", "house", "घर", "🏠"],
+            ["coltello", "knife", "चाकू", "🔪"],
+            ["cucina", "kitchen", "रसोई", "🍳"],
+            ["classe", "class", "कक्षा", "🏫"],
+            ["croce", "cross", "क्रॉस", "✝️"],
+            ["chiave", "key", "चाबी", "🔑"],
+            ["forchetta", "fork", "काँटा", "🍴"],
+            ["chiesa", "church", "चर्च", "⛪"],
+            ["occhio", "eye", "आँख", "👁️"],
+            ["cuore", "heart", "दिल", "❤️"],
+            ["carota", "carrot", "गाजर", "🥕"],
+            ["corpo", "body", "शरीर", "🧍"]
+          ],
+          "ex": [
+            {"t": "order", "w": "città", "s": "ttàci"},
+            {"t": "order", "w": "cinque", "s": "iucneq"},
+            {"t": "order", "w": "cerotto", "s": "tercoot"},
+            {"t": "order", "w": "faccia", "s": "ciafac"},
+            {"t": "order", "w": "centro", "s": "tonrec"},
+            {"t": "order", "w": "camicia", "s": "amacici"},
+            {"t": "order", "w": "luce", "s": "eulc"},
+            {"t": "pick", "q": "__ NA (Cina)", "o": ["CI", "CE", "CHI", "CHE"]},
+            {"t": "pick", "q": "__ AVE", "o": ["CHI", "CI", "CE", "CHE"]},
+            {"t": "pick", "q": "DOL __", "o": ["CE", "CI", "CHI", "CHE"]},
+            {"t": "pick", "q": "FOR __ TTA", "o": ["CHE", "CE", "CI", "CHI"]},
+            {"t": "pick", "q": "__ ESA", "o": ["CHI", "CI", "CE", "CHE"]},
+            {"t": "pick", "q": "__ MERA", "o": ["CA", "CO", "CU", "CL"]},
+            {"t": "pick", "q": "__ BO", "o": ["CU", "CA", "CO", "CR"]}
+          ]
+        },
+        {
+          "id": "u1_codice", "kind": "lessico", "title": "Codice fiscale", "page": 15,
+          "text": ["RSSPLA86R27G479N", "R come Roma, S come Sole, P come Pane, L come Libro, A come Albero, G come Gelato, N come Naso"],
+          "items": [
+            ["codice fiscale", "tax code", "टैक्स कोड", "🪪"],
+            ["tessera sanitaria", "health card", "स्वास्थ्य कार्ड", "💳"],
+            ["cognome", "surname", "उपनाम", "🏷️"],
+            ["nome", "name", "नाम", "📛"],
+            ["data di nascita", "date of birth", "जन्म तिथि", "🎂"],
+            ["sesso", "sex", "लिंग", "⚧️"],
+            ["provincia", "province", "प्रांत", "🗺️"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "R come ____", "o": ["Roma", "Sole", "Pane"]},
+            {"t": "pick", "q": "S come ____", "o": ["Sole", "Roma", "Naso"]},
+            {"t": "pick", "q": "P come ____", "o": ["Pane", "Libro", "Gelato"]},
+            {"t": "pick", "q": "L come ____", "o": ["Libro", "Albero", "Sole"]},
+            {"t": "pick", "q": "G come ____", "o": ["Gelato", "Naso", "Pane"]},
+            {"t": "pick", "q": "N come ____", "o": ["Naso", "Roma", "Libro"]},
+            {"t": "match", "p": [["nome", "Paolo"], ["cognome", "Rossi"], ["provincia", "PU"], ["sesso", "M"]]}
+          ]
+        },
+        {
+          "id": "u1_giorni", "kind": "lessico", "title": "Giorni della settimana", "page": 16,
+          "items": [
+            ["lunedì", "Monday", "सोमवार", "1️⃣"],
+            ["martedì", "Tuesday", "मंगलवार", "2️⃣"],
+            ["mercoledì", "Wednesday", "बुधवार", "3️⃣"],
+            ["giovedì", "Thursday", "गुरुवार", "4️⃣"],
+            ["venerdì", "Friday", "शुक्रवार", "5️⃣"],
+            ["sabato", "Saturday", "शनिवार", "6️⃣"],
+            ["domenica", "Sunday", "रविवार", "7️⃣"],
+            ["oggi", "today", "आज", "📅"],
+            ["ieri", "yesterday", "बीता कल", "⬅️"],
+            ["domani", "tomorrow", "आने वाला कल", "➡️"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Oggi è lunedì. Domani è ____.", "o": ["martedì", "domenica", "mercoledì"]},
+            {"t": "pick", "q": "Oggi è domenica. Domani è ____.", "o": ["lunedì", "sabato", "martedì"]},
+            {"t": "pick", "q": "Oggi è martedì. Ieri è ____.", "o": ["lunedì", "mercoledì", "giovedì"]},
+            {"t": "pick", "q": "Oggi è giovedì. Domani è ____.", "o": ["venerdì", "mercoledì", "sabato"]},
+            {"t": "pick", "q": "Oggi è sabato. Ieri è ____.", "o": ["venerdì", "domenica", "giovedì"]},
+            {"t": "spell", "w": "sabato"},
+            {"t": "spell", "w": "domenica"}
+          ]
+        }
+      ]
+    },
+    {
+      "n": 2, "title": "Di dove sei?", "color": "#9B4F96",
+      "sections": [
+        {
+          "id": "u2_tu", "kind": "contenuti", "title": "Tu", "page": 17,
+          "text": ["Lucia: Io sono Lucia, tu chi sei?", "Lin: Io sono Lin.", "Lucia: Tu sei straniero?", "Lin: Sì, io sono straniero.", "Lucia: Tu sei studente?", "Lin: Sì, io sono studente."],
+          "items": [
+            ["tu", "you", "तुम", "👉"],
+            ["tu chi sei?", "who are you?", "तुम कौन हो?", "❓"],
+            ["straniero", "foreigner", "विदेशी", "🌍"],
+            ["sì", "yes", "हाँ", "✅"],
+            ["no", "no", "नहीं", "❌"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Lucia: Tu ____ sei?", "o": ["chi", "di", "sono"]},
+            {"t": "pick", "q": "Lin: Io ____ Lin.", "o": ["sono", "sei", "chi"]},
+            {"t": "pick", "q": "Lucia: ____ sei straniero?", "o": ["Tu", "Io", "Sì"]},
+            {"t": "match", "p": [["Tu chi sei?", "Io sono Lin."], ["Tu sei straniero?", "Sì, sono straniero."], ["Tu sei studente?", "Sì, sono studente."]]}
+          ]
+        },
+        {
+          "id": "u2_didovesei", "kind": "contenuti", "title": "Di dove sei?", "page": 18,
+          "text": ["Luca: Tu di dove sei?", "Alina: Io sono moldava, tu di dove sei?", "Luca: Io sono italiano."],
+          "items": [
+            ["di dove sei?", "where are you from?", "तुम कहाँ से हो?", "🌐"],
+            ["moldava", "Moldovan (f)", "मोल्दोवन (स्त्री)", "🇲🇩"],
+            ["dove", "where", "कहाँ", "📍"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Luca: Tu ____ dove sei?", "o": ["di", "chi", "sei"]},
+            {"t": "pick", "q": "Alina: Io ____ moldava.", "o": ["sono", "sei", "di"]},
+            {"t": "match", "p": [["Tu sei Carlo?", "Sì, sono Carlo."], ["Tu chi sei?", "Io sono Luca."], ["Di dove sei?", "Io sono moldavo."]]},
+            {"t": "match", "p": [["Tu sei straniero?", "Sì, sono straniero."], ["Tu sei studente?", "Sì, sono studente."], ["Tu sei Alina?", "Sì, sono Alina."]]},
+            {"t": "words", "w": "tu di dove sei"}
+          ]
+        },
+        {
+          "id": "u2_numeri", "kind": "lessico", "title": "Numeri 11–20", "page": 19,
+          "items": [
+            ["undici", "11", "11", "1️⃣"],
+            ["dodici", "12", "12", "2️⃣"],
+            ["tredici", "13", "13", "3️⃣"],
+            ["quattordici", "14", "14", "4️⃣"],
+            ["quindici", "15", "15", "5️⃣"],
+            ["sedici", "16", "16", "6️⃣"],
+            ["diciassette", "17", "17", "7️⃣"],
+            ["diciotto", "18", "18", "8️⃣"],
+            ["diciannove", "19", "19", "9️⃣"],
+            ["venti", "20", "20", "img:venti"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "due + tre =", "o": ["cinque", "sei", "quattro"]},
+            {"t": "pick", "q": "tre + quattro =", "o": ["sette", "otto", "sei"]},
+            {"t": "pick", "q": "dieci + cinque =", "o": ["quindici", "quattordici", "sedici"]},
+            {"t": "pick", "q": "venti − uno =", "o": ["diciannove", "diciotto", "diciassette"]},
+            {"t": "pick", "q": "diciotto − sei =", "o": ["dodici", "tredici", "undici"]},
+            {"t": "pick", "q": "nove + otto =", "o": ["diciassette", "diciotto", "sedici"]},
+            {"t": "pick", "q": "cinque + sei =", "o": ["undici", "dodici", "dieci"]},
+            {"t": "pick", "q": "sedici − due =", "o": ["quattordici", "quindici", "tredici"]},
+            {"t": "spell", "w": "sedici", "m": "se_i_i"},
+            {"t": "spell", "w": "dodici", "m": "d_d__i"}
+          ]
+        },
+        {
+          "id": "u2_luilei", "kind": "contenuti", "title": "Lui, lei", "page": 20,
+          "text": ["Luca: Lui chi è?", "Lin: Lui è Ivan.", "Luca: Lei chi è?", "Lin: Lei è Olga."],
+          "items": [
+            ["lui", "he", "वह (पुरुष)", "👨"],
+            ["lei", "she", "वह (स्त्री)", "👩"],
+            ["lui chi è?", "who is he?", "वह कौन है?", "❓"],
+            ["lei è Olga", "she is Olga", "वह ओल्गा है", "👩"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "👩 ____ Alina.", "o": ["Lei è", "Lui è"]},
+            {"t": "pick", "q": "👨 ____ Luca.", "o": ["Lui è", "Lei è"]},
+            {"t": "pick", "q": "👨 ____ Pablo.", "o": ["Lui è", "Lei è"]},
+            {"t": "pick", "q": "👩 ____ Anna.", "o": ["Lei è", "Lui è"]},
+            {"t": "pick", "q": "👩 ____ Maria.", "o": ["Lei è", "Lui è"]},
+            {"t": "pick", "q": "👨 ____ Kim.", "o": ["Lui è", "Lei è"]}
+          ]
+        },
+        {
+          "id": "u2_didovee", "kind": "contenuti", "title": "Di dove è?", "page": 21,
+          "text": ["Luca: Lui chi è?", "Lin: Lui è Ivan.", "Luca: Di dove è lui?", "Lin: Lui è ucraino.", "Luca: Lei chi è?", "Lin: Lei è Olga.", "Luca: Di dove è lei?", "Lin: Lei è ucraina."],
+          "items": [
+            ["di dove è lui?", "where is he from?", "वह कहाँ से है?", "🌐"],
+            ["ucraino", "Ukrainian", "यूक्रेनी", "🇺🇦"],
+            ["ucraina", "Ukrainian (f)", "यूक्रेनी (स्त्री)", "🇺🇦"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Luca: Lui chi ____?", "o": ["è", "sei", "sono"]},
+            {"t": "pick", "q": "Lin: ____ è Ivan.", "o": ["Lui", "Lei", "Tu"]},
+            {"t": "pick", "q": "Luca: Di ____ è lui?", "o": ["dove", "chi", "è"]},
+            {"t": "pick", "q": "Lin: Lei è ____.", "o": ["ucraina", "ucraino", "Ivan"]}
+          ]
+        },
+        {
+          "id": "u2_non", "kind": "contenuti", "title": "Non", "page": 22,
+          "text": ["Anna: Tu sei italiana?", "Paola: No, non sono italiana, sono brasiliana. E tu di dove sei?", "Anna: Io sono italiana. E lui chi è?", "Paola: Lui è Carlos.", "Anna: È brasiliano?", "Paola: No, lui non è brasiliano, è cubano."],
+          "items": [
+            ["non", "not", "नहीं", "🚫"],
+            ["io non sono italiana", "I am not Italian", "मैं इतालवी नहीं हूँ", "🚫"],
+            ["brasiliana", "Brazilian (f)", "ब्राज़ीली (स्त्री)", "🇧🇷"],
+            ["cubano", "Cuban", "क्यूबाई", "🇨🇺"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Paola è italiana?", "o": ["No, non è italiana.", "Sì, è italiana."]},
+            {"t": "pick", "q": "Di dove è Paola?", "o": ["È brasiliana.", "È italiana.", "È cubana."]},
+            {"t": "pick", "q": "Anna è italiana?", "o": ["Sì, è italiana.", "No, non è italiana."]},
+            {"t": "pick", "q": "Carlos è brasiliano?", "o": ["No, non è brasiliano.", "Sì, è brasiliano."]},
+            {"t": "pick", "q": "Di dove è Carlos?", "o": ["È cubano.", "È brasiliano.", "È italiano."]}
+          ]
+        },
+        {
+          "id": "u2_nazionalita", "kind": "lessico", "title": "Nazionalità", "page": 23,
+          "items": [
+            ["Brasile", "Brazil", "ब्राज़ील", "🇧🇷"],
+            ["Cina", "China", "चीन", "🇨🇳"],
+            ["Marocco", "Morocco", "मोरक्को", "🇲🇦"],
+            ["marocchino", "Moroccan", "मोरक्कन", "🇲🇦"],
+            ["Moldavia", "Moldova", "मोल्दोवा", "🇲🇩"],
+            ["Perù", "Peru", "पेरू", "🇵🇪"],
+            ["Romania", "Romania", "रोमानिया", "🇷🇴"],
+            ["romeno", "Romanian", "रोमानियाई", "🇷🇴"],
+            ["Russia", "Russia", "रूस", "🇷🇺"],
+            ["russo", "Russian", "रूसी", "🇷🇺"],
+            ["Senegal", "Senegal", "सेनेगल", "🇸🇳"],
+            ["senegalese", "Senegalese", "सेनेगली", "🇸🇳"],
+            ["Sri Lanka", "Sri Lanka", "श्रीलंका", "🇱🇰"],
+            ["cingalese", "Sri Lankan", "श्रीलंकाई", "🇱🇰"],
+            ["Tunisia", "Tunisia", "ट्यूनीशिया", "🇹🇳"],
+            ["Ucraina", "Ukraine", "यूक्रेन", "🇺🇦"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "🇨🇳 Cina → lui è ____", "o": ["cinese", "cino", "cinesa"]},
+            {"t": "pick", "q": "🇵🇪 Perù → lei è ____", "o": ["peruviana", "peruviano", "perù"]},
+            {"t": "pick", "q": "🇲🇦 Marocco → lui è ____", "o": ["marocchino", "marocco", "marocchina"]},
+            {"t": "pick", "q": "🇸🇳 Senegal → lei è ____", "o": ["senegalese", "senegalesa", "senegala"]},
+            {"t": "pick", "q": "🇷🇺 Russia → lui è ____", "o": ["russo", "russa", "russiano"]},
+            {"t": "pick", "q": "🇮🇹 Italia → lei è ____", "o": ["italiana", "italiano", "italia"]},
+            {"t": "match", "p": [["Brasile", "brasiliano"], ["Cina", "cinese"], ["Romania", "romeno"], ["Sri Lanka", "cingalese"]]}
+          ]
+        },
+        {
+          "id": "u2_continenti", "kind": "lessico", "title": "Continenti", "page": 24,
+          "items": [
+            ["Africa", "Africa", "अफ़्रीका", "🌍"],
+            ["africano", "African", "अफ़्रीकी", "🌍"],
+            ["Europa", "Europe", "यूरोप", "🇪🇺"],
+            ["europeo", "European", "यूरोपीय", "🇪🇺"],
+            ["Asia", "Asia", "एशिया", "🌏"],
+            ["asiatico", "Asian", "एशियाई", "🌏"],
+            ["Nord America", "North America", "उत्तर अमेरिका", "🌎"],
+            ["Sud America", "South America", "दक्षिण अमेरिका", "🌎"],
+            ["Oceania", "Oceania", "ओशिनिया", "🏝️"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Io sono italiano, sono ____.", "o": ["europeo", "asiatico", "africano"]},
+            {"t": "pick", "q": "Io sono cinese, sono ____.", "o": ["asiatica", "europea", "africana"]},
+            {"t": "pick", "q": "Io sono senegalese, sono ____.", "o": ["africano", "asiatico", "europeo"]},
+            {"t": "pick", "q": "Io sono peruviano, sono ____.", "o": ["sudamericano", "nordamericano", "europeo"]},
+            {"t": "pick", "q": "Io sono indiano, sono ____.", "o": ["asiatico", "africano", "europeo"]}
+          ]
+        },
+        {
+          "id": "u2_essere", "kind": "grammatica", "title": "Verbo essere", "page": 25,
+          "text": ["ESSERE: io sono · tu sei · lui/lei è", "NON ESSERE: io non sono · tu non sei · lui/lei non è"],
+          "items": [
+            ["io sono", "I am", "मैं हूँ", "🙋"],
+            ["tu sei", "you are", "तुम हो", "👉"],
+            ["lui è", "he is", "वह है", "👨"],
+            ["lei è", "she is", "वह है", "👩"],
+            ["io non sono", "I am not", "मैं नहीं हूँ", "🚫"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Io ____ Alì.", "o": ["sono", "sei", "è"]},
+            {"t": "pick", "q": "Lei ____ italiana.", "o": ["è", "sono", "sei"]},
+            {"t": "pick", "q": "Tu ____ inglese.", "o": ["sei", "è", "sono"]},
+            {"t": "pick", "q": "Olga ____ ucraina.", "o": ["è", "sei", "sono"]},
+            {"t": "pick", "q": "Io ____ Laura.", "o": ["sono", "è", "sei"]},
+            {"t": "pick", "q": "Tu ____ africano.", "o": ["sei", "sono", "è"]},
+            {"t": "pick", "q": "____ una banana.", "img": "banana", "o": ["È", "Non è"]},
+            {"t": "pick", "q": "____ una mela.", "img": "banana", "o": ["Non è", "È"]},
+            {"t": "pick", "q": "____ un tavolo.", "img": "tavolo", "o": ["È", "Non è"]},
+            {"t": "pick", "q": "____ un naso.", "img": "naso", "o": ["È", "Non è"]},
+            {"t": "pick", "q": "____ un euro.", "img": "cane", "o": ["Non è", "È"]}
+          ]
+        },
+        {
+          "id": "u2_lettera_g", "kind": "fonetica", "title": "La lettera G", "page": 26,
+          "text": ["G + I = GI → ginocchio", "G + E = GE → gelato", "G + A = GA → gatto", "G + O = GO → gonna", "G + U = GU → guanti", "G + HI = GHI → ghiaccio", "G + HE = GHE → spaghetti"],
+          "items": [
+            ["ginocchio", "knee", "घुटना", "🦵"],
+            ["gemelli", "twins", "जुड़वाँ", "👯"],
+            ["giraffa", "giraffe", "जिराफ़", "🦒"],
+            ["gente", "people", "लोग", "👥"],
+            ["gesso", "chalk", "चॉक", "🖍️"],
+            ["giubbotto", "jacket", "जैकेट", "🧥"],
+            ["giacca", "blazer", "कोट", "🧥"],
+            ["giusto", "right", "सही", "👌"],
+            ["giornale", "newspaper", "अख़बार", "📰"],
+            ["gatto", "cat", "बिल्ली", "🐱"],
+            ["gonna", "skirt", "स्कर्ट", "img:gonna"],
+            ["guanti", "gloves", "दस्ताने", "img:guanto"],
+            ["inglese", "English", "अंग्रेज़", "🇬🇧"],
+            ["ghiaccio", "ice", "बर्फ़", "🧊"],
+            ["spaghetti", "spaghetti", "स्पेगेटी", "🍝"],
+            ["goccia", "drop", "बूँद", "💧"]
+          ],
+          "ex": [
+            {"t": "order", "w": "gelato", "s": "lateog"},
+            {"t": "order", "w": "gesso", "s": "soegs"},
+            {"t": "order", "w": "giraffa", "s": "rfaafig"},
+            {"t": "order", "w": "giusto", "s": "usgito"},
+            {"t": "order", "w": "giornale", "s": "rogialen"},
+            {"t": "order", "w": "giacca", "s": "cacagi"},
+            {"t": "order", "w": "gente", "s": "enteg"},
+            {"t": "pick", "q": "__ TA (gita)", "o": ["GI", "GE", "GHI", "GHE"]},
+            {"t": "pick", "q": "SPA __ TTI", "o": ["GHE", "GE", "GI", "GHI"]},
+            {"t": "pick", "q": "__ RMANIA", "o": ["GE", "GHE", "GI", "GHI"]},
+            {"t": "pick", "q": "__ RO (ghiro)", "o": ["GHI", "GI", "GE", "GHE"]},
+            {"t": "pick", "q": "A __ LE", "o": ["GI", "GHI", "GE", "GHE"]},
+            {"t": "pick", "q": "__ TTO 🐱", "o": ["GA", "GO", "GU", "GE"]}
+          ]
+        }
+      ]
+    },
+    {
+      "n": 3, "title": "Quanti anni hai?", "color": "#E2493B",
+      "sections": [
+        {
+          "id": "u3_ioho", "kind": "contenuti", "title": "Io ho, io non ho", "page": 29,
+          "text": ["Razvan: Tu hai una macchina?", "Nina: No, io non ho una macchina.", "Razvan: Tu hai un motorino?", "Nina: No, io non ho un motorino.", "Razvan: Hai una bicicletta?", "Nina: No, non ho una bicicletta.", "Razvan: Quindi non hai niente.", "Nina: No, ma ho buone gambe."],
+          "items": [
+            ["io ho", "I have", "मेरे पास है", "✋"],
+            ["io non ho", "I don't have", "मेरे पास नहीं है", "🚫"],
+            ["macchina", "car", "कार", "🚗"],
+            ["motorino", "scooter", "स्कूटर", "🛵"],
+            ["bicicletta", "bicycle", "साइकिल", "🚲"],
+            ["cellulare", "mobile phone", "मोबाइल", "📱"],
+            ["televisione", "television", "टीवी", "📺"],
+            ["orologio", "watch", "घड़ी", "⌚"],
+            ["portafoglio", "wallet", "बटुआ", "👛"],
+            ["computer", "computer", "कंप्यूटर", "💻"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Tu hai una macchina? No, io non ____ una macchina.", "o": ["ho", "hai", "ha"]},
+            {"t": "pick", "q": "Razvan: Tu ____ un motorino?", "o": ["hai", "ho", "ha"]},
+            {"t": "pick", "q": "Nina ha una bicicletta?", "o": ["No, non ha una bicicletta.", "Sì, ha una bicicletta."]},
+            {"t": "tf", "q": "Nina ha buone gambe.", "a": true},
+            {"t": "tf", "q": "Nina ha un motorino.", "a": false},
+            {"t": "words", "w": "io non ho una macchina"}
+          ]
+        },
+        {
+          "id": "u3_gambe", "kind": "contenuti", "title": "Lei ha buone gambe", "page": 30,
+          "text": ["Nina non ha una macchina, non ha un motorino, non ha una bicicletta… ma ha buone gambe."],
+          "items": [
+            ["gambe", "legs", "पैर", "🦵"],
+            ["buone gambe", "good legs", "अच्छे पैर", "🏃"],
+            ["niente", "nothing", "कुछ नहीं", "🫥"],
+            ["ma", "but", "लेकिन", "↔️"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Nina ha una macchina?", "o": ["No, non ha una macchina.", "Sì, ha una macchina."]},
+            {"t": "pick", "q": "Nina ha ____ gambe.", "o": ["buone", "una", "niente"]},
+            {"t": "tf", "q": "Nina non ha niente, ma ha buone gambe.", "a": true}
+          ]
+        },
+        {
+          "id": "u3_fratelli", "kind": "contenuti", "title": "Fratelli e sorelle", "page": 30,
+          "text": ["Leo: Tu hai fratelli?", "Maria: No, non ho fratelli.", "Leo: Hai sorelle?", "Maria: Sì, ho due sorelle. E tu hai fratelli?", "Leo: Sì, ho un fratello.", "Maria: Hai una sorella?", "Leo: No, non ho una sorella."],
+          "items": [
+            ["fratello", "brother", "भाई", "👦"],
+            ["sorella", "sister", "बहन", "👧"],
+            ["fratelli", "brothers", "भाई (बहुवचन)", "👦👦"],
+            ["sorelle", "sisters", "बहनें", "👧👧"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Maria ha fratelli?", "o": ["No, non ha fratelli.", "Sì, ha un fratello."]},
+            {"t": "pick", "q": "Leo ha fratelli?", "o": ["Sì, ha un fratello.", "No, non ha fratelli."]},
+            {"t": "pick", "q": "Maria ha sorelle?", "o": ["Sì, ha due sorelle.", "No, non ha sorelle."]},
+            {"t": "pick", "q": "Leo ha sorelle?", "o": ["No, non ha sorelle.", "Sì, ha due sorelle."]}
+          ]
+        },
+        {
+          "id": "u3_quantianni", "kind": "contenuti", "title": "Quanti anni hai?", "page": 31,
+          "text": ["Kris: Quanti anni hai?", "Sara: Io ho 21 anni. E tu quanti anni hai?", "Kris: Io ho 28 anni. Hai figli?", "Sara: Sì, ho una figlia.", "Kris: Quanti anni ha?", "Sara: Lei ha 8 mesi."],
+          "items": [
+            ["quanti anni hai?", "how old are you?", "तुम्हारी उम्र कितनी है?", "🎂"],
+            ["anni", "years", "साल", "📆"],
+            ["mesi", "months", "महीने", "🗓️"],
+            ["figlia", "daughter", "बेटी", "👧"],
+            ["figli", "children", "बच्चे", "👶"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Kris: Quanti anni ____?", "o": ["hai", "ha", "ho"]},
+            {"t": "pick", "q": "Sara: Io ho 21 ____.", "o": ["anni", "mesi", "figli"]},
+            {"t": "pick", "q": "Kris: Hai ____?", "o": ["figli", "anni", "mesi"]},
+            {"t": "pick", "q": "Sara: Sì, ho una ____.", "o": ["figlia", "figli", "anni"]},
+            {"t": "tf", "q": "Sara ha 21 anni.", "a": true},
+            {"t": "tf", "q": "La figlia di Sara ha 8 anni.", "a": false},
+            {"t": "words", "w": "quanti anni hai"}
+          ]
+        },
+        {
+          "id": "u3_avere", "kind": "grammatica", "title": "Verbo avere", "page": 32,
+          "text": ["AVERE: io ho · tu hai · lui/lei ha", "NON AVERE: io non ho · tu non hai · lui/lei non ha"],
+          "items": [
+            ["io ho", "I have", "मेरे पास है", "🙋"],
+            ["tu hai", "you have", "तुम्हारे पास है", "👉"],
+            ["lui/lei ha", "he/she has", "उसके पास है", "🧑"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Io ____ una bicicletta.", "o": ["ho", "hai", "ha"]},
+            {"t": "pick", "q": "Lei ____ 19 anni.", "o": ["ha", "ho", "hai"]},
+            {"t": "pick", "q": "Tu ____ sorelle?", "o": ["hai", "ha", "ho"]},
+            {"t": "pick", "q": "Io non ____ casa.", "o": ["ho", "ha", "hai"]},
+            {"t": "pick", "q": "Maria ____ due sorelle.", "o": ["ha", "hai", "ho"]},
+            {"t": "pick", "q": "Lui ____ tre sorelle.", "o": ["ha", "ho", "hai"]},
+            {"t": "pick", "q": "Mario ____ un fratello.", "o": ["ha", "hai", "ho"]},
+            {"t": "pick", "q": "Tu ____ una casa?", "o": ["hai", "ho", "ha"]}
+          ]
+        },
+        {
+          "id": "u3_avere_lessico", "kind": "lessico", "title": "Avere fame, sete…", "page": 32,
+          "items": [
+            ["avere fame", "to be hungry", "भूख लगना", "img:fame"],
+            ["avere sete", "to be thirsty", "प्यास लगना", "img:sete"],
+            ["avere caldo", "to be hot", "गर्मी लगना", "img:caldo"],
+            ["avere freddo", "to be cold", "ठंड लगना", "img:freddo"],
+            ["avere sonno", "to be sleepy", "नींद आना", "img:sonno"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Lui ha ____.", "img": "freddo", "o": ["freddo", "caldo", "fame"]},
+            {"t": "pick", "q": "Lui ha ____.", "img": "fame", "o": ["fame", "sete", "sonno"]},
+            {"t": "pick", "q": "Lui ha ____.", "img": "sete", "o": ["sete", "fame", "freddo"]},
+            {"t": "pick", "q": "Lui ha ____.", "img": "caldo", "o": ["caldo", "freddo", "sonno"]},
+            {"t": "pick", "q": "Lui ha ____.", "img": "sonno", "o": ["sonno", "sete", "caldo"]},
+            {"t": "pick", "q": "Lui ____ caldo.", "img": "freddo", "o": ["non ha", "ha"]}
+          ]
+        },
+        {
+          "id": "u3_nomi", "kind": "grammatica", "title": "Nomi o-i / a-e", "page": 33,
+          "text": ["un fratello → due fratelli", "un figlio → due figli", "una sorella → due sorelle", "una figlia → due figlie"],
+          "items": [
+            ["ragazzo", "boy", "लड़का", "👦"],
+            ["ragazza", "girl", "लड़की", "👧"],
+            ["bambino", "child (m)", "बच्चा", "👶"],
+            ["bambina", "child (f)", "बच्ची", "👶"],
+            ["amico", "friend (m)", "दोस्त", "🤝"],
+            ["amica", "friend (f)", "सहेली", "🤝"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "un ragazzo → due ____", "o": ["ragazzi", "ragazze", "ragazzo"]},
+            {"t": "pick", "q": "una bambina → due ____", "o": ["bambine", "bambini", "bambina"]},
+            {"t": "pick", "q": "una ragazza → due ____", "o": ["ragazze", "ragazzi", "ragazza"]},
+            {"t": "pick", "q": "un amico → due ____", "o": ["amici", "amiche", "amico"]},
+            {"t": "pick", "q": "una amica → due ____", "o": ["amiche", "amici", "amica"]},
+            {"t": "pick", "q": "un figlio → due ____", "o": ["figli", "figlie", "figlio"]}
+          ]
+        },
+        {
+          "id": "u3_famiglia", "kind": "lessico", "title": "La famiglia", "page": 33,
+          "items": [
+            ["nonno", "grandfather", "दादा / नाना", "👴"],
+            ["nonna", "grandmother", "दादी / नानी", "👵"],
+            ["zio", "uncle", "चाचा / मामा", "👨"],
+            ["zia", "aunt", "चाची / मौसी", "👩"],
+            ["padre / papà", "father / dad", "पिता / पापा", "👨"],
+            ["madre / mamma", "mother / mum", "माता / माँ", "👩"],
+            ["cugino", "cousin (m)", "चचेरा भाई", "🧑"],
+            ["cugina", "cousin (f)", "चचेरी बहन", "👧"],
+            ["famiglia", "family", "परिवार", "👨‍👩‍👧"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Il padre di mio padre è mio ____.", "o": ["nonno", "zio", "cugino"]},
+            {"t": "pick", "q": "La sorella di mia madre è mia ____.", "o": ["zia", "nonna", "cugina"]},
+            {"t": "pick", "q": "Il figlio di mio zio è mio ____.", "o": ["cugino", "fratello", "nonno"]},
+            {"t": "pick", "q": "La madre di mia madre è mia ____.", "o": ["nonna", "zia", "sorella"]},
+            {"t": "match", "p": [["papà", "padre"], ["mamma", "madre"], ["nonno", "nonna"], ["zio", "zia"]]}
+          ]
+        },
+        {
+          "id": "u3_numeri", "kind": "lessico", "title": "Numeri 21–100", "page": 34,
+          "items": [
+            ["ventuno", "21", "21", "🔢"],
+            ["ventidue", "22", "22", "🔢"],
+            ["ventitré", "23", "23", "🔢"],
+            ["ventotto", "28", "28", "🔢"],
+            ["trenta", "30", "30", "🔢"],
+            ["quaranta", "40", "40", "🔢"],
+            ["cinquanta", "50", "50", "🔢"],
+            ["sessanta", "60", "60", "🔢"],
+            ["settanta", "70", "70", "🔢"],
+            ["ottanta", "80", "80", "🔢"],
+            ["novanta", "90", "90", "🔢"],
+            ["cento", "100", "100", "💯"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "21 =", "o": ["ventuno", "ventiuno", "ventino"]},
+            {"t": "pick", "q": "38 =", "o": ["trentotto", "trentaotto", "trentaotte"]},
+            {"t": "pick", "q": "41 =", "o": ["quarantuno", "quarantauno", "quatrouno"]},
+            {"t": "pick", "q": "58 =", "o": ["cinquantotto", "cinquantaotto", "cinquotto"]},
+            {"t": "pick", "q": "62 =", "o": ["sessantadue", "seicentodue", "sessantodue"]},
+            {"t": "pick", "q": "89 =", "o": ["ottantanove", "ottonove", "ottantonove"]},
+            {"t": "pick", "q": "92 =", "o": ["novantadue", "novantodue", "noventadue"]},
+            {"t": "spell", "w": "trenta"},
+            {"t": "spell", "w": "cento"}
+          ]
+        },
+        {
+          "id": "u3_stranieri", "kind": "contenuti", "title": "Siamo stranieri", "page": 35,
+          "text": ["Luca: Voi di dove siete?", "Pablo: Noi siamo italiani, ma mamma e papà sono argentini.", "Luca: Siete fratelli?", "Carmen: Sì, siamo fratello e sorella.", "Luca: Siete nati in Italia o in Argentina?", "Pablo: Siamo nati in Italia.", "Luca: E i vostri genitori dove sono adesso?", "Carmen: Loro sono in Argentina."],
+          "items": [
+            ["noi", "we", "हम", "👥"],
+            ["voi", "you (plural)", "आप सब", "🫵"],
+            ["loro", "they", "वे", "👨‍👩‍👦"],
+            ["genitori", "parents", "माता-पिता", "👪"],
+            ["argentino", "Argentinian", "अर्जेंटीनी", "🇦🇷"],
+            ["nato", "born", "जन्मा", "👶"],
+            ["adesso", "now", "अभी", "⏱️"]
+          ],
+          "ex": [
+            {"t": "tf", "q": "Pablo e Carmen sono italiani.", "a": true},
+            {"t": "tf", "q": "Pablo è fratello di Luca.", "a": false},
+            {"t": "tf", "q": "I genitori di Pablo sono italiani.", "a": false},
+            {"t": "tf", "q": "Pablo è nato in Argentina.", "a": false},
+            {"t": "tf", "q": "Carmen è nata in Italia.", "a": true},
+            {"t": "tf", "q": "I genitori di Carmen sono in Argentina.", "a": true},
+            {"t": "tf", "q": "Pablo e Carmen sono fratello e sorella.", "a": true}
+          ]
+        },
+        {
+          "id": "u3_essere", "kind": "grammatica", "title": "Verbo essere", "page": 36,
+          "text": ["io sono · tu sei · lui/lei è", "noi siamo · voi siete · loro sono"],
+          "items": [
+            ["noi siamo", "we are", "हम हैं", "👥"],
+            ["voi siete", "you are (pl)", "आप सब हैं", "🫵"],
+            ["loro sono", "they are", "वे हैं", "👨‍👩‍👦"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Io ____ cileno, non peruviano.", "o": ["sono", "sei", "siamo"]},
+            {"t": "pick", "q": "Mio fratello ____ nato a Roma.", "o": ["è", "sono", "siete"]},
+            {"t": "pick", "q": "Voi ____ in Italia da un mese.", "o": ["siete", "siamo", "sono"]},
+            {"t": "pick", "q": "Noi ____ italiani.", "o": ["siamo", "siete", "sono"]},
+            {"t": "pick", "q": "Loro ____ cinesi.", "o": ["sono", "siamo", "è"]},
+            {"t": "pick", "q": "Tu ____ Irina?", "o": ["sei", "è", "siete"]},
+            {"t": "match", "p": [["Tu sei nato in Italia?", "No, sono nato in Cina."], ["Oggi è lunedì?", "No, è martedì."], ["Voi siete italiani?", "Sì, siamo italiani."], ["Tu sei stanco?", "Sì, sono stanco."]]}
+          ]
+        },
+        {
+          "id": "u3_gli", "kind": "fonetica", "title": "Suono GLI", "page": 38,
+          "text": ["G + L + I = GLI → famiglia"],
+          "items": [
+            ["aglio", "garlic", "लहसुन", "🧄"],
+            ["maglia", "jumper", "स्वेटर", "🧶"],
+            ["coniglio", "rabbit", "खरगोश", "🐰"],
+            ["foglia", "leaf", "पत्ता", "🍃"],
+            ["conchiglie", "shells", "सीपियाँ", "🐚"],
+            ["biglietto", "ticket", "टिकट", "🎫"],
+            ["bottiglia", "bottle", "बोतल", "🍾"],
+            ["lavastoviglie", "dishwasher", "डिशवॉशर", "🍽️"]
+          ],
+          "ex": [
+            {"t": "order", "w": "maglia", "s": "aaglim"},
+            {"t": "order", "w": "coniglio", "s": "nigcooli"},
+            {"t": "order", "w": "bottiglia", "s": "tigtilboa"},
+            {"t": "order", "w": "foglia", "s": "gifoal"},
+            {"t": "order", "w": "biglietto", "s": "btigetoli"},
+            {"t": "order", "w": "aglio", "s": "igola"}
+          ]
+        },
+        {
+          "id": "u3_gn", "kind": "fonetica", "title": "Suono GN", "page": 39,
+          "text": ["G + N = GN → bagno"],
+          "items": [
+            ["bagno", "bathroom", "बाथरूम", "🛁"],
+            ["gnomo", "gnome", "बौना", "🧙"],
+            ["castagne", "chestnuts", "शाहबलूत", "🌰"],
+            ["lavagna", "blackboard", "ब्लैकबोर्ड", "📋"],
+            ["lasagne", "lasagne", "लज़ान्या", "🍲"],
+            ["signora", "lady", "महिला", "👩"],
+            ["Spagna", "Spain", "स्पेन", "🇪🇸"],
+            ["pugni", "fists", "मुक्के", "👊"],
+            ["ragni", "spiders", "मकड़ियाँ", "🕷️"]
+          ],
+          "ex": [
+            {"t": "order", "w": "lasagne", "s": "slagena"},
+            {"t": "order", "w": "pugni", "s": "ginup"},
+            {"t": "order", "w": "castagne", "s": "stacegan"},
+            {"t": "order", "w": "Spagna", "s": "nasapg"},
+            {"t": "order", "w": "gnomo", "s": "moong"},
+            {"t": "order", "w": "lavagna", "s": "glaaanv"},
+            {"t": "order", "w": "signora", "s": "risonga"},
+            {"t": "pick", "q": "BOLO __ A", "o": ["GN", "NI"]},
+            {"t": "pick", "q": "CAMPA __ A", "o": ["GN", "NI"]}
+          ]
+        },
+        {
+          "id": "u3_mesi", "kind": "lessico", "title": "Mesi dell'anno", "page": 40,
+          "items": [
+            ["gennaio", "January", "जनवरी", "❄️"],
+            ["febbraio", "February", "फ़रवरी", "💝"],
+            ["marzo", "March", "मार्च", "🌱"],
+            ["aprile", "April", "अप्रैल", "🌷"],
+            ["maggio", "May", "मई", "🌸"],
+            ["giugno", "June", "जून", "☀️"],
+            ["luglio", "July", "जुलाई", "🏖️"],
+            ["agosto", "August", "अगस्त", "🌞"],
+            ["settembre", "September", "सितंबर", "🍂"],
+            ["ottobre", "October", "अक्टूबर", "🎃"],
+            ["novembre", "November", "नवंबर", "🌧️"],
+            ["dicembre", "December", "दिसंबर", "🎄"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Dopo marzo → ?", "o": ["aprile", "febbraio", "maggio"]},
+            {"t": "pick", "q": "Prima di settembre → ?", "o": ["agosto", "ottobre", "luglio"]},
+            {"t": "pick", "q": "Dopo agosto → ?", "o": ["settembre", "luglio", "ottobre"]},
+            {"t": "pick", "q": "Dopo dicembre → ?", "o": ["gennaio", "novembre", "febbraio"]},
+            {"t": "pick", "q": "Prima di dicembre → ?", "o": ["novembre", "ottobre", "gennaio"]},
+            {"t": "spell", "w": "giugno"},
+            {"t": "spell", "w": "luglio"}
+          ]
+        }
+      ]
+    },
+    {
+      "n": 4, "title": "Studio e imparo", "color": "#F2A33A",
+      "sections": [
+        {
+          "id": "u4_studenti", "kind": "contenuti", "title": "Due nuovi studenti", "page": 41,
+          "text": ["Professore: Avete familiari in Italia?", "Nigar: Sì, abbiamo tutta la famiglia qui.", "Professore: E avete amici italiani?", "Damith: Sì, ma abbiamo pochi amici.", "Professore: I vostri genitori hanno amici italiani?", "Nigar: Sì, loro hanno molti amici qui.", "Professore: Quanti anni avete?", "Damith: Io ho 16 anni e lei 14."],
+          "items": [
+            ["familiari", "relatives", "रिश्तेदार", "👪"],
+            ["amici", "friends", "दोस्त", "🧑‍🤝‍🧑"],
+            ["pochi", "few", "थोड़े", "🤏"],
+            ["molti", "many", "बहुत", "🙌"],
+            ["tutta la famiglia", "the whole family", "पूरा परिवार", "👨‍👩‍👧‍👦"]
+          ],
+          "ex": [
+            {"t": "tf", "q": "Nigar e Damith non hanno familiari in Italia.", "a": false},
+            {"t": "tf", "q": "Nigar e Damith hanno pochi amici in Italia.", "a": true},
+            {"t": "tf", "q": "I genitori di Damith e Nigar hanno pochi amici.", "a": false},
+            {"t": "tf", "q": "Nigar ha 14 anni e Damith ha 16 anni.", "a": true},
+            {"t": "pick", "q": "Damith: Sì, ma abbiamo ____ amici.", "o": ["pochi", "molti", "tutti"]}
+          ]
+        },
+        {
+          "id": "u4_avere", "kind": "grammatica", "title": "Verbo avere", "page": 42,
+          "text": ["io ho · tu hai · lui/lei ha", "noi abbiamo · voi avete · loro hanno"],
+          "items": [
+            ["noi abbiamo", "we have", "हमारे पास है", "👥"],
+            ["voi avete", "you have (pl)", "आप सब के पास है", "🫵"],
+            ["loro hanno", "they have", "उनके पास है", "👨‍👩‍👦"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Io ____ una sorella.", "o": ["ho", "ha", "hanno"]},
+            {"t": "pick", "q": "Gli alunni ____ sete.", "o": ["hanno", "abbiamo", "ha"]},
+            {"t": "pick", "q": "____ abbiamo molti amici.", "o": ["Noi", "Voi", "Loro"]},
+            {"t": "pick", "q": "____ non avete una macchina.", "o": ["Voi", "Noi", "Loro"]},
+            {"t": "pick", "q": "Loro ____ fame.", "o": ["hanno", "avete", "ha"]},
+            {"t": "pick", "q": "Io e mia sorella ____ sonno.", "o": ["abbiamo", "hanno", "avete"]},
+            {"t": "pick", "q": "Tu e Miriam ____ un quaderno?", "o": ["avete", "abbiamo", "hanno"]}
+          ]
+        },
+        {
+          "id": "u4_bisogno", "kind": "lessico", "title": "Aver bisogno / aver voglia", "page": 43,
+          "items": [
+            ["ho bisogno di", "I need", "मुझे … चाहिए", "🙏"],
+            ["fazzoletto", "handkerchief", "रूमाल", "🤧"],
+            ["soldi", "money", "पैसे", "💶"],
+            ["ho voglia di", "I feel like", "मेरा मन है", "😋"],
+            ["caffè", "coffee", "कॉफ़ी", "☕"],
+            ["uscire", "to go out", "बाहर जाना", "🚪"],
+            ["aiuto", "help", "मदद", "🆘"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Lui ____ voglia di ballare.", "o": ["ha", "ho"]},
+            {"t": "pick", "q": "Noi ____ bisogno di dormire.", "o": ["abbiamo", "hanno"]},
+            {"t": "pick", "q": "Lin ____ bisogno di un computer.", "o": ["ha", "avete"]},
+            {"t": "pick", "q": "Loro ____ voglia di uscire.", "o": ["hanno", "abbiamo"]},
+            {"t": "pick", "q": "Io ____ bisogno di aiuto.", "o": ["ho", "hai"]},
+            {"t": "pick", "q": "Voi ____ voglia di andare al mare?", "o": ["avete", "abbiamo"]},
+            {"t": "pick", "q": "Tu ____ bisogno di soldi?", "o": ["hai", "ha"]},
+            {"t": "pick", "q": "Lei ____ voglia di imparare.", "o": ["ha", "hai"]}
+          ]
+        },
+        {
+          "id": "u4_vanilde", "kind": "contenuti", "title": "Vanilde", "page": 44,
+          "text": ["Io sono Vanilde, sono brasiliana. Ho 20 anni, sono in Italia da 4 mesi. Ho un ragazzo, lui è italiano, ha 28 anni. I miei genitori sono in Brasile, là hanno un ristorante. Ho bisogno di parlare bene in italiano."],
+          "items": [
+            ["ragazzo", "boyfriend", "बॉयफ़्रेंड", "💑"],
+            ["ristorante", "restaurant", "रेस्तराँ", "🍽️"],
+            ["parlare", "to speak", "बोलना", "🗣️"],
+            ["là", "there", "वहाँ", "👉"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Di dove è Vanilde?", "o": ["È brasiliana.", "È italiana.", "È peruviana."]},
+            {"t": "pick", "q": "Quanti anni ha Vanilde?", "o": ["20", "28", "4"]},
+            {"t": "pick", "q": "Da quanto tempo è in Italia?", "o": ["Da 4 mesi.", "Da 20 anni.", "Da 2 mesi."]},
+            {"t": "pick", "q": "Di dove è il ragazzo?", "o": ["È italiano.", "È brasiliano.", "È cubano."]},
+            {"t": "pick", "q": "I genitori di Vanilde sono in Italia?", "o": ["No, sono in Brasile.", "Sì, sono in Italia."]},
+            {"t": "pick", "q": "Di che cosa ha bisogno Vanilde?", "o": ["Di parlare bene in italiano.", "Di un ristorante.", "Di soldi."]}
+          ]
+        },
+        {
+          "id": "u4_aggettivi", "kind": "grammatica", "title": "Aggettivi o-i / a-e", "page": 45,
+          "text": ["nuovo → nuovi", "nuova → nuove", "vecchio → vecchi", "vecchia → vecchie"],
+          "items": [
+            ["nuovo", "new", "नया", "✨"],
+            ["vecchio", "old", "पुराना", "🧓"],
+            ["rosso", "red", "लाल", "🔴"],
+            ["bianco", "white", "सफ़ेद", "⚪"],
+            ["nero", "black", "काला", "⚫"],
+            ["giallo", "yellow", "पीला", "🟡"],
+            ["bello", "beautiful", "सुंदर", "😍"],
+            ["brutto", "ugly", "बदसूरत", "😖"],
+            ["buono", "good", "अच्छा", "👍"],
+            ["cattivo", "bad", "बुरा", "👎"],
+            ["alto", "tall", "लंबा", "📏"],
+            ["basso", "short", "नाटा", "⬇️"],
+            ["piccolo", "small", "छोटा", "🐜"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "un ragazzo bello → tanti ragazzi ____", "o": ["belli", "belle", "bello"]},
+            {"t": "pick", "q": "una bambina buona → tante bambine ____", "o": ["buone", "buoni", "buona"]},
+            {"t": "pick", "q": "una sorella alta → tante sorelle ____", "o": ["alte", "alti", "alta"]},
+            {"t": "pick", "q": "un cappello rosso → tanti cappelli ____", "o": ["rossi", "rosse", "rosso"]},
+            {"t": "pick", "q": "un giubbotto nero → tanti giubbotti ____", "o": ["neri", "nere", "nero"]},
+            {"t": "pick", "q": "una gonna gialla → tante gonne ____", "o": ["gialle", "gialli", "gialla"]},
+            {"t": "pick", "q": "un calzino nuovo → tanti calzini ____", "o": ["nuovi", "nuove", "nuovo"]},
+            {"t": "pick", "q": "una scarpa vecchia → tante scarpe ____", "o": ["vecchie", "vecchi", "vecchia"]}
+          ]
+        },
+        {
+          "id": "u4_vestiti", "kind": "lessico", "title": "Vestiti", "page": 46,
+          "items": [
+            ["pantalone", "trousers", "पतलून", "img:pantalone"],
+            ["maglione", "sweater", "स्वेटर", "img:maglione"],
+            ["maglietta", "T-shirt", "टी-शर्ट", "img:maglietta"],
+            ["cappello", "hat", "टोपी", "img:cappello"],
+            ["sciarpa", "scarf", "मफ़लर", "img:sciarpa"],
+            ["calza", "tights", "स्टॉकिंग", "img:calza"],
+            ["gonna", "skirt", "स्कर्ट", "img:gonna"],
+            ["scarpa", "shoe", "जूता", "img:scarpa"],
+            ["guanto", "glove", "दस्ताना", "img:guanto"],
+            ["calzino", "sock", "मोज़ा", "img:calzino"]
+          ],
+          "ex": [
+            {"t": "spell", "w": "gonna", "img": "gonna"},
+            {"t": "spell", "w": "scarpa", "img": "scarpa"},
+            {"t": "spell", "w": "guanto", "img": "guanto"},
+            {"t": "spell", "w": "cappello", "m": "ca__ello", "img": "cappello"},
+            {"t": "spell", "w": "maglietta", "m": "ma_lie__a", "img": "maglietta"},
+            {"t": "spell", "w": "sciarpa", "m": "sc_ar_a", "img": "sciarpa"}
+          ]
+        },
+        {
+          "id": "u4_nomi_ei", "kind": "grammatica", "title": "Nomi e-i", "page": 46,
+          "text": ["un paese → due paesi", "una chiave → due chiavi"],
+          "items": [
+            ["paese", "country / village", "देश / गाँव", "🏘️"],
+            ["piede", "foot", "पैर", "🦶"],
+            ["pesce", "fish", "मछली", "🐟"],
+            ["fiume", "river", "नदी", "🏞️"],
+            ["dottore", "doctor", "डॉक्टर", "🩺"],
+            ["colore", "colour", "रंग", "🎨"],
+            ["badante", "caregiver", "देखभाल करने वाला", "🧑‍🦽"],
+            ["stazione", "station", "स्टेशन", "🚉"],
+            ["canzone", "song", "गाना", "🎵"],
+            ["insegnante", "teacher", "शिक्षक", "👩‍🏫"],
+            ["francese", "French", "फ़्रांसीसी", "🇫🇷"],
+            ["parente", "relative", "रिश्तेदार", "👪"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "un piede → tanti ____", "o": ["piedi", "piede", "pieda"]},
+            {"t": "pick", "q": "una madre → tante ____", "o": ["madri", "madre", "madra"]},
+            {"t": "pick", "q": "un pesce → tanti ____", "o": ["pesci", "pesce", "pesca"]},
+            {"t": "pick", "q": "una chiave → tante ____", "o": ["chiavi", "chiave", "chiava"]},
+            {"t": "pick", "q": "una stazione → tante ____", "o": ["stazioni", "stazione", "staziona"]},
+            {"t": "pick", "q": "una canzone → tante ____", "o": ["canzoni", "canzone", "canzona"]},
+            {"t": "pick", "q": "un colore → tanti ____", "o": ["colori", "colore", "colora"]}
+          ]
+        },
+        {
+          "id": "u4_doveabiti", "kind": "contenuti", "title": "Dove abiti?", "page": 47,
+          "text": ["Alonso: Dove abiti?", "Mariela: Abito a Pesaro, in via Rossini.", "Alonso: Con chi abiti?", "Mariela: Abito qui con il mio fidanzato.", "Alonso: Da quanto tempo abitate qui?", "Mariela: Abitiamo qui da 3 anni.", "Alonso: La tua famiglia dove abita?", "Mariela: I miei genitori abitano qui, in periferia. Mia sorella abita a Roma, in centro."],
+          "items": [
+            ["dove abiti?", "where do you live?", "तुम कहाँ रहते हो?", "🏠"],
+            ["con chi abiti?", "who do you live with?", "तुम किसके साथ रहते हो?", "👫"],
+            ["via", "street", "गली", "🛣️"],
+            ["fidanzato", "boyfriend / fiancé", "मंगेतर", "💍"],
+            ["periferia", "suburbs", "उपनगर", "🏘️"],
+            ["centro", "centre", "शहर का केंद्र", "🏙️"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Mariela ____ a Pesaro, in via Rossini.", "o": ["abita", "abito", "abitano"]},
+            {"t": "pick", "q": "Io ____ a Bologna, in centro.", "o": ["abito", "abita", "abitate"]},
+            {"t": "pick", "q": "Io e lei ____ qui da tre anni.", "o": ["abitiamo", "abitano", "abitate"]},
+            {"t": "pick", "q": "I genitori di Mariela ____ in periferia.", "o": ["abitano", "abita", "abitiamo"]},
+            {"t": "pick", "q": "Voi da quanto tempo ____ in Italia?", "o": ["abitate", "abitiamo", "abiti"]},
+            {"t": "pick", "q": "Tu dove ____?", "o": ["abiti", "abita", "abito"]},
+            {"t": "words", "w": "io abito a Pesaro in via Rossini"}
+          ]
+        },
+        {
+          "id": "u4_verbi_are", "kind": "grammatica", "title": "Verbi -are", "page": 48,
+          "text": ["ABITARE → abit + o · i · a · iamo · ate · ano", "io abito · tu abiti · lui/lei abita · noi abitiamo · voi abitate · loro abitano"],
+          "items": [
+            ["abitare", "to live", "रहना", "🏠"],
+            ["lavorare", "to work", "काम करना", "💼"],
+            ["cucinare", "to cook", "खाना बनाना", "🍳"],
+            ["parlare", "to speak", "बोलना", "🗣️"],
+            ["mangiare", "to eat", "खाना", "🍽️"],
+            ["imparare", "to learn", "सीखना", "🧠"],
+            ["studiare", "to study", "पढ़ाई करना", "📚"],
+            ["costare", "to cost", "क़ीमत होना", "💰"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Io ____ (lavorare)", "o": ["lavoro", "lavori", "lavora"]},
+            {"t": "pick", "q": "Tu ____ (cucinare)", "o": ["cucini", "cucino", "cucina"]},
+            {"t": "pick", "q": "Noi ____ (parlare)", "o": ["parliamo", "parlate", "parlano"]},
+            {"t": "pick", "q": "Voi ____ (parlare)", "o": ["parlate", "parliamo", "parli"]},
+            {"t": "pick", "q": "Io non ____ mai. (cucinare)", "o": ["cucino", "cucina", "cucini"]},
+            {"t": "pick", "q": "Voi ____ anche la domenica? (lavorare)", "o": ["lavorate", "lavoriamo", "lavorano"]},
+            {"t": "pick", "q": "Mia madre ____ molto bene. (cucinare)", "o": ["cucina", "cucino", "cucinano"]},
+            {"t": "pick", "q": "I ragazzi ____ un'ora al giorno. (studiare)", "o": ["studiano", "studia", "studiate"]},
+            {"t": "pick", "q": "La scuola non ____ molto. (costare)", "o": ["costa", "costano", "costi"]},
+            {"t": "pick", "q": "Loro ____ (imparare)", "o": ["imparano", "imparate", "impara"]}
+          ]
+        },
+        {
+          "id": "u4_studio", "kind": "contenuti", "title": "Studio e imparo", "page": 49,
+          "text": ["Terri: Tu che lingue parli?", "Lin: Parlo cinese e un po' di italiano.", "Terri: Dove studi la lingua italiana?", "Lin: Studio in una scuola per stranieri.", "Terri: Costa molto?", "Lin: No, è gratuita.", "Terri: Studiate molto?", "Lin: Studiamo due ore al giorno.", "Terri: Imparate in fretta?", "Lin: Gli altri imparano in fretta… io imparo piano piano."],
+          "items": [
+            ["lingue", "languages", "भाषाएँ", "🗣️"],
+            ["un po'", "a little", "थोड़ा", "🤏"],
+            ["scuola", "school", "स्कूल", "🏫"],
+            ["gratuita", "free (of charge)", "मुफ़्त", "🆓"],
+            ["piano piano", "slowly", "धीरे-धीरे", "🐢"],
+            ["in fretta", "quickly", "जल्दी", "🐇"],
+            ["al giorno", "a day", "प्रति दिन", "📆"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Che lingue parla Lin?", "o": ["Cinese e un po' di italiano.", "Solo italiano.", "Inglese."]},
+            {"t": "pick", "q": "Dove studia Lin?", "o": ["In una scuola per stranieri.", "A casa.", "In un ristorante."]},
+            {"t": "pick", "q": "La scuola costa molto?", "o": ["No, è gratuita.", "Sì, costa molto."]},
+            {"t": "pick", "q": "Studiano molto?", "o": ["Due ore al giorno.", "Un'ora al mese.", "Niente."]},
+            {"t": "words", "w": "io studio la lingua italiana"},
+            {"t": "words", "w": "io imparo piano piano"}
+          ]
+        },
+        {
+          "id": "u4_sc", "kind": "fonetica", "title": "Suono SC", "page": 51,
+          "text": ["SC + I = SCI → sciarpa", "SC + E = SCE → pesce", "SC + A = SCA → scala", "SC + O = SCO → scopa", "SC + U = SCU → scultura", "SC + R = SCR → scrivania", "SC + HI = SCHI → fischietto", "SC + HE = SCHE → maschera"],
+          "items": [
+            ["asciugamano", "towel", "तौलिया", "🧺"],
+            ["ascensore", "lift", "लिफ़्ट", "🛗"],
+            ["scivolo", "slide", "फिसलपट्टी", "🛝"],
+            ["sci", "skis", "स्की", "🎿"],
+            ["cuscino", "pillow", "तकिया", "🛏️"],
+            ["sciroppo", "syrup", "शरबत / सिरप", "🧴"],
+            ["scimmia", "monkey", "बंदर", "🐒"],
+            ["scala", "ladder", "सीढ़ी", "🪜"],
+            ["scopa", "broom", "झाड़ू", "🧹"],
+            ["scrivania", "desk", "मेज़", "🗄️"],
+            ["fischietto", "whistle", "सीटी", "📯"],
+            ["maschera", "mask", "मुखौटा", "🎭"],
+            ["scatola", "box", "डिब्बा", "📦"],
+            ["bosco", "wood / forest", "जंगल", "🌲"],
+            ["scrivere", "to write", "लिखना", "✍️"]
+          ],
+          "ex": [
+            {"t": "order", "w": "scivolo", "s": "vloiosc"},
+            {"t": "order", "w": "ascensore", "s": "eoersnsac"},
+            {"t": "order", "w": "scimmia", "s": "imamcis"},
+            {"t": "order", "w": "cuscino", "s": "noscuci"},
+            {"t": "order", "w": "sciroppo", "s": "popcirso"},
+            {"t": "pick", "q": "__ ALA 🪜", "o": ["SCA", "SCO", "SCU", "SCHE"]},
+            {"t": "pick", "q": "MA __ RA 🎭", "o": ["SCHE", "SCE", "SCA", "SCHI"]},
+            {"t": "pick", "q": "PE __ 🐟", "o": ["SCE", "SCHE", "SCI", "SCA"]}
+          ]
+        }
+      ]
+    },
+    {
+      "n": 5, "title": "Partire", "color": "#6DBE45",
+      "sections": [
+        {
+          "id": "u5_autobus", "kind": "contenuti", "title": "Perdono l'autobus", "page": 53,
+          "text": ["Prisca e Teo sono al bar.", "Lei prende un caffè, lui chiede i biglietti per l'autobus.", "Teo vede l'autobus 24 che arriva. Corrono a prendere l'autobus.", "Ma Teo non vede un gradino e cade. Prisca ride, lui piange e ride.", "Perdono l'autobus anche oggi."],
+          "items": [
+            ["bar", "café", "कैफ़े", "☕"],
+            ["autobus", "bus", "बस", "🚌"],
+            ["biglietti", "tickets", "टिकटें", "🎫"],
+            ["gradino", "step", "सीढ़ी का पायदान", "🪜"],
+            ["cadere", "to fall", "गिरना", "🤕"],
+            ["ridere", "to laugh", "हँसना", "😂"],
+            ["piangere", "to cry", "रोना", "😢"],
+            ["perdere", "to miss / lose", "खो देना / छूट जाना", "😩"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Cosa chiede lui?", "o": ["I biglietti per l'autobus.", "Un caffè.", "Un gradino."]},
+            {"t": "pick", "q": "Cosa prende lei?", "o": ["Un caffè.", "L'autobus.", "I biglietti."]},
+            {"t": "pick", "q": "Cosa vede lui?", "o": ["L'autobus 24.", "Il treno.", "Un taxi."]},
+            {"t": "pick", "q": "Cosa perdono loro?", "o": ["L'autobus.", "Il caffè.", "I biglietti."]},
+            {"t": "pick", "q": "Cosa non vede lui?", "o": ["Un gradino.", "L'autobus.", "Prisca."]}
+          ]
+        },
+        {
+          "id": "u5_verbi_ere", "kind": "grammatica", "title": "Verbi -ere", "page": 54,
+          "text": ["PRENDERE → prend + o · i · e · iamo · ete · ono", "io prendo · tu prendi · lui/lei prende · noi prendiamo · voi prendete · loro prendono"],
+          "items": [
+            ["prendere", "to take", "लेना", "🤲"],
+            ["vedere", "to see", "देखना", "👀"],
+            ["correre", "to run", "दौड़ना", "🏃"],
+            ["leggere", "to read", "पढ़ना", "📖"],
+            ["scrivere", "to write", "लिखना", "✍️"],
+            ["treno", "train", "ट्रेन", "🚆"],
+            ["aereo", "plane", "हवाई जहाज़", "✈️"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Prisca ____ un caffè al bar.", "o": ["prende", "prendo", "prendono"]},
+            {"t": "pick", "q": "Io ____ l'autobus tutti i giorni.", "o": ["prendo", "prende", "prendi"]},
+            {"t": "pick", "q": "Io e lei ____ il treno alle 9.20.", "o": ["prendiamo", "prendete", "prendono"]},
+            {"t": "pick", "q": "Prisca e Tom ____ il treno alle 10.", "o": ["prendono", "prende", "prendiamo"]},
+            {"t": "pick", "q": "Voi ____ un primo o una pizza?", "o": ["prendete", "prendiamo", "prendi"]},
+            {"t": "pick", "q": "Senza occhiali tu ____?", "o": ["vedi", "vedo", "vede"]},
+            {"t": "pick", "q": "Io non ____ mai. (correre)", "o": ["corro", "corre", "corri"]},
+            {"t": "pick", "q": "Valentino Rossi ____ con la Ducati.", "o": ["corre", "corro", "corrono"]}
+          ]
+        },
+        {
+          "id": "u5_partire", "kind": "contenuti", "title": "Partire", "page": 56,
+          "text": ["Eva: Ciao Tom, quando parti?", "Tom: Parto stasera.", "Eva: Con chi parti?", "Tom: Parto con Clara e Petra.", "Eva: Partite in treno?", "Tom: No, partiamo in pullman.", "Eva: A che ora parte il pullman?", "Tom: Parte alle ore 21.00.", "Eva: Ye e Lan partono con voi?", "Tom: No, loro partono domani."],
+          "items": [
+            ["quando parti?", "when do you leave?", "तुम कब जा रहे हो?", "🕒"],
+            ["stasera", "tonight", "आज शाम", "🌆"],
+            ["pullman", "coach", "कोच बस", "🚍"],
+            ["a che ora?", "at what time?", "कितने बजे?", "⏰"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Quando parte Tom?", "o": ["Parte stasera.", "Parte domani.", "Parte con Clara."]},
+            {"t": "pick", "q": "Con chi parte Tom?", "o": ["Con Clara e Petra.", "Con Ye e Lan.", "Con il pullman."]},
+            {"t": "pick", "q": "Quando partono Ye e Lan?", "o": ["Partono domani.", "Partono oggi.", "Partono alle 2."]},
+            {"t": "pick", "q": "Tom parte con il treno?", "o": ["No, non parte con il treno.", "Sì, parte con il treno.", "No, parte con l'aereo."]},
+            {"t": "match", "p": [["Tom", "parte stasera"], ["Il pullman", "parte alle 21"], ["Ye e Lan", "partono domani"], ["Clara e Petra", "partono con Tom"]]}
+          ]
+        },
+        {
+          "id": "u5_verbi_ire", "kind": "grammatica", "title": "Verbi -ire", "page": 57,
+          "text": ["PARTIRE → part + o · i · e · iamo · ite · ono", "io parto · tu parti · lui/lei parte · noi partiamo · voi partite · loro partono"],
+          "items": [
+            ["partire", "to leave", "रवाना होना", "🧳"],
+            ["sentire", "to hear / feel", "सुनना / महसूस करना", "👂"],
+            ["dormire", "to sleep", "सोना", "😴"],
+            ["aprire", "to open", "खोलना", "🚪"],
+            ["coprire", "to cover", "ढकना", "🛡️"],
+            ["porta", "door", "दरवाज़ा", "🚪"],
+            ["negozi", "shops", "दुकानें", "🏪"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "Mia nonna ____ sempre freddo. (sentire)", "o": ["sente", "sento", "senti"]},
+            {"t": "pick", "q": "Io ____ otto ore al giorno. (dormire)", "o": ["dormo", "dorme", "dormi"]},
+            {"t": "pick", "q": "State attenti quando ____ la porta. (aprire)", "o": ["aprite", "apriamo", "aprono"]},
+            {"t": "pick", "q": "Voi ____ troppo poco. (dormire)", "o": ["dormite", "dormiamo", "dormono"]},
+            {"t": "pick", "q": "I negozi ____ alle ore 16. (aprire)", "o": ["aprono", "apre", "aprite"]},
+            {"t": "pick", "q": "Noi ci ____ dopo al telefono. (sentire)", "o": ["sentiamo", "sentite", "sentono"]},
+            {"t": "pick", "q": "Tu ____ con o senza cuscino? (dormire)", "o": ["dormi", "dorme", "dormo"]},
+            {"t": "pick", "q": "Voi a che ora ____ domani?", "o": ["partite", "partate", "partiste"]},
+            {"t": "pick", "q": "Mia sorella ____ molti libri.", "o": ["legge", "lege", "leggi"]},
+            {"t": "pick", "q": "Maria ____ una e-mail a Pedro.", "o": ["scrive", "scriva", "scrivo"]}
+          ]
+        },
+        {
+          "id": "u5_aggettivi_ei", "kind": "grammatica", "title": "Aggettivi e-i", "page": 59,
+          "text": ["facile → facili", "difficile → difficili"],
+          "items": [
+            ["facile", "easy", "आसान", "😌"],
+            ["difficile", "difficult", "कठिन", "😓"],
+            ["forte", "strong", "मज़बूत", "💪"],
+            ["debole", "weak", "कमज़ोर", "🥀"],
+            ["intelligente", "intelligent", "बुद्धिमान", "🧠"],
+            ["felice", "happy", "ख़ुश", "😊"],
+            ["triste", "sad", "दुखी", "😢"],
+            ["grande", "big", "बड़ा", "🐘"],
+            ["verde", "green", "हरा", "🟢"],
+            ["importante", "important", "महत्वपूर्ण", "⭐"],
+            ["elegante", "elegant", "सुरुचिपूर्ण", "🎩"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "un cane intelligente → tanti cani ____", "o": ["intelligenti", "intelligente", "intelligenta"]},
+            {"t": "pick", "q": "una cantante felice → tante cantanti ____", "o": ["felici", "felice", "felica"]},
+            {"t": "pick", "q": "un genitore forte → tanti genitori ____", "o": ["forti", "forte", "forta"]},
+            {"t": "pick", "q": "un piede grande → tanti piedi ____", "o": ["grandi", "grande", "granda"]},
+            {"t": "pick", "q": "una canzone triste → tante canzoni ____", "o": ["tristi", "triste", "trista"]},
+            {"t": "pick", "q": "un cellulare verde → tanti cellulari ____", "o": ["verdi", "verde", "verda"]},
+            {"t": "pick", "q": "una luce debole → tante luci ____", "o": ["deboli", "debole", "debola"]}
+          ]
+        },
+        {
+          "id": "u5_qu_cu", "kind": "fonetica", "title": "Lettere QU / CU", "page": 60,
+          "text": ["QU + A/E/I/O: quaderno, quercia, quindici, liquore", "CU + altre lettere: cubo, cuccia, cugino, curriculum", "Attenti! acqua · scuola, cuore, cuoco"],
+          "items": [
+            ["quercia", "oak", "बलूत का पेड़", "🌳"],
+            ["quindici", "fifteen", "पंद्रह", "1️⃣5️⃣"],
+            ["cubo", "cube", "घन", "🧊"],
+            ["cuccia", "dog bed", "कुत्ते का बिस्तर", "🐕"],
+            ["cugino", "cousin", "चचेरा भाई", "🧑"],
+            ["acqua", "water", "पानी", "💧"],
+            ["cuoco", "cook", "रसोइया", "👨‍🍳"],
+            ["quotidiano", "daily paper", "दैनिक अख़बार", "📰"],
+            ["aquila", "eagle", "चील", "🦅"],
+            ["curva", "bend", "मोड़", "↩️"],
+            ["cucchiaio", "spoon", "चम्मच", "🥄"],
+            ["aquilone", "kite", "पतंग", "🪁"],
+            ["quadro", "painting", "चित्र", "🖼️"]
+          ],
+          "ex": [
+            {"t": "order", "w": "quattro", "s": "uttroqa"},
+            {"t": "order", "w": "curva", "s": "arvcu"},
+            {"t": "order", "w": "aquila", "s": "laiuqa"},
+            {"t": "order", "w": "cucchiaio", "s": "hiaiocccu"},
+            {"t": "order", "w": "aquilone", "s": "qiluoena"},
+            {"t": "order", "w": "quadro", "s": "doruaq"},
+            {"t": "pick", "q": "__ ANDO", "o": ["QU", "CU"]},
+            {"t": "pick", "q": "S __ OLA", "o": ["CU", "QU"]},
+            {"t": "pick", "q": "__ RIOSO", "o": ["CU", "QU"]},
+            {"t": "pick", "q": "CIN __ E", "o": ["QU", "CU"]},
+            {"t": "pick", "q": "AC __ A 💧", "o": ["QU", "CU"]}
+          ]
+        },
+        {
+          "id": "u5_dove_quando", "kind": "contenuti", "title": "Dove? Quando? Quanto?", "page": 61,
+          "text": ["Di dove sei? — Sono cinese.", "Dove sei nato? — Sono nato in Cina, a Pechino.", "Dove abiti? — Abito a Bologna.", "Quando sei nato? — Sono nato il 27 ottobre 1989.", "Quando inizia la lezione? — La lezione inizia alle 10.30.", "Quanti anni hai? — Ho 21 anni.", "Quanto costa il libro? — Il libro costa 6 euro."],
+          "items": [
+            ["dove?", "where?", "कहाँ?", "📍"],
+            ["quando?", "when?", "कब?", "🕒"],
+            ["quanto?", "how much?", "कितना?", "💶"],
+            ["quanti?", "how many?", "कितने?", "🔢"],
+            ["lezione", "lesson", "पाठ", "📘"],
+            ["sono nato", "I was born", "मेरा जन्म हुआ", "👶"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "____ sei nato? — Il 27 ottobre 1989.", "o": ["Quando", "Dove", "Quanto"]},
+            {"t": "pick", "q": "____ abiti? — Abito a Bologna.", "o": ["Dove", "Quando", "Quanti"]},
+            {"t": "pick", "q": "____ costa il libro? — 6 euro.", "o": ["Quanto", "Quando", "Dove"]},
+            {"t": "pick", "q": "____ sorelle hai? — Non ho sorelle.", "o": ["Quante", "Quanti", "Quanto"]},
+            {"t": "pick", "q": "____ pasta compri? — 4 pacchi.", "o": ["Quanta", "Quante", "Quanti"]},
+            {"t": "pick", "q": "____ fratelli hai? — Ho due fratelli.", "o": ["Quanti", "Quante", "Quanta"]},
+            {"t": "match", "p": [["Dove sei nato?", "In Cina, a Pechino."], ["Quando inizia la lezione?", "Alle 10.30."], ["Quanti anni hai?", "Ho 21 anni."], ["Quanto costa il libro?", "6 euro."]]}
+          ]
+        },
+        {
+          "id": "u5_chi_come", "kind": "contenuti", "title": "Chi? Che cosa? Come?", "page": 62,
+          "text": ["Chi è lui? — Lui è mio fratello Pablo.", "Chi cucina a casa tua? — Mia madre.", "Che cosa bevi a colazione? — Bevo il latte con il caffè.", "Che cosa mangi a cena? — Mangio il pollo e le patate fritte.", "Come ti chiami? — Mi chiamo Pablo.", "Come stai? — Sto abbastanza bene, grazie.", "Come vieni a scuola? — Con l'autobus."],
+          "items": [
+            ["chi?", "who?", "कौन?", "🧑"],
+            ["che cosa?", "what?", "क्या?", "❔"],
+            ["come?", "how?", "कैसे?", "🤔"],
+            ["come ti chiami?", "what's your name?", "तुम्हारा नाम क्या है?", "📛"],
+            ["come stai?", "how are you?", "तुम कैसे हो?", "🙂"],
+            ["colazione", "breakfast", "नाश्ता", "🥐"],
+            ["cena", "dinner", "रात का खाना", "🍝"],
+            ["latte", "milk", "दूध", "🥛"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "____ è lui? — Lui è mio fratello Pablo.", "o": ["Chi", "Che cosa", "Come"]},
+            {"t": "pick", "q": "____ bevi a colazione? — Il latte.", "o": ["Che cosa", "Chi", "Come"]},
+            {"t": "pick", "q": "____ ti chiami? — Mi chiamo Pablo.", "o": ["Come", "Chi", "Che cosa"]},
+            {"t": "pick", "q": "____ stai? — Bene, grazie.", "o": ["Come", "Chi", "Dove"]},
+            {"t": "pick", "q": "____ cucina a casa tua? — Mia madre.", "o": ["Chi", "Come", "Che cosa"]},
+            {"t": "pick", "q": "____ vieni a scuola? — Con l'autobus.", "o": ["Come", "Chi", "Quando"]},
+            {"t": "words", "w": "come ti chiami"}
+          ]
+        }
+      ]
+    },
+    {
+      "n": 6, "title": "Riepilogo", "color": "#D6336C",
+      "sections": [
+        {
+          "id": "r_esercizi", "kind": "riepilogo", "title": "Esercizi di riepilogo", "page": 63,
+          "items": [
+            ["moglie", "wife", "पत्नी", "💍"],
+            ["uscita", "exit", "निकास", "🚪"],
+            ["maschio", "male", "पुरुष", "♂️"]
+          ],
+          "ex": [
+            {"t": "pick", "q": "14 =", "o": ["quattordici", "quatordici", "quattrodici"]},
+            {"t": "pick", "q": "67 =", "o": ["sessantasette", "sessantosette", "settantasei"]},
+            {"t": "pick", "q": "🥄 ?", "o": ["cucchiaio", "cuchiaio", "cucchiao"]},
+            {"t": "pick", "q": "🔑 ?", "o": ["chiave", "kiave", "quiave"]},
+            {"t": "pick", "q": "🧊 ?", "o": ["ghiaccio", "giaccio", "gaccio"]},
+            {"t": "pick", "q": "🍝 ?", "o": ["spaghetti", "spagetti", "spaghetty"]},
+            {"t": "pick", "q": "🛁 ?", "o": ["bagno", "banio", "bagnio"]},
+            {"t": "pick", "q": "🎫 ?", "o": ["biglietto", "billietto", "biletto"]},
+            {"t": "pick", "q": "💧 ?", "o": ["acqua", "aqua", "acua"]},
+            {"t": "pick", "q": "Mio fratello ____ 16 anni.", "o": ["ha", "è", "sono"]},
+            {"t": "pick", "q": "Io ____ in Italia da 3 mesi.", "o": ["sono", "ho", "ha"]},
+            {"t": "pick", "q": "Carlos ____ molta fame.", "o": ["ha", "è", "sono"]},
+            {"t": "pick", "q": "Voi di dove ____?", "o": ["siete", "avete", "sono"]},
+            {"t": "pick", "q": "Loro ____ una casa grande.", "o": ["hanno", "sono", "avete"]},
+            {"t": "pick", "q": "Maria ____ nata in Perù.", "o": ["è", "ha", "sono"]},
+            {"t": "pick", "q": "Noi ____ bisogno di lavorare.", "o": ["abbiamo", "siamo", "hanno"]},
+            {"t": "pick", "q": "Ciao, ____ ti chiami?", "o": ["come", "dove", "quando"]},
+            {"t": "pick", "q": "____ costa il biglietto?", "o": ["Quanto", "Come", "Dove"]},
+            {"t": "pick", "q": "____ parte il treno?", "o": ["Quando", "Chi", "Come"]}
+          ]
+        }
+      ]
+    }
+  ]
+}
