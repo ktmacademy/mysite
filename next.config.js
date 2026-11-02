@@ -9,6 +9,8 @@ const nextConfig = {
       { source: "/", destination: "/index.html" },
       // Italy Newcomers Flutter web app (static build in public/italy, base href /italy/).
       { source: "/italy", destination: "/italy/index.html" },
+      // CTEVT Plus Flutter web app (static build in public/ctevt, base href /ctevt/).
+      { source: "/ctevt", destination: "/ctevt/index.html" },
     ];
   },
 };
