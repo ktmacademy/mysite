@@ -1,0 +1,322 @@
+{
+  "source": "https://ctevt.org.np/curriculum/pre-diploma",
+  "fetched_at": "2026-07-07T06:58:43.007922+00:00",
+  "total_programs": 35,
+  "sections": [
+    {
+      "heading": "Agriculture",
+      "programs": [
+        {
+          "ind_no": "1",
+          "programs": "TSLC in Livestock Production /Animal Health, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEEappeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Livestock Production-Animal Health_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "2",
+          "programs": "TSLC in Veterinary Science, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Vetarinary Science_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "3",
+          "programs": "TSLC in Agriculture ( Plant Science), 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Agriculture (Plant Science)_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "4",
+          "programs": "Textile and Sericulture JTA, 2006",
+          "duration": "3+1 year OJT",
+          "entry_qualification": "8 Class Pass",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_Textile and Sericulture JTA (TSLC)_Grade eight intake,  2006.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Engineering",
+      "programs": [
+        {
+          "ind_no": "1",
+          "programs": "TSLC in Water Supply and Sanitary Engineering, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Water Supply and Sanitary Engineering_Post SLC intake, Revised 2016.pdf"
+        },
+        {
+          "ind_no": "2",
+          "programs": "TSLC in Civil Engineering, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Civil Engineering_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "4",
+          "programs": "TSLC in Computer Engineering (former JCT), 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Computer Engineering_Post SLC intake, Revised 2016.pdf"
+        },
+        {
+          "ind_no": "5",
+          "programs": "TSLC in Electrical Engineering, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Electrical Engineering_Post SLC,  Revised 2016.pdf"
+        },
+        {
+          "ind_no": "6",
+          "programs": "Pre-Diploma in Electronics Engineering, revised 2023",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "Pre-Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-10-29_predipeng011_pre-diploma_electronics_engineering_revised_2023 (1).pdf"
+        },
+        {
+          "ind_no": "7",
+          "programs": "TSLC in Mechanical Engineering, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Mechanical Engineering_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "8",
+          "programs": "TSLC in Ref. & AC Engineering, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Ref & AC Engineering_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "9",
+          "programs": "TSLC in Automobile Engineering, 2016",
+          "duration": "15+3 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Automobile Engineering_Post SLC intak, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "10",
+          "programs": "Pre-Diploma in Railway Engineering, 2078",
+          "duration": "18 months",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Pre-Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-10-31_pre-diploma_railway_engineering_2078.pdf"
+        },
+        {
+          "ind_no": "11",
+          "programs": "Pre-Diploma in Survey Engineering, 2016",
+          "duration": "15 + 3 Month OJT",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "Pre-Diploma in Survey Engineering",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-12-15_TSLC in Survey Engineering_Post SLC intake, Revised  2016.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Health",
+      "programs": [
+        {
+          "ind_no": "1",
+          "programs": "TSLC in Ayurveda, 2016",
+          "duration": "15+3 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Ayurveda_Post SLC intake,  Revised  2016.pdf"
+        },
+        {
+          "ind_no": "2",
+          "programs": "Auxiliary Nursing Midwifery (ANM), 2016",
+          "duration": "15+3 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Auxiliary Nursing Midwifery_Post SLC intake,  Revised  2016.pdf"
+        },
+        {
+          "ind_no": "3",
+          "programs": "TSLC in Community Medicine Assistant (CMA), 2016",
+          "duration": "15+3 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Comunity Medicine Assistant_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "4",
+          "programs": "TSLC in Medical Lab Technology, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Medical Lab Technology_Post SLC intake, Revised 2016.pdf"
+        },
+        {
+          "ind_no": "5",
+          "programs": "Community Amchi Assistant [Kangjan-pa], 2004",
+          "duration": "24+3 month OJT",
+          "entry_qualification": "8 class pass",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_Community Amchi Assistant (CAA), 2004.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Hospitality / Hotel Management",
+      "programs": [
+        {
+          "ind_no": "01",
+          "programs": "TSLC in Hotel Management, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Hotel Management_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "02",
+          "programs": "Pre-Diploma in Culinary Arts, Revised 2022",
+          "duration": "18th Month",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2022-08-17_Pre Diploma in Culinary Arts_revised_2022.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Apprenticeship",
+      "programs": [
+        {
+          "ind_no": "1",
+          "programs": "Pre-Diploma in Mechanical Engineering , Revised 2023 (Apprenticeship Model)",
+          "duration": "24 months",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "Pre-Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-07-24_predipapp02_pre-diploma_mechanical_engineering_apprenticeship_model_2023.pdf"
+        },
+        {
+          "ind_no": "2",
+          "programs": "Pre-Diploma in Electrical Engineering, Revised 2023 (Apprenticeship Model)",
+          "duration": "24 months",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "Pre-Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-07-24_predipapp001_pre-diploma_electrical_engineering_apprenticeship_model_2023.pdf"
+        },
+        {
+          "ind_no": "3",
+          "programs": "TSLC in Hotel Management, 2018",
+          "duration": "24 months",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Hotel Management (Apprenticeship), 2018.pdf"
+        },
+        {
+          "ind_no": "4",
+          "programs": "TSLC in Information Technology, 2018",
+          "duration": "24 months",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Information Technology (Apprenticeship), 2018.pdf"
+        },
+        {
+          "ind_no": "5",
+          "programs": "TSLC in Automobile Engineering, 2019",
+          "duration": "24 months",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Automobile Engineering (Apprenticeship), 2019.pdf"
+        },
+        {
+          "ind_no": "6",
+          "programs": "Pre-diploma in Civil_ Building Construction, 2020",
+          "duration": "24 months",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "Pre-diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-04-18_Pre-diploma_Civil_ Bldg Construction (Apprenticeship), 2020.docx.pdf"
+        },
+        {
+          "ind_no": "7",
+          "programs": "Pre-diploma in Early Childhood Development(ECD) Facilitation, 2021",
+          "duration": "24 Months",
+          "entry_qualification": "SLC/SEE pass",
+          "certificate": "Pre-diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-04-18_Pre-diploma in ECD Facilitation(Apprenticeship), 2021.doc.pdf"
+        },
+        {
+          "ind_no": "8",
+          "programs": "Pre-Diploma in Tea Technology_2023 (Apprenticeship Model)",
+          "duration": "24 months",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "Pre-Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-09-24_predipapp008_pre-diploma_tea_technology_apprenticeship_model_2023.pdf"
+        },
+        {
+          "ind_no": "9",
+          "programs": "Pre-Diploma in Automobile Engineering (Apprenticeship Programme)",
+          "duration": "2 years",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "Pre-diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2025-09-08_Pre-diploma in Automobile Engineering (Apprenticeship Programme), 2025 (2082 BS).pdf"
+        },
+        {
+          "ind_no": "10",
+          "programs": "Pre-Diploma in Hydropower Engineering- Plant Operation and Maintenance (Apprenticeship Programme)",
+          "duration": "2",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "Pre-diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2025-09-08_Pre-Diploma in Hydropower Engineering-Plant Operation and Maintainance (Apprenticeship Programme), 2025 (2082 BS).pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Forestry",
+      "programs": [
+        {
+          "ind_no": "1",
+          "programs": "TSLC in Forestry, 2020",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-03-15_predipfo001_forestry_2020.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Management and Hunanities",
+      "programs": [
+        {
+          "ind_no": "1",
+          "programs": "TSLC in Computer Application & Secretarial Management, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Computer Application and Secretarial Mgmt_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "2",
+          "programs": "TSLC in Social Mobilization, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Social Mobilization_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "3",
+          "programs": "TSLC in Entrepreneurship Development, 2015",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Entrepreneurship Development_Post SLC intake, Revised  2016.pdf"
+        }
+      ]
+    }
+  ]
+}

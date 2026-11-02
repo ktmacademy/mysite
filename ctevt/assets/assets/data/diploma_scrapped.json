@@ -1,0 +1,754 @@
+{
+  "source": "https://ctevt.org.np/curriculum/diplomapcl",
+  "fetched_at": "2026-07-07T06:58:42.247744+00:00",
+  "total_programs": 89,
+  "sections": [
+    {
+      "heading": "Agriculture Plant/Animal",
+      "programs": [
+        {
+          "ind_no": "1",
+          "programs": "Diploma in Food/Dairy Technology, Revised 2001, Revised 2017",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Food and Dairy Technology, Revised 2017.pdf"
+        },
+        {
+          "ind_no": "2",
+          "programs": "Diploma in Medicinal and Aromatic Plants 2019",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Medicinal and Aromatic Plants,  2019.pdf"
+        },
+        {
+          "ind_no": "3",
+          "programs": "Junior Technician (JT) in Agriculture (Plant Science), 2016",
+          "duration": "1 Year",
+          "entry_qualification": "TSLC Pass + 3 Years Experience",
+          "certificate": "Technician",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_JT Plant Science (1 year), Revised  2016.pdf"
+        },
+        {
+          "ind_no": "4",
+          "programs": "Junior Technician (JT) in Agriculture (Animal Science), 2016",
+          "duration": "1 Year",
+          "entry_qualification": "TSLC Pass + 3 Years Experience",
+          "certificate": "Technician",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_JT Livestock (1 year), Revised  2016.pdf"
+        },
+        {
+          "ind_no": "5",
+          "programs": "Conversion Program on One Year to Two Years Technician Certificate in Agriculture/Livestock, 2009",
+          "duration": "1 year",
+          "entry_qualification": "JT Pass",
+          "certificate": "Technician",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Ag (Plant + Animal) Conversion Course, 2009.pdf"
+        },
+        {
+          "ind_no": "8",
+          "programs": "Diploma in Food and Dairy_revised_2023",
+          "duration": "3 years (six semester)",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-11-26_diploma_food_and_dairy_technology_2023.pdf"
+        },
+        {
+          "ind_no": "6",
+          "programs": "Diploma in Agriculture (Animal Science) Revision 2025 (2082BS)",
+          "duration": "3 year",
+          "entry_qualification": "Refer curricula",
+          "certificate": "Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2025-10-17_Diploma in Agriculture (Animal Science)_revision_2025 (2082 BS).pdf"
+        },
+        {
+          "ind_no": "7",
+          "programs": "Diploma in Agriculture (Plant Science) Revision 2025 (2082BS)",
+          "duration": "3 years",
+          "entry_qualification": "refer curricula",
+          "certificate": "Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2025-10-17_Diploma in Agriculture (Plant Science)_revision_2025 (2082 BS).pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Engineering",
+      "programs": [
+        {
+          "ind_no": "1",
+          "programs": "Diploma in Civil Engineering with Specialization in Bridge Engineering, 2016",
+          "duration": "4 years",
+          "entry_qualification": "TSLC in Civil Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Civil Eng with Bridge Eng, 2016.pdf"
+        },
+        {
+          "ind_no": "2",
+          "programs": "Diploma in Civil Engineering, Revised, 2021",
+          "duration": "3 Years",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-03-25_diploma_in_civil_engineering_revised_2021.pdf"
+        },
+        {
+          "ind_no": "3",
+          "programs": "Diploma in Agricultural Engineering, 2021",
+          "duration": "3 Years",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-03-30_diploma_in_agricultural_engineering_2021.pdf"
+        },
+        {
+          "ind_no": "4",
+          "programs": "Diploma in Biomedical Equipment Engineering, 2022",
+          "duration": "18 months",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2022-12-22_diploma_in_biomedical_equipment_engineering_2021.pdf"
+        },
+        {
+          "ind_no": "5",
+          "programs": "Diploma_Engineering_First Year Common_2021",
+          "duration": "refer curricula",
+          "entry_qualification": "refer curricula",
+          "certificate": "refer curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-03-30_diploma_in_engineering_first_year_all_2021.pdf"
+        },
+        {
+          "ind_no": "6",
+          "programs": "Diploma in Architecture Engineering (3rd to 6th Semester). Revised in 2022",
+          "duration": "3-year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-03-25_Diploma in Architecture Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "7",
+          "programs": "Diploma in Automobile Engineering (3rd to 6th Semester). Revised in 2022",
+          "duration": "3-year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-07-12_Diploma in Automobile Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "8",
+          "programs": "Diploma in Electrical Engineering (3rd to 6th Semester). Revised in 2022 (updated: 2024)",
+          "duration": "3-Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-05-09_Diploma in Electrical Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "9",
+          "programs": "Diploma in Computer Engineering (3rd to 6th Semester). Revised in 2022",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2022-12-22_Diploma in Computer Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "10",
+          "programs": "Diploma in Electronics Engineering (3rd to 6th Semester). Revised in 2022 Updated 2024",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-05-09_Diploma in Electronics Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "11",
+          "programs": "Diploma in Electrical and Electronics Engineering (3rd to 6th Semester). Revised in 2022 Updated 2024",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-05-09_Diploma in Electrical and Electronics Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "12",
+          "programs": "Diploma in Geomatics Engineering (3rd to 6th Semester). Revised in 2022",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Currricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2022-12-22_Diploma in Geomatics Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "13",
+          "programs": "Diploma in Civil Engineering (Spicialized in Hydropower Engineering) (3rd to 6th Semester). Revised in 2022",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2022-12-22_Diploma in Civil Engineering (Specialized in Hydropower Engineering)_revised_2022.pdf"
+        },
+        {
+          "ind_no": "14",
+          "programs": "Diploma in Information Technology (3rd to 6th Semester). Revised in 2022",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2022-12-22_Diploma in Information Technology_revised_2022.pdf"
+        },
+        {
+          "ind_no": "15",
+          "programs": "Diploma in Mechanical Engineering (3rd to 6th Semester). Revised in 2022",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-02-21_Diploma in Mechanical Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "16",
+          "programs": "Diploma in Mechatronics Engineering (3rd to 6th Semester). Revised in 2022",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-07-06_Diploma in Mechatronics Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "17",
+          "programs": "Diploma in Refrigeration and AC Engineering (3rd to 6th Semester). Revised in 2022",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2022-12-22_Diploma in Refrigeration & AC Engineering_revised_2022.pdf"
+        },
+        {
+          "ind_no": "18",
+          "programs": "Diploma in Biomedical Engineering, 2022",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-03-15_diploma_in_biomedical_engineering_revised_2022.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Health/Nursing",
+      "programs": [
+        {
+          "ind_no": "30",
+          "programs": "Certificate in Amchi Science ( Durra-Pa/BumZhi Tradition)-2004",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-27_PCL in in Amchi Science [Durapa], 2004.pdf"
+        },
+        {
+          "ind_no": "31",
+          "programs": "Certificate in Medical Science (Ayurveda & General Medicine) 2007, Revised 2018",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-27_PCL in Health Science (Ayurveda) Revised 2018.pdf"
+        },
+        {
+          "ind_no": "34",
+          "programs": "Certificate in Homeopathy, 2009",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Certificate in Health Science (Homeopathy), 2009.pdf"
+        },
+        {
+          "ind_no": "35",
+          "programs": "PCL Nursing, 2013, Revised 2018",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-27_PCL in Nursing Revised 2018.pdf"
+        },
+        {
+          "ind_no": "36",
+          "programs": "Conversion course for Dental Hygienist to Dental Science, 2016",
+          "duration": "2 years",
+          "entry_qualification": "Dental Hygienist pass",
+          "certificate": "Dental Hygienist",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-29_Dental Science Conversion Course 2016.pdf"
+        },
+        {
+          "ind_no": "37",
+          "programs": "Diploma (Certificate Level) in Dental Laboratory Technology, 2017",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma (Certificate level)",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-29_Diploma in Dental Lab Technology, 2017.pdf"
+        },
+        {
+          "ind_no": "39",
+          "programs": "Diploma in Ayurveda Pharmacy, 2018",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma (Certificate level)",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-29_Diploma in Ayurveda pharmacy 2018.pdf"
+        },
+        {
+          "ind_no": "40",
+          "programs": "PCL in Midwifery, updated in 2023",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-06-28_diphe014_pcl_midwifery_updated_2023.pdf"
+        },
+        {
+          "ind_no": "41",
+          "programs": "Certificate in Dental Science (Dental Hygiene- revised), 2009, Revised 2018 updated in 2020",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_PCL in Dental Science (Dental Hygiene), Revised 2018 updated in 2020.pdf"
+        },
+        {
+          "ind_no": "42",
+          "programs": "Diploma in Pharmacy, Revised, 2021",
+          "duration": "3 Years",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-07-01_1diphe016_diploma_in_pharmacy_2021 (1).pdf"
+        },
+        {
+          "ind_no": "25",
+          "programs": "PCL in Health Science (General Medicine), Revised 2024",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-08-25_CURRICULUM for General Medicine.pdf"
+        },
+        {
+          "ind_no": "27",
+          "programs": "CERTIFICATE IN MEDICAL LABORATORY TECHNOLOGY CMLT revised 2024",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-08-25_CURRICULUM for CMLT.pdf"
+        },
+        {
+          "ind_no": "24",
+          "programs": "PCL/Diploma in Health Science First year (all program except Nursing), 2024",
+          "duration": "1 year",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-08-25_First Year all final edited v2.pdf"
+        },
+        {
+          "ind_no": "-",
+          "programs": "Proficiency Certificate Level Diagnostic Radiography 2024",
+          "duration": "3 year",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "PCL",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-09-09_Diagnostic_Radiography_Revised_2024.pdf"
+        },
+        {
+          "ind_no": "-",
+          "programs": "DIPLOMA (Certificate Level) Yoga and Naturopathy 2024",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "DIPLOMA",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-09-09_Diploma_Yog and Naturopathy_update_2024.pdf"
+        },
+        {
+          "ind_no": "-",
+          "programs": "Proficiency Certificate Level Ophthalmic Science 2024",
+          "duration": "3 year",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "PCL",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-09-09_PCL_opthalmic_ science_II & III year_Revise_2024.pdf"
+        },
+        {
+          "ind_no": "33",
+          "programs": "PCL in Medical Science (Physiotherapy) Revision 2025 (2082BS)",
+          "duration": "3 year",
+          "entry_qualification": "refer curricula",
+          "certificate": "PCL",
+          "download_url": "https://ctevt.org.np/uploads/docs/2025-10-17_PCL in Medical Science (Physiotherapy)_revision_2025 (2082 BS).pdf"
+        },
+        {
+          "ind_no": "32",
+          "programs": "PCL in Acupuncture, Acupressure and Moxibustion Update 2025 (2082BS)",
+          "duration": "3 year",
+          "entry_qualification": "refer curricula",
+          "certificate": "PCL",
+          "download_url": "https://ctevt.org.np/uploads/docs/2025-10-17_PCL in Acupuncture, Acupressure and Moxibustion_update_2025 (2082 BS).pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Forestry",
+      "programs": [
+        {
+          "ind_no": "42",
+          "programs": "Diploma in Forestry (I. Sc. Forestry) 2013, Revised 2019",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-29_Diploma in Forestry Revised 2019.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Management/ Humanities",
+      "programs": [
+        {
+          "ind_no": "43",
+          "programs": "Diploma in Entrepreneurship Development, 2015",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-03-19_Diploma in Entrepreneurship Development, 2015.pdf"
+        },
+        {
+          "ind_no": "44",
+          "programs": "Diploma in Social Work, 2010",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-03-19_Diploma in Social Work 2010.pdf"
+        },
+        {
+          "ind_no": "45",
+          "programs": "Diploma in Journalism & Mass Communication 2010, (JMC)",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-22_Diploma in Journalism & Mass Communication, 2010.pdf"
+        },
+        {
+          "ind_no": "46",
+          "programs": "Diploma in Fashion Design, 2016",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-03-19_Diploma in Fashion Design 2016.pdf"
+        },
+        {
+          "ind_no": "47",
+          "programs": "Diploma in Beauty and Cosmetology, 2017",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-03-19_Diploma in Beauty and Cosetology, 2017.pdf"
+        },
+        {
+          "ind_no": "48",
+          "programs": "Diploma in Interior Design, 2078",
+          "duration": "3 Years",
+          "entry_qualification": "Refer curricula",
+          "certificate": "Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-11-12_diploma_interior_designer_2078.pdf"
+        },
+        {
+          "ind_no": "05",
+          "programs": "Diploma in Social Work. Revised in 2022",
+          "duration": "3 Year",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2022-12-22_dipmh007_diploma_in_social_work_revised_2022.pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Hospitality",
+      "programs": [
+        {
+          "ind_no": "48",
+          "programs": "Diploma in Hotel Management 2015",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-22_Diploma in Hotel Management, Revised 2015 updated in 2020.pdf"
+        },
+        {
+          "ind_no": "--",
+          "programs": "Diploma in Hospitality Management",
+          "duration": "3 years",
+          "entry_qualification": "SEE/SLC",
+          "certificate": "Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-11-06_diploma_in_hospitality_management_2024..pdf"
+        }
+      ]
+    },
+    {
+      "heading": "Phasing Out Curriculum",
+      "programs": [
+        {
+          "ind_no": "1",
+          "programs": "Diploma in Agriculture (I.Sc. Ag) Plant Science, Revised 2014",
+          "duration": "3 years",
+          "entry_qualification": "SLC pass",
+          "certificate": "Diploma (I.Sc.Ag.)",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Agriculture (I.Sc.  Ag) Plant Science, Revised 2014.pdf"
+        },
+        {
+          "ind_no": "2",
+          "programs": "Diploma in Agriculture (I.Sc. Ag ) Animal Science, Revised 2014",
+          "duration": "3 years",
+          "entry_qualification": "SLC pass",
+          "certificate": "Diploma (I.Sc.Ag.)",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Agriculture (I.Sc. Ag ) Animal Science, Revised 2014.pdf"
+        },
+        {
+          "ind_no": "8",
+          "programs": "Diploma in Civil Engineering 2013",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-12_Diploma in Civil Engineering 2013.pdf"
+        },
+        {
+          "ind_no": "10",
+          "programs": "Diploma in Mechanical Engineering, Revised 2014",
+          "duration": "3 years",
+          "entry_qualification": "SLC Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Mechanical Engineering, Revised 2014.pdf"
+        },
+        {
+          "ind_no": "11",
+          "programs": "Diploma in Mechanical Engineering, Revised 2014",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-12_Diploma in Electronics Engineering Revised 2014.pdf"
+        },
+        {
+          "ind_no": "12",
+          "programs": "Diploma in Electrical Engineering, Revised 2014",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-12_Diploma in Electrical Engineeing Revised 2014.pdf"
+        },
+        {
+          "ind_no": "13",
+          "programs": "Diploma in Information Technology, Revised 2016",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-12_Diploma in Information Technology, 2016.pdf"
+        },
+        {
+          "ind_no": "14",
+          "programs": "Diploma in Geomatics Engineering, Revised 2010. Revised 2018",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Geomatics Engineering, Revised 2018.pdf"
+        },
+        {
+          "ind_no": "15",
+          "programs": "Diploma in Computer Engineering, Revised 2010, Revised 2018",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Computer Engineering, Revised 2018.pdf"
+        },
+        {
+          "ind_no": "17",
+          "programs": "Diploma in Automobile Engineering, 2013, Revised 2019",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Automobile Engineering, Revised 2019.pdf"
+        },
+        {
+          "ind_no": "18",
+          "programs": "Diploma in Architecture Engineering, 2014",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Architecture Engineering, 2014.pdf"
+        },
+        {
+          "ind_no": "19",
+          "programs": "Diploma in Biomedical Equipment Engineering, 2014",
+          "duration": "18 Months",
+          "entry_qualification": "10+2 Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Biomedical Equipment Engineering, 2014.pdf"
+        },
+        {
+          "ind_no": "20",
+          "programs": "Diploma in Electrical & Electronics Engineering, 2013, Revised 2019",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_Diploma in Electrical and Electronics Engineering, Revised  2019.pdf"
+        },
+        {
+          "ind_no": "21",
+          "programs": "Diploma in Refrigeration and Air Conditioning, 2015",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-12_Diploma in Ref & AC 2015.pdf"
+        },
+        {
+          "ind_no": "22",
+          "programs": "Diploma in Hydropower Engineering, 2017 updated 2021",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-28_Diploma in Hydropower Engineering, 2017 updated 2021.pdf"
+        },
+        {
+          "ind_no": "24",
+          "programs": "PCL/Diploma in Health Science First year (all program except Nursing), 2016",
+          "duration": "1 year",
+          "entry_qualification": "",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_PCL in Health Science First Year for all Programs , Revised 2016.pdf"
+        },
+        {
+          "ind_no": "25",
+          "programs": "PCL in Health Science (General Medicine), Revised 2016",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-21_PCL in General Medicine 2nd & 3rd Yr,  Revised 2016.pdf"
+        },
+        {
+          "ind_no": "26",
+          "programs": "Diploma in Pharmacy, Revised 2014",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2025-10-29_Diploma in Pharmacy, Revised 2014.pdf"
+        },
+        {
+          "ind_no": "27",
+          "programs": "Certificate in Medical Lab Technology 2010, Revised 2019",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-27_PCL in Medical Lab Technology  Revised 2019.pdf"
+        },
+        {
+          "ind_no": "28",
+          "programs": "Certificate in Diagnostic Radiography, Revised 2010, Revised 2018",
+          "duration": "II & III year",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2022-11-22_diphe003_certificate_in_diagnostic_radiography_revised_2018.pdf"
+        },
+        {
+          "ind_no": "29",
+          "programs": "PCL in Ophthalmic Science Revised 2010, Revised 2018",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-27_PCL in Opthalmic Science Revised 2018.pdf"
+        },
+        {
+          "ind_no": "32",
+          "programs": "Proficiency Certificate Level in Acupuncture, Acupressure and Moxibustion, Revised 2021",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-08-08_Acupunture, Acupressure and Moxibustion, Revised 2021.pdf"
+        },
+        {
+          "ind_no": "33",
+          "programs": "Certificate in Physiotherapy, 2010, Revised 2019",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Certificate level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-27_PCL in Medical Science (Physiotherapy) Revised 2019.pdf"
+        },
+        {
+          "ind_no": "6.40",
+          "programs": "Diploma in Social Work 2010",
+          "duration": "3 years",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "Diploma in Social Work",
+          "download_url": "https://ctevt.org.np/uploads/docs/2019-09-29_Diploma in Social Work,, 2010.pdf"
+        },
+        {
+          "ind_no": "23",
+          "programs": "Diploma in Mechatronics Engineering, 2019",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE Pass",
+          "certificate": "Diploma level",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-03-19_Diploma in Mechatronics Engineering 2019.pdf"
+        },
+        {
+          "ind_no": "........",
+          "programs": "Diploma in Automobile Engineering 2013",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "Diploma in Automobile Engineering",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-05-11_Diploma in Automobile Engineering 2013.pdf"
+        },
+        {
+          "ind_no": "......",
+          "programs": "Diploma in Computer Engineering 2010",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "Diploma in Computer Engineering",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-05-11_Diploma in computer Engineering 2010.pdf"
+        },
+        {
+          "ind_no": ".....",
+          "programs": "Diploma in Electrical & Electronics Engineering 2013",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "Diploma in Electrical & Electronics Engineering",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-05-11_Diploma in Electrical and Electronics Engineering 2013.pdf"
+        },
+        {
+          "ind_no": ".....",
+          "programs": "Diploma in Geometric Engineering 2010",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "Diploma in Geometrics Engineering",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-05-11_Diploma in Geomatics Engineering 2010.pdf"
+        },
+        {
+          "ind_no": ".....",
+          "programs": "Diploma in Forestry 2013",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "Diploma in Forestry",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-05-11_Diploma in Forestry 2013.pdf"
+        },
+        {
+          "ind_no": ".....",
+          "programs": "PCL in Nursing 2013",
+          "duration": "3 Years",
+          "entry_qualification": "SLC/SEE",
+          "certificate": "PCL in Nursing",
+          "download_url": "https://ctevt.org.np/uploads/docs/2020-05-11_PCL Nursing, 2013.pdf"
+        },
+        {
+          "ind_no": "1",
+          "programs": "TSLC in Culinary Arts, 2016",
+          "duration": "12+6 month OJT",
+          "entry_qualification": "SLC/SEE appeared",
+          "certificate": "TSLC",
+          "download_url": "https://ctevt.org.np/uploads/docs/2021-01-24_TSLC in Culinary Arts_Post SLC intake, Revised  2016.pdf"
+        },
+        {
+          "ind_no": "6",
+          "programs": "Diploma in Agriculture (Plant Science), Revised in 2021",
+          "duration": "3 Years",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2024-02-21_dipag006_diploma_agriculture_plant_science_revised_2021.pdf"
+        },
+        {
+          "ind_no": "7",
+          "programs": "Diploma in Agriculture (Animal Science), Revised in 2021",
+          "duration": "3 Years",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Diploma",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-01-18_dipag005_diploma_agriculture_animal_science_revised_2021.pdf"
+        },
+        {
+          "ind_no": "38",
+          "programs": "Diploma in Yog and Naturopathy",
+          "duration": "3 Years",
+          "entry_qualification": "Refer Curricula",
+          "certificate": "Refer Curricula",
+          "download_url": "https://ctevt.org.np/uploads/docs/2023-09-22_diphe009_diploma_in_yog_&_naturopathy_2017_updated_2020.pdf"
+        }
+      ]
+    }
+  ]
+}
