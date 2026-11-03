@@ -41681,14 +41681,13 @@ p=A.cBe(g,'<meta property="og:title" content="','"')
 o=p==null?null:A.cBf(p)
 if(o==null)o="Playlist"
 n=A.c2k(g,'"INNERTUBE_API_KEY":"')
-if(n==null)n="AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"
 p=A.c2k(g,'"INNERTUBE_CONTEXT_CLIENT_VERSION":"')
 m=p==null?A.c2k(g,'"clientVersion":"'):p
 if(m==null)m="2.20240410.01.00"
 l=A.ag('"continuationCommand":\\{"token":"([^"]+)"',!0,!1,!1,!1).c_(g)
 k=l==null?null:l.b[1]
 j=0
-case 4:if(!(k!=null&&f.length<1000&&j<60)){s=5
+case 4:if(!(n!=null&&k!=null&&f.length<1000&&j<60)){s=5
 break}++j
 s=6
 return A.h(A.b6t(n,m,k),$async$alD)
